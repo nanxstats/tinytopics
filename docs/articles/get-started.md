@@ -14,7 +14,6 @@
 ## Import stuff
 
 ``` python
-import torch
 from tinytopics.fit import fit_model
 from tinytopics.plot import plot_loss, plot_structure, plot_top_terms
 from tinytopics.utils import (
@@ -57,9 +56,8 @@ plot_loss(losses, output_file="loss.png")
 Derive matrices
 
 ``` python
-with torch.no_grad():
-    learned_L = torch.softmax(model.L.weight, dim=1).cpu().numpy()
-    learned_F = torch.softmax(model.F, dim=1).cpu().numpy()
+learned_L = model.get_normalized_L().numpy()
+learned_F = model.get_normalized_F().numpy()
 ```
 
 Align topics

@@ -38,3 +38,11 @@ class NeuralPoissonNMF(nn.Module):
 
         # Return the matrix product to approximate X_batch
         return torch.matmul(L_normalized, F_normalized)
+
+    def get_normalized_L(self):
+        with torch.no_grad():
+            return torch.softmax(self.L.weight, dim=1).cpu()
+
+    def get_normalized_F(self):
+        with torch.no_grad():
+            return torch.softmax(self.F, dim=1).cpu()
