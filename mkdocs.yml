@@ -1,6 +1,8 @@
 site_name: tinytopics
 site_url: https://nanx.me/tinytopics/
+
 repo_url: https://github.com/nanxstats/tinytopics
+repo_name: nanxstats/tinytopics
 edit_uri: edit/main/docs/
 
 nav:
@@ -33,6 +35,8 @@ theme:
     code: JetBrains Mono
   logo: assets/logo.png
   favicon: assets/favicon.png
+  icon:
+    repo: fontawesome/brands/github
   palette:
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
