@@ -4,6 +4,21 @@ from .models import NeuralPoissonNMF
 
 
 def fit_model(X, k, num_epochs=200, batch_size=64, learning_rate=0.001, device=None):
+    """
+    Fit topic model via sum-to-one constrained neural Poisson NMF using batch gradient descent.
+
+    Args:
+        X (torch.Tensor): Document-term matrix.
+        k (int): Number of topics.
+        num_epochs (int, optional): Number of training epochs. Default is 200.
+        batch_size (int, optional): Number of documents per batch. Default is 64.
+        learning_rate (float, optional): Learning rate for Adam optimizer. Default is 0.001.
+        device (torch.device, optional): Device to run the training on. Defaults to CUDA if available, otherwise CPU.
+
+    Returns:
+        (NeuralPoissonNMF): Trained model.
+        (list): List of training losses for each epoch.
+    """
     device = device or torch.device("cuda" if torch.cuda.is_available() else "cpu")
     X = X.to(device)
     n, m = X.shape
@@ -46,10 +61,10 @@ def fit_model(X, k, num_epochs=200, batch_size=64, learning_rate=0.001, device=N
 
 def poisson_nmf_loss(X, X_reconstructed):
     """
-    Poisson NMF negative log-likelihood loss function.
+    Compute the Poisson NMF loss function (negative log-likelihood).
 
     Args:
-        X (torch.Tensor): Original data matrix.
-        X_reconstructed (torch.Tensor): Reconstructed data matrix from the model.
+        X (torch.Tensor): Original document-term matrix.
+        X_reconstructed (torch.Tensor): Reconstructed matrix from the model.
     """
     return (X_reconstructed - X * torch.log(X_reconstructed + 1e-10)).sum()

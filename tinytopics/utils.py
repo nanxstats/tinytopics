@@ -5,10 +5,10 @@ from scipy.optimize import linear_sum_assignment
 
 def set_random_seed(seed):
     """
-    Set the random number seed for reproducibility.
+    Set the random seed for reproducibility across Torch and NumPy.
 
     Args:
-        seed (int): Seed value.
+        seed (int): Random seed value.
     """
     torch.manual_seed(seed)
     np.random.seed(seed)
@@ -18,19 +18,19 @@ def set_random_seed(seed):
 
 def generate_synthetic_data(n, m, k, avg_doc_length=1000, device=None):
     """
-    Generate synthetic document-term matrix.
+    Generate synthetic document-term matrix for testing the model.
 
     Args:
         n (int): Number of documents.
         m (int): Number of terms (vocabulary size).
         k (int): Number of topics.
-        avg_doc_length (int): Average document length.
-        device (torch.device): Device to place the tensor on.
+        avg_doc_length (int, optional): Average number of terms per document. Default is 1000.
+        device (torch.device, optional): Device to place the output tensors on.
 
     Returns:
-        X (torch.Tensor): Document-term matrix.
-        true_L (np.ndarray): True document-topic matrix.
-        true_F (np.ndarray): True topic-term matrix.
+        (torch.Tensor): Document-term matrix.
+        (np.ndarray): True document-topic distribution (L).
+        (np.ndarray): True topic-term distribution (F).
     """
     device = device or torch.device("cpu")
 
@@ -71,6 +71,17 @@ def generate_synthetic_data(n, m, k, avg_doc_length=1000, device=None):
 
 
 def align_topics(true_F, learned_F):
+    """
+    Align learned topics with true topics for visualization,
+    using cosine similarity and linear sum assignment.
+
+    Args:
+        true_F (np.ndarray): Ground truth topic-term matrix.
+        learned_F (np.ndarray): Learned topic-term matrix.
+
+    Returns:
+        (np.ndarray): Permutation of learned topics aligned with true topics.
+    """
     # Normalize topic-term distributions
     true_F_norm = true_F / np.linalg.norm(true_F, axis=1, keepdims=True)
     learned_F_norm = learned_F / np.linalg.norm(learned_F, axis=1, keepdims=True)
@@ -93,7 +104,7 @@ def sort_documents(L_matrix):
         L_matrix (np.ndarray): Document-topic distribution matrix.
 
     Returns:
-        sorted_indices (list): List of document indices sorted for plotting.
+        (list): Indices of documents sorted by dominant topics.
     """
     n, k = L_matrix.shape
     # Normalize L

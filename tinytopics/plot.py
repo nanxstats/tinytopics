@@ -4,7 +4,14 @@ import matplotlib.pyplot as plt
 
 def plot_loss(losses, title="Loss curve", output_file=None, figsize=(10, 8), dpi=300):
     """
-    Plot loss curve.
+    Plot the loss curve over training epochs.
+
+    Args:
+        losses (list): List of loss values for each epoch.
+        title (str, optional): Plot title. Default is "Loss curve".
+        output_file (str, optional): File path to save the plot. If None, displays the plot.
+        figsize (tuple, optional): Plot size. Default is (10, 8).
+        dpi (int, optional): Plot resolution. Default is 300.
     """
     plt.figure(figsize=figsize, dpi=dpi)
     plt.plot(losses)
@@ -27,10 +34,10 @@ def plot_structure(
     Args:
         L_matrix (np.ndarray): Document-topic distribution matrix.
         title (str): Plot title.
-        output_file (str): File path to save the plot. If None, display the plot.
-        figsize (tuple): Plot size.
-        dpi (int): Plot resolution.
-        color_palette (list or matplotlib colormap): Optional custom color palette.
+        output_file (str, optional): File path to save the plot. If None, displays the plot.
+        figsize (tuple, optional): Plot size. Default is (12, 6).
+        dpi (int, optional): Plot resolution. Default is 300.
+        color_palette (list or matplotlib colormap, optional): Custom color palette.
     """
     n_documents, n_topics = L_matrix.shape
     ind = np.arange(n_documents)  # Document indices
@@ -81,19 +88,19 @@ def plot_top_terms(
     ncols=None,
 ):
     """
-    Plot top terms per topic with horizontal bars.
+    Plot top terms for each topic in horizontal bar charts.
 
     Args:
         F_matrix (np.ndarray): Topic-term distribution matrix.
         title (str): Plot title.
-        n_top_terms (int): Number of top terms to display in each topic.
-        output_file (str): File path to save the plot. If None, display the plot.
-        figsize (tuple): Plot size.
-        dpi (int): Plot resolution.
-        color_palette (list or matplotlib colormap): Optional custom color palette.
-        term_names (list): Optional list of term names corresponding to indices.
-        nrows (int): Number of rows in the subplot grid.
-        ncols (int): Number of columns in the subplot grid.
+        n_top_terms (int, optional): Number of top terms to display per topic. Default is 10.
+        output_file (str, optional): File path to save the plot. If None, displays the plot.
+        figsize (tuple, optional): Plot size. Default is (10, 8).
+        dpi (int, optional): Plot resolution. Default is 300.
+        color_palette (list or matplotlib colormap, optional): Custom color palette.
+        term_names (list, optional): List of term names corresponding to indices.
+        nrows (int, optional): Number of rows in the subplot grid.
+        ncols (int, optional): Number of columns in the subplot grid.
     """
     n_topics = F_matrix.shape[0]
     top_terms_indices = np.argsort(-F_matrix, axis=1)[:, :n_top_terms]
