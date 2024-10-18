@@ -1,5 +1,8 @@
-# Get started
-
+---
+title: "Get started"
+format: gfm
+eval: false
+---
 
 !!! tip
 
@@ -11,7 +14,7 @@
 
 ## Import stuff
 
-``` python
+```{python}
 import torch
 from tinytopics.fit import fit_model
 from tinytopics.plot import plot_loss, plot_structure, plot_top_terms
@@ -25,13 +28,13 @@ from tinytopics.utils import (
 
 Set seed for reproducibility
 
-``` python
+```{python}
 set_random_seed(42)
 ```
 
 Generate synthetic data
 
-``` python
+```{python}
 n, m, k = 5000, 1000, 10
 X, true_L, true_F = generate_synthetic_data(n, m, k, avg_doc_length=256 * 256)
 ```
@@ -40,13 +43,13 @@ X, true_L, true_F = generate_synthetic_data(n, m, k, avg_doc_length=256 * 256)
 
 Train the model
 
-``` python
+```{python}
 model, losses = fit_model(X, k)
 ```
 
 Plot loss curve
 
-``` python
+```{python}
 plot_loss(losses, output_file="loss.png")
 ```
 
@@ -54,7 +57,7 @@ plot_loss(losses, output_file="loss.png")
 
 Derive matrices
 
-``` python
+```{python}
 with torch.no_grad():
     learned_L = torch.softmax(model.L.weight, dim=1).cpu().numpy()
     learned_F = torch.softmax(model.F, dim=1).cpu().numpy()
@@ -62,7 +65,7 @@ with torch.no_grad():
 
 Align topics
 
-``` python
+```{python}
 aligned_indices = align_topics(true_F, learned_F)
 learned_F_aligned = learned_F[aligned_indices]
 learned_L_aligned = learned_L[:, aligned_indices]
@@ -70,7 +73,7 @@ learned_L_aligned = learned_L[:, aligned_indices]
 
 Sort documents
 
-``` python
+```{python}
 sorted_indices = sort_documents(true_L)
 true_L_sorted = true_L[sorted_indices]
 learned_L_sorted = learned_L_aligned[sorted_indices]
@@ -80,7 +83,7 @@ learned_L_sorted = learned_L_aligned[sorted_indices]
 
 STRUCTURE plot
 
-``` python
+```{python}
 plot_structure(
     true_L_sorted,
     title="True Document-Topic Distributions (Sorted)",
@@ -95,7 +98,7 @@ plot_structure(
 
 Top terms plot
 
-``` python
+```{python}
 plot_top_terms(
     true_F,
     n_top_terms=15,
