@@ -24,9 +24,11 @@ plugins:
       default_handler: python
 
 markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
   - pymdownx.highlight:
       anchor_linenums: true
-  - pymdownx.superfences
 
 theme:
   name: material
