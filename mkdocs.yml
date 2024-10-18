@@ -1,6 +1,7 @@
 site_name: tinytopics
 site_url: https://nanx.me/tinytopics/
 repo_url: https://github.com/nanxstats/tinytopics
+edit_uri: edit/main/docs/
 
 nav:
   - Home: index.md
