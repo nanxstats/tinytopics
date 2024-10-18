@@ -1,6 +1,7 @@
 # tinytopics <img src="assets/logo.png" align="right" width="120" />
 
-tinytopics is...
+Topic modeling via sum-to-one constrained Poisson non-negative
+matrix factorization (NMF), built on PyTorch and runs on GPU.
 
 You can install tinytopics from PyPI:
 
