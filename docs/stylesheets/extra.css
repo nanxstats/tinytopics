@@ -14,16 +14,32 @@
 
 /* Typography */
 
+body {
+    -webkit-font-smoothing: auto;
+}
+
 .md-nav {
     font-size: 0.9rem;
 }
 
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+    color: var(--md-default-fg-color--dark);
+    font-weight: 600;
+}
+
+h2 h3,
+code {
+    font-weight: 400;
+}
+
 .md-typeset {
-    font-size: 1rem;
+    font-size: 0.85rem;
 }
 
 .md-typeset code {
-    font-size: 0.75em;
+    font-size: 0.85em;
 }
 
 .md-typeset table:not([class]) {
