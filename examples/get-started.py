@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# <!-- `.md` and `.py` files are generated from the `.qmd` file. Please edit that file. -->
+
 # ---
 # title: "Get started"
 # format: gfm

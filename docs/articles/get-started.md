@@ -1,6 +1,8 @@
 # Get started
 
 
+<!-- `.md` and `.py` files are generated from the `.qmd` file. Please edit that file. -->
+
 !!! tip
 
     To run the code from this article as a Python script:
