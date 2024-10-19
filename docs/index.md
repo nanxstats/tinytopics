@@ -5,6 +5,10 @@ matrix factorization (NMF), built on PyTorch and runs on GPU.
 
 ## Installation
 
+First, install a CUDA-enabled version of
+[PyTorch](https://pytorch.org/get-started/locally/) and run with an Nvidia GPU.
+At the moment, only the Linux and Windows versions of PyTorch support CUDA.
+
 You can install tinytopics from PyPI:
 
 ```bash
