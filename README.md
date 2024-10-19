@@ -1,4 +1,4 @@
-# tinytopics <img src="assets/logo.png" align="right" width="120" />
+# tinytopics <img src="docs/assets/logo.png" align="right" width="120" />
 
 Topic modeling via sum-to-one constrained Poisson non-negative
 matrix factorization (NMF), built on PyTorch and runs on GPU.

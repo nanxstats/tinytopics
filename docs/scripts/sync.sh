@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Sync README.md
-cp README.md docs/index.md
+# Sync README.md with modified image path for docs/index.md
+sed 's|docs/assets/logo.png|assets/logo.png|g' README.md > docs/index.md
 
 # Sync articles
 quarto render docs/articles/get-started.qmd
