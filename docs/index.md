@@ -3,6 +3,8 @@
 Topic modeling via sum-to-one constrained Poisson non-negative
 matrix factorization (NMF), built on PyTorch and runs on GPU.
 
+## Installation
+
 You can install tinytopics from PyPI:
 
 ```bash
@@ -18,3 +20,7 @@ python3 -m pip install -e .
 ```
 
 Try [getting started](articles/get-started.md).
+
+## Known issues
+
+- [ ] Running on CPU produces different (and worse) models than on GPU.
