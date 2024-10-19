@@ -17,7 +17,7 @@
 #     python3 examples/get-started.py
 #     ```
 #
-# ## Import stuff
+# ## Import tinytopics
 
 # In[ ]:
 
@@ -32,18 +32,14 @@ from tinytopics.utils import (
 )
 
 
-# Set seed for reproducibility
+# ## Generate synthetic data
+#
+# Set random seed for reproducibility and generate synthetic data
 
 # In[ ]:
 
 
 set_random_seed(42)
-
-
-# Generate synthetic data
-
-# In[ ]:
-
 
 n, m, k = 5000, 1000, 10
 X, true_L, true_F = generate_synthetic_data(n, m, k, avg_doc_length=256 * 256)
@@ -67,6 +63,8 @@ model, losses = fit_model(X, k)
 plot_loss(losses, output_file="loss.png")
 
 
+# ![](images/loss.png)
+#
 # ## Post-process results
 #
 # Derive matrices
@@ -108,15 +106,24 @@ learned_L_sorted = learned_L_aligned[sorted_indices]
 plot_structure(
     true_L_sorted,
     title="True Document-Topic Distributions (Sorted)",
-    output_file="L_true.png",
+    output_file="L-true.png",
 )
+
+
+# ![](images/L-true.png)
+
+# In[ ]:
+
+
 plot_structure(
     learned_L_sorted,
     title="Learned Document-Topic Distributions (Sorted and Aligned)",
-    output_file="L_learned_aligned.png",
+    output_file="L-learned.png",
 )
 
 
+# ![](images/L-learned.png)
+#
 # Top terms plot
 
 # In[ ]:
@@ -126,11 +133,21 @@ plot_top_terms(
     true_F,
     n_top_terms=15,
     title="Top Terms per Topic - True F Matrix",
-    output_file="F_top_terms_true.png",
+    output_file="F-top-terms-true.png",
 )
+
+
+# ![](images/F-top-terms-true.png)
+
+# In[ ]:
+
+
 plot_top_terms(
     learned_F_aligned,
     n_top_terms=15,
     title="Top Terms per Topic - Learned F Matrix (Aligned)",
-    output_file="F_top_terms_learned_aligned.png",
+    output_file="F-top-terms-learned.png",
 )
+
+
+# ![](images/F-top-terms-learned.png)
