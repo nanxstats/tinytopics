@@ -115,7 +115,7 @@ Plot m vs. time, conditioned on n, for each k.
 
 ``` python
 for k in k_values:
-    plt.figure(figsize=(12, 8), dpi=300)
+    plt.figure(figsize=(7, 4.3), dpi=300)
 
     for n in n_values:
         subset = benchmark_results[(benchmark_results["n"] == n) & (benchmark_results["k"] == k)]

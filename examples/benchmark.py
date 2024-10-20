@@ -145,7 +145,7 @@ benchmark_results.to_csv("benchmark-results.csv", index=False)
 
 
 for k in k_values:
-    plt.figure(figsize=(12, 8), dpi=300)
+    plt.figure(figsize=(7, 4.3), dpi=300)
 
     for n in n_values:
         subset = benchmark_results[

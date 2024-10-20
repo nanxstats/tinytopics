@@ -1,17 +1,29 @@
 #!/bin/bash
 
+# Render .qmd to .md and convert to .py
+sync_article() {
+    local article_name=$1
+    local article_path="docs/articles/$article_name.qmd"
+    local example_output="examples/$article_name.py"
+
+    # Render .qmd to .md
+    quarto render "$article_path"
+
+    # Convert .qmd to .ipynb
+    quarto convert "$article_path"
+
+    # Convert .ipynb to .py
+    jupyter nbconvert --to python "docs/articles/$article_name.ipynb" --output "../../$example_output"
+
+    # Clean up
+    rm "docs/articles/$article_name.ipynb"
+    black "$example_output"
+}
+
 # Sync README.md with modified image path for docs/index.md
 sed 's|docs/assets/logo.png|assets/logo.png|g' README.md > docs/index.md
 
 # Sync articles
-quarto render docs/articles/get-started.qmd
-quarto convert docs/articles/get-started.qmd
-jupyter nbconvert --to python docs/articles/get-started.ipynb --output ../../examples/get-started.py
-rm docs/articles/get-started.ipynb
-black examples/get-started.py
-
-quarto render docs/articles/benchmark.qmd
-quarto convert docs/articles/benchmark.qmd
-jupyter nbconvert --to python docs/articles/benchmark.ipynb --output ../../examples/benchmark.py
-rm docs/articles/benchmark.ipynb
-black examples/benchmark.py
+for article in get-started benchmark; do
+    sync_article "$article"
+done
