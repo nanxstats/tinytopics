@@ -3,16 +3,16 @@ from tqdm import tqdm
 from .models import NeuralPoissonNMF
 
 
-def fit_model(X, k, num_epochs=200, batch_size=64, learning_rate=0.001, device=None):
+def fit_model(X, k, learning_rate=0.001, num_epochs=200, batch_size=64, device=None):
     """
     Fit topic model via sum-to-one constrained neural Poisson NMF using batch gradient descent.
 
     Args:
         X (torch.Tensor): Document-term matrix.
         k (int): Number of topics.
+        learning_rate (float, optional): Learning rate for Adam optimizer. Default is 0.001.
         num_epochs (int, optional): Number of training epochs. Default is 200.
         batch_size (int, optional): Number of documents per batch. Default is 64.
-        learning_rate (float, optional): Learning rate for Adam optimizer. Default is 0.001.
         device (torch.device, optional): Device to run the training on. Defaults to CUDA if available, otherwise CPU.
 
     Returns:

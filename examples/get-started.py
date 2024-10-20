@@ -52,7 +52,7 @@ X, true_L, true_F = generate_synthetic_data(n, m, k, avg_doc_length=256 * 256)
 # In[ ]:
 
 
-model, losses = fit_model(X, k)
+model, losses = fit_model(X, k, learning_rate=0.01)
 
 
 # Plot loss curve
@@ -64,6 +64,17 @@ plot_loss(losses, output_file="loss.png")
 
 
 # ![](images/loss.png)
+#
+# !!! tip
+#
+#     The performance of the model can be sensitive to the learning rate.
+#     If you experience suboptimal results or observe performance discrepancies
+#     between the model trained on CPU and GPU, tuning the learning rate can help.
+#
+#     For example, using the default learning rate of 0.001 on this synthetic
+#     dataset can lead to inconsistent results between devices (worse model
+#     on CPU than GPU). Increasing the learning rate towards 0.01 significantly
+#     improves model fit and ensures consistent performance across both devices.
 #
 # ## Post-process results
 #
