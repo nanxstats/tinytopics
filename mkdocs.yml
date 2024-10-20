@@ -9,6 +9,7 @@ nav:
   - Home: index.md
   - Articles:
     - articles/get-started.md
+    - articles/benchmark.md
   - API Reference:
     - Fit: reference/fit.md
     - Models: reference/models.md
