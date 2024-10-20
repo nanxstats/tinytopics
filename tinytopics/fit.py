@@ -67,4 +67,7 @@ def poisson_nmf_loss(X, X_reconstructed):
         X (torch.Tensor): Original document-term matrix.
         X_reconstructed (torch.Tensor): Reconstructed matrix from the model.
     """
-    return (X_reconstructed - X * torch.log(X_reconstructed + 1e-10)).sum()
+    epsilon = 1e-10
+    return (
+        X_reconstructed - X * torch.log(torch.clamp(X_reconstructed, min=epsilon))
+    ).sum()
