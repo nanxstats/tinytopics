@@ -1,5 +1,6 @@
 import torch
 import numpy as np
+from tqdm import tqdm
 from scipy.optimize import linear_sum_assignment
 
 
@@ -46,8 +47,7 @@ def generate_synthetic_data(n, m, k, avg_doc_length=1000, device=None):
     # Initialize document-term matrix X
     X = np.zeros((n, m), dtype=np.int32)
 
-    # For each document i
-    for i in range(n):
+    for i in tqdm(range(n), desc="Generating Documents"):
         # Sample topic counts for document i
         topic_probs = true_L[i]
         topic_counts = np.random.multinomial(doc_lengths[i], topic_probs)
