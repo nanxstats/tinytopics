@@ -17,6 +17,30 @@
 #     python3 examples/get-started.py
 #     ```
 #
+# ## Introduction
+#
+# Fitting topic models at scale using classical algorithms on CPUs can be slow.
+# Carbonetto et al. (2022) demonstrated the equivalence between Poisson NMF
+# and multinomial topic model likelihoods, and proposed a novel optimization
+# strategy: fit a Poisson NMF via coordinate descent, then recover the
+# corresponding topic model through a simple transformation.
+# This method was implemented in their R package,
+# [fastTopics](https://cran.r-project.org/package=fastTopics).
+#
+# Building on this theoretical insight, tinytopics adopts a more pragmatic
+# approach by directly solving a sum-to-one constrained neural Poisson NMF,
+# optimized using stochastic gradient methods, implemented in PyTorch.
+# This approach has a several benefits:
+#
+# - Scalable: Runs efficiently on both CPUs and GPUs and enables large-scale
+#   topic modeling tasks.
+# - Extensible: The model architecture is flexible and can be extended,
+#   for example, by adding regularization or integrating with other data modalities.
+# - Minimal: The core implementation is kept simple and readable, reflecting
+#   the package name: **tiny**topics.
+#
+# Let's see how it works using a simulated dataset.
+#
 # ## Import tinytopics
 
 # In[ ]:
@@ -162,3 +186,9 @@ plot_top_terms(
 
 
 # ![](images/F-top-terms-learned.png)
+#
+# ## References
+#
+# Carbonetto, P., Sarkar, A., Wang, Z., & Stephens, M. (2021).
+# Non-negative matrix factorization algorithms greatly improve topic model fits.
+# arXiv Preprint arXiv:2105.13440.
