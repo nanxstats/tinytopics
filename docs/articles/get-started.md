@@ -24,7 +24,7 @@ transformation. This method was implemented in their R package,
 Building on this theoretical insight, tinytopics adopts a more pragmatic
 approach by directly solving a sum-to-one constrained neural Poisson
 NMF, optimized using stochastic gradient methods, implemented in
-PyTorch. This approach has a several benefits:
+PyTorch. The benefits of this approach:
 
 - Scalable: Runs efficiently on both CPUs and GPUs and enables
   large-scale topic modeling tasks.
