@@ -26,8 +26,9 @@
 #
 # Experiment environment:
 #
-# - 1x NVIDIA GeForce RTX 4090
-# - 1x AMD Ryzen 9 7950X3D
+# - GPU: 1x NVIDIA GeForce RTX 4090 (16384 CUDA cores, 24GB VRAM)
+# - CPU: 1x AMD Ryzen 9 7950X3D (16 cores, 32 threads)
+# - RAM: DDR5 6000MHz 2x32GB
 #
 # ## Conclusions
 #
