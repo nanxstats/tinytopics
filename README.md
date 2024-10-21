@@ -1,7 +1,7 @@
 # tinytopics <img src="docs/assets/logo.png" align="right" width="120" />
 
 Topic modeling via sum-to-one constrained Poisson non-negative
-matrix factorization (NMF), built on PyTorch and runs on GPU.
+matrix factorization (NMF), built on PyTorch and runs on both CPUs and GPUs.
 
 ## Installation
 
@@ -22,4 +22,6 @@ cd tinytopics
 python3 -m pip install -e .
 ```
 
-Try [getting started](https://nanx.me/tinytopics/articles/get-started/).
+After tinytopics is installed, try the example from the
+[getting started guide](https://nanx.me/tinytopics/articles/get-started/)
+or see the [speed benchmark](https://nanx.me/tinytopics/articles/benchmark/).

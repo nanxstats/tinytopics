@@ -17,11 +17,12 @@
 #     python3 examples/benchmark.py
 #     ```
 #
-# Let's compare the topic model training speed on CPU vs. GPU.
-# We will compare the training time under combinations of:
+# In this article, we compare the topic model training speed on CPU vs. GPU
+# on mainstream consumer hardware. We will compare the time consumed under
+# combinations of the three key parameters defining the problem size:
 #
 # - Number of documents (`n`).
-# - Vocabulary size (`m`).
+# - Number of terms or vocabulary size (`m`).
 # - Number of topics (`k`).
 #
 # Experiment environment:
@@ -39,7 +40,7 @@
 #   For `m` larger than a certain threshold (1,000 to 5,000),
 #   training on GPU will be faster than CPU.
 #
-# ## Import
+# ## Import tinytopics
 
 # In[ ]:
 
@@ -54,7 +55,7 @@ from tinytopics.utils import generate_synthetic_data, set_random_seed
 
 # ## Basic setup
 #
-# Set seed for reproducibility
+# Set seed for reproducibility:
 
 # In[ ]:
 
@@ -62,7 +63,7 @@ from tinytopics.utils import generate_synthetic_data, set_random_seed
 set_random_seed(42)
 
 
-# Define parameter grids
+# Define parameter grids:
 
 # In[ ]:
 
@@ -74,7 +75,7 @@ learning_rate = 0.01
 avg_doc_length = 256 * 256
 
 
-# Create a DataFrame to store benchmark results
+# Create a data frame to store the benchmark results.
 
 # In[ ]:
 
@@ -91,8 +92,6 @@ def benchmark(X, k, device):
 
 
 # ## Run experiment
-#
-# Run the benchmarks
 
 # In[ ]:
 
@@ -130,7 +129,7 @@ for n in n_values:
                     )
 
 
-# Save results to a CSV file
+# Save results to a CSV file:
 
 # In[ ]:
 
@@ -138,9 +137,10 @@ for n in n_values:
 benchmark_results.to_csv("benchmark-results.csv", index=False)
 
 
-# ## Results summary
+# ## Visualize results
 #
-# Plot m vs. time, conditioned on n, for each k.
+# Plot the number of terms (`m`) against the time consumed, conditioning on
+# the number of documents (`n`), for each number of topics (`k`).
 
 # In[ ]:
 

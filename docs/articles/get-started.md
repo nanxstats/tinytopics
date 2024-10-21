@@ -34,7 +34,8 @@ PyTorch. The benefits of this approach:
 - Minimal: The core implementation is kept simple and readable,
   reflecting the package name: **tiny**topics.
 
-Let’s see how it works using a simulated dataset.
+In this article, we show a canonical tinytopics workflow using a
+simulated dataset.
 
 ## Import tinytopics
 
@@ -51,26 +52,26 @@ from tinytopics.utils import (
 
 ## Generate synthetic data
 
-Set random seed for reproducibility and generate synthetic data
+Set random seed for reproducibility:
 
 ``` python
 set_random_seed(42)
+```
 
+Generate a synthetic dataset:
+
+``` python
 n, m, k = 5000, 1000, 10
 X, true_L, true_F = generate_synthetic_data(n, m, k, avg_doc_length=256 * 256)
 ```
 
-## Training
+## Fit topic model
 
-Train the model
+Fit the topic model and plot loss curve. There will be a progress bar.
 
 ``` python
 model, losses = fit_model(X, k, learning_rate=0.01)
-```
 
-Plot loss curve
-
-``` python
 plot_loss(losses, output_file="loss.png")
 ```
 
@@ -89,14 +90,16 @@ plot_loss(losses, output_file="loss.png")
 
 ## Post-process results
 
-Derive matrices
+Get the learned L and F matrices from the fitted topic model:
 
 ``` python
 learned_L = model.get_normalized_L().numpy()
 learned_F = model.get_normalized_F().numpy()
 ```
 
-Align topics
+To make it easier to inspect the results visually, we should try to
+“align” the learned topics with the ground truth topics by their terms
+similarity.
 
 ``` python
 aligned_indices = align_topics(true_F, learned_F)
@@ -104,7 +107,8 @@ learned_F_aligned = learned_F[aligned_indices]
 learned_L_aligned = learned_L[:, aligned_indices]
 ```
 
-Sort documents
+Sort the documents in both the true document-topic matrix and the
+learned document-topic matrix, grouped by dominant topics.
 
 ``` python
 sorted_indices = sort_documents(true_L)
@@ -112,9 +116,15 @@ true_L_sorted = true_L[sorted_indices]
 learned_L_sorted = learned_L_aligned[sorted_indices]
 ```
 
+!!! note
+
+    Most of the alignment and sorting steps only applies to simulations
+    because we don't know the ground truth L and F for real datasets.
+
 ## Visualize results
 
-STRUCTURE plot
+We can use a “Structure plot” to visualize and compare the the
+document-topic distributions.
 
 ``` python
 plot_structure(
@@ -136,7 +146,7 @@ plot_structure(
 
 ![](images/L-learned.png)
 
-Top terms plot
+We can also plot the top terms for each topic using bar charts.
 
 ``` python
 plot_top_terms(
