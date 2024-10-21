@@ -7,7 +7,7 @@ sync_article() {
     local example_output="examples/$article_name.py"
 
     # Render .qmd to .md
-    quarto render "$article_path"
+    quarto render "$article_path" --quiet
 
     # Convert .qmd to .ipynb
     quarto convert "$article_path"
@@ -18,8 +18,8 @@ sync_article() {
     # Clean up
     rm "docs/articles/$article_name.ipynb"
 
-    # Format .py using black from venv
-    python -m black "$example_output"
+    # Format .py using ruff from venv
+    python -m ruff format "$example_output"
 }
 
 # Sync README.md with modified image path for docs/index.md
