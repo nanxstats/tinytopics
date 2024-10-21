@@ -1,5 +1,16 @@
 # Change log
 
+## tinytopics 0.1.2
+
+### Improvements
+
+- Reduce the minimum version requirement for all dependencies in `pyproject.toml`.
+
+### Documentation
+
+- Add more details on PyTorch installation in `README.md`.
+- Improve text quality in articles.
+
 ## tinytopics 0.1.1
 
 ### Improvements
