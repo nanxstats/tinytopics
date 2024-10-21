@@ -15,6 +15,9 @@ sync_article() {
     # Convert .ipynb to .py using nbconvert from venv
     python -m nbconvert --to python "docs/articles/$article_name.ipynb" --output "../../$example_output"
 
+    # Remove all comments
+    awk '!/^#/' "$example_output" > temp && mv temp "$example_output"
+
     # Clean up
     rm "docs/articles/$article_name.ipynb"
 
@@ -23,7 +26,7 @@ sync_article() {
 }
 
 # Sync README.md with modified image path for docs/index.md
-sed 's|docs/assets/logo.png|assets/logo.png|g' README.md > docs/index.md
+awk '{gsub("docs/assets/logo.png", "assets/logo.png"); print}' README.md > docs/index.md
 
 # Sync articles
 for article in get-started benchmark; do

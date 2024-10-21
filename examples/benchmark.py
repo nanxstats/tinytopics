@@ -1,50 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# <!-- `.md` and `.py` files are generated from the `.qmd` file. Please edit that file. -->
-
-# ---
-# title: "CPU vs. GPU benchmark"
-# format: gfm
-# eval: false
-# ---
-#
-# !!! tip
-#
-#     To run the code from this article as a Python script:
-#
-#     ```bash
-#     python3 examples/benchmark.py
-#     ```
-#
-# In this article, we compare the topic model training speed on CPU vs. GPU
-# on mainstream consumer hardware. We will compare the time consumed under
-# combinations of the three key parameters defining the problem size:
-#
-# - Number of documents (`n`).
-# - Number of terms or vocabulary size (`m`).
-# - Number of topics (`k`).
-#
-# Experiment environment:
-#
-# - GPU: 1x NVIDIA GeForce RTX 4090 (16384 CUDA cores, 24GB VRAM)
-# - CPU: 1x AMD Ryzen 9 7950X3D (16 cores, 32 threads)
-# - RAM: DDR5 6000MHz 2x32GB
-#
-# ## Conclusions
-#
-# - Training time grows linearly as the number of documents (`n`) grows, on both CPU and GPU.
-# - Similarly, training time grows as the number of topics (`k`) grows.
-# - With `n` and `k` fixed and vocabulary size (`m`) grows,
-#   CPU time will grow linearly while GPU time stays constant.
-#   For `m` larger than a certain threshold (1,000 to 5,000),
-#   training on GPU will be faster than CPU.
-#
-# ## Import tinytopics
-
-# In[ ]:
-
-
 import time
 import torch
 import pandas as pd
@@ -53,19 +6,7 @@ from tinytopics.fit import fit_model
 from tinytopics.utils import generate_synthetic_data, set_random_seed
 
 
-# ## Basic setup
-#
-# Set seed for reproducibility:
-
-# In[ ]:
-
-
 set_random_seed(42)
-
-
-# Define parameter grids:
-
-# In[ ]:
 
 
 n_values = [1000, 5000]  # Number of documents
@@ -73,11 +14,6 @@ m_values = [500, 1000, 5000, 10000]  # Vocabulary size
 k_values = [10, 50, 100]  # Number of topics
 learning_rate = 0.01
 avg_doc_length = 256 * 256
-
-
-# Create a data frame to store the benchmark results.
-
-# In[ ]:
 
 
 benchmark_results = pd.DataFrame()
@@ -89,11 +25,6 @@ def benchmark(X, k, device):
     elapsed_time = time.time() - start_time
 
     return elapsed_time
-
-
-# ## Run experiment
-
-# In[ ]:
 
 
 for n in n_values:
@@ -129,20 +60,7 @@ for n in n_values:
                     )
 
 
-# Save results to a CSV file:
-
-# In[ ]:
-
-
 benchmark_results.to_csv("benchmark-results.csv", index=False)
-
-
-# ## Visualize results
-#
-# Plot the number of terms (`m`) against the time consumed, conditioning on
-# the number of documents (`n`), for each number of topics (`k`).
-
-# In[ ]:
 
 
 for k in k_values:
@@ -176,10 +94,3 @@ for k in k_values:
     plt.grid(True)
     plt.savefig(f"training-time-k-{k}.png", dpi=300)
     plt.close()
-
-
-# ![](images/training-time-k-10.png)
-#
-# ![](images/training-time-k-50.png)
-#
-# ![](images/training-time-k-100.png)
