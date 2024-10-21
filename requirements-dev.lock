@@ -217,14 +217,14 @@ nbformat==5.10.4
     # via nbconvert
 nest-asyncio==1.6.0
     # via ipykernel
-networkx==3.2.1
+networkx==3.4.2
     # via torch
 notebook==7.2.2
     # via jupyter
 notebook-shim==0.2.4
     # via jupyterlab
     # via notebook
-numpy==2.0.2
+numpy==2.1.2
     # via contourpy
     # via matplotlib
     # via scipy
@@ -320,7 +320,7 @@ rfc3986-validator==0.1.1
 rpds-py==0.20.0
     # via jsonschema
     # via referencing
-scipy==1.13.1
+scipy==1.14.1
     # via tinytopics
 send2trash==1.8.3
     # via jupyter-server
