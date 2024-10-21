@@ -28,11 +28,11 @@ Experiment environment:
 
 ## Conclusions
 
-- Training time grows linearly as number of documents (`n`) grows, on
-  both CPU and GPU.
+- Training time grows linearly as the number of documents (`n`) grows,
+  on both CPU and GPU.
 - Similarly, training time grows as the number of topics (`k`) grows.
 - With `n` and `k` fixed and vocabulary size (`m`) grows, CPU time will
-  grow linearly, while GPU time stays constant. For `m` larger than a
+  grow linearly while GPU time stays constant. For `m` larger than a
   certain threshold (1,000 to 5,000), training on GPU will be faster
   than CPU.
 

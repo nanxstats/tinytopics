@@ -33,10 +33,10 @@
 #
 # ## Conclusions
 #
-# - Training time grows linearly as number of documents (`n`) grows, on both CPU and GPU.
+# - Training time grows linearly as the number of documents (`n`) grows, on both CPU and GPU.
 # - Similarly, training time grows as the number of topics (`k`) grows.
 # - With `n` and `k` fixed and vocabulary size (`m`) grows,
-#   CPU time will grow linearly, while GPU time stays constant.
+#   CPU time will grow linearly while GPU time stays constant.
 #   For `m` larger than a certain threshold (1,000 to 5,000),
 #   training on GPU will be faster than CPU.
 #
@@ -52,7 +52,6 @@ import matplotlib.pyplot as plt
 from tinytopics.fit import fit_model
 from tinytopics.utils import generate_synthetic_data, set_random_seed
 
-
 # ## Basic setup
 #
 # Set seed for reproducibility:
@@ -61,7 +60,6 @@ from tinytopics.utils import generate_synthetic_data, set_random_seed
 
 
 set_random_seed(42)
-
 
 # Define parameter grids:
 
@@ -73,7 +71,6 @@ m_values = [500, 1000, 5000, 10000]  # Vocabulary size
 k_values = [10, 50, 100]  # Number of topics
 learning_rate = 0.01
 avg_doc_length = 256 * 256
-
 
 # Create a data frame to store the benchmark results.
 
@@ -128,14 +125,12 @@ for n in n_values:
                         [benchmark_results, gpu_result], ignore_index=True
                     )
 
-
 # Save results to a CSV file:
 
 # In[ ]:
 
 
 benchmark_results.to_csv("benchmark-results.csv", index=False)
-
 
 # ## Visualize results
 #
@@ -176,7 +171,6 @@ for k in k_values:
     plt.grid(True)
     plt.savefig(f"training-time-k-{k}.png", dpi=300)
     plt.close()
-
 
 # ![](images/training-time-k-10.png)
 #

@@ -39,7 +39,7 @@
 # - Minimal: The core implementation is kept simple and readable, reflecting
 #   the package name: **tiny**topics.
 #
-# In this article, we show a canonical tinytopics workflow using a simulated dataset.
+# This article shows a canonical tinytopics workflow using a simulated dataset.
 #
 # ## Import tinytopics
 
@@ -55,7 +55,6 @@ from tinytopics.utils import (
     sort_documents,
 )
 
-
 # ## Generate synthetic data
 #
 # Set random seed for reproducibility:
@@ -65,7 +64,6 @@ from tinytopics.utils import (
 
 set_random_seed(42)
 
-
 # Generate a synthetic dataset:
 
 # In[ ]:
@@ -74,10 +72,9 @@ set_random_seed(42)
 n, m, k = 5000, 1000, 10
 X, true_L, true_F = generate_synthetic_data(n, m, k, avg_doc_length=256 * 256)
 
-
 # ## Fit topic model
 #
-# Fit the topic model and plot loss curve. There will be a progress bar.
+# Fit the topic model and plot the loss curve. There will be a progress bar.
 
 # In[ ]:
 
@@ -85,7 +82,6 @@ X, true_L, true_F = generate_synthetic_data(n, m, k, avg_doc_length=256 * 256)
 model, losses = fit_model(X, k, learning_rate=0.01)
 
 plot_loss(losses, output_file="loss.png")
-
 
 # ![](images/loss.png)
 #
@@ -97,7 +93,7 @@ plot_loss(losses, output_file="loss.png")
 #
 #     For example, using the default learning rate of 0.001 on this synthetic
 #     dataset can lead to inconsistent results between devices (worse model
-#     on CPU than GPU). Increasing the learning rate towards 0.01 significantly
+#     on CPU than GPU). Increasing the learning rate towards 0.01
 #     improves model fit and ensures consistent performance across both devices.
 #
 # ## Post-process results
@@ -110,7 +106,6 @@ plot_loss(losses, output_file="loss.png")
 learned_L = model.get_normalized_L().numpy()
 learned_F = model.get_normalized_F().numpy()
 
-
 # To make it easier to inspect the results visually, we should try to "align"
 # the learned topics with the ground truth topics by their terms similarity.
 
@@ -120,7 +115,6 @@ learned_F = model.get_normalized_F().numpy()
 aligned_indices = align_topics(true_F, learned_F)
 learned_F_aligned = learned_F[aligned_indices]
 learned_L_aligned = learned_L[:, aligned_indices]
-
 
 # Sort the documents in both the true document-topic matrix and the learned
 # document-topic matrix, grouped by dominant topics.
@@ -132,16 +126,14 @@ sorted_indices = sort_documents(true_L)
 true_L_sorted = true_L[sorted_indices]
 learned_L_sorted = learned_L_aligned[sorted_indices]
 
-
 # !!! note
 #
-#     Most of the alignment and sorting steps only applies to simulations
+#     Most of the alignment and sorting steps only apply to simulations
 #     because we don't know the ground truth L and F for real datasets.
 #
 # ## Visualize results
 #
-# We can use a "Structure plot" to visualize and compare the the
-# document-topic distributions.
+# We can use a "Structure plot" to visualize and compare the document-topic distributions.
 
 # In[ ]:
 
@@ -151,7 +143,6 @@ plot_structure(
     title="True Document-Topic Distributions (Sorted)",
     output_file="L-true.png",
 )
-
 
 # ![](images/L-true.png)
 
@@ -163,7 +154,6 @@ plot_structure(
     title="Learned Document-Topic Distributions (Sorted and Aligned)",
     output_file="L-learned.png",
 )
-
 
 # ![](images/L-learned.png)
 #
@@ -179,7 +169,6 @@ plot_top_terms(
     output_file="F-top-terms-true.png",
 )
 
-
 # ![](images/F-top-terms-true.png)
 
 # In[ ]:
@@ -191,7 +180,6 @@ plot_top_terms(
     title="Top Terms per Topic - Learned F Matrix (Aligned)",
     output_file="F-top-terms-learned.png",
 )
-
 
 # ![](images/F-top-terms-learned.png)
 #
