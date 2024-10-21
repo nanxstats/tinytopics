@@ -15,6 +15,7 @@ nav:
     - Models: reference/models.md
     - Plot: reference/plot.md
     - Utilities: reference/utils.md
+  - Changelog: changelog.md
 
 extra_css:
   - stylesheets/extra.css

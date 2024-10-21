@@ -25,10 +25,13 @@ sync_article() {
     python -m ruff format "$example_output"
 }
 
-# Sync README.md with modified image path for docs/index.md
-awk '{gsub("docs/assets/logo.png", "assets/logo.png"); print}' README.md > docs/index.md
-
 # Sync articles
 for article in get-started benchmark; do
     sync_article "$article"
 done
+
+# Sync README.md with modified image path for docs/index.md
+awk '{gsub("docs/assets/logo.png", "assets/logo.png"); print}' README.md > docs/index.md
+
+# Sync CHANGELOG.md with docs/changelog.md
+cp CHANGELOG.md docs/changelog.md
