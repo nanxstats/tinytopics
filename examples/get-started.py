@@ -55,6 +55,7 @@ from tinytopics.utils import (
     sort_documents,
 )
 
+
 # ## Generate synthetic data
 #
 # Set random seed for reproducibility:
@@ -64,6 +65,7 @@ from tinytopics.utils import (
 
 set_random_seed(42)
 
+
 # Generate a synthetic dataset:
 
 # In[ ]:
@@ -71,6 +73,7 @@ set_random_seed(42)
 
 n, m, k = 5000, 1000, 10
 X, true_L, true_F = generate_synthetic_data(n, m, k, avg_doc_length=256 * 256)
+
 
 # ## Fit topic model
 #
@@ -82,6 +85,7 @@ X, true_L, true_F = generate_synthetic_data(n, m, k, avg_doc_length=256 * 256)
 model, losses = fit_model(X, k, learning_rate=0.01)
 
 plot_loss(losses, output_file="loss.png")
+
 
 # ![](images/loss.png)
 #
@@ -106,6 +110,7 @@ plot_loss(losses, output_file="loss.png")
 learned_L = model.get_normalized_L().numpy()
 learned_F = model.get_normalized_F().numpy()
 
+
 # To make it easier to inspect the results visually, we should try to "align"
 # the learned topics with the ground truth topics by their terms similarity.
 
@@ -116,6 +121,7 @@ aligned_indices = align_topics(true_F, learned_F)
 learned_F_aligned = learned_F[aligned_indices]
 learned_L_aligned = learned_L[:, aligned_indices]
 
+
 # Sort the documents in both the true document-topic matrix and the learned
 # document-topic matrix, grouped by dominant topics.
 
@@ -125,6 +131,7 @@ learned_L_aligned = learned_L[:, aligned_indices]
 sorted_indices = sort_documents(true_L)
 true_L_sorted = true_L[sorted_indices]
 learned_L_sorted = learned_L_aligned[sorted_indices]
+
 
 # !!! note
 #
@@ -144,6 +151,7 @@ plot_structure(
     output_file="L-true.png",
 )
 
+
 # ![](images/L-true.png)
 
 # In[ ]:
@@ -154,6 +162,7 @@ plot_structure(
     title="Learned Document-Topic Distributions (Sorted and Aligned)",
     output_file="L-learned.png",
 )
+
 
 # ![](images/L-learned.png)
 #
@@ -169,6 +178,7 @@ plot_top_terms(
     output_file="F-top-terms-true.png",
 )
 
+
 # ![](images/F-top-terms-true.png)
 
 # In[ ]:
@@ -180,6 +190,7 @@ plot_top_terms(
     title="Top Terms per Topic - Learned F Matrix (Aligned)",
     output_file="F-top-terms-learned.png",
 )
+
 
 # ![](images/F-top-terms-learned.png)
 #
