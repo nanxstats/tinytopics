@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Render .qmd to .md and convert to .py
 sync_article() {
@@ -12,12 +12,14 @@ sync_article() {
     # Convert .qmd to .ipynb
     quarto convert "$article_path"
 
-    # Convert .ipynb to .py
-    jupyter nbconvert --to python "docs/articles/$article_name.ipynb" --output "../../$example_output"
+    # Convert .ipynb to .py using nbconvert from venv
+    python -m nbconvert --to python "docs/articles/$article_name.ipynb" --output "../../$example_output"
 
     # Clean up
     rm "docs/articles/$article_name.ipynb"
-    black "$example_output"
+
+    # Format .py using black from venv
+    python -m black "$example_output"
 }
 
 # Sync README.md with modified image path for docs/index.md
