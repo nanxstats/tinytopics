@@ -24,10 +24,11 @@ corresponding topic model through a simple transformation.
 This method was implemented in their R package,
 [fastTopics](https://cran.r-project.org/package=fastTopics).
 
-Building on this theoretical insight, tinytopics adopts a more pragmatic
+Building on this theoretical insight, tinytopics adopts an alternative
 approach by directly solving a sum-to-one constrained neural Poisson NMF,
 optimized using stochastic gradient methods, implemented in PyTorch.
-The benefits of this approach:
+Although this approach may not have the same theoretical guarantees,
+it does have a few potential practical benefits:
 
 - Scalable: Runs efficiently on both CPUs and GPUs and enables large-scale
   topic modeling tasks.
