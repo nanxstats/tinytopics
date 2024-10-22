@@ -2,16 +2,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def plot_loss(losses, title="Loss curve", output_file=None, figsize=(10, 8), dpi=300):
+def plot_loss(losses, figsize=(10, 8), dpi=300, title="Loss curve", output_file=None):
     """
     Plot the loss curve over training epochs.
 
     Args:
         losses (list): List of loss values for each epoch.
-        title (str, optional): Plot title. Default is "Loss curve".
-        output_file (str, optional): File path to save the plot. If None, displays the plot.
-        figsize (tuple, optional): Plot size. Default is (10, 8).
-        dpi (int, optional): Plot resolution. Default is 300.
+        figsize (tuple, optional): Plot size. Default is `(10, 8)`.
+        dpi (int, optional): Plot resolution. Default is `300`.
+        title (str, optional): Plot title. Default is `"Loss curve"`.
+        output_file (str, optional): File path to save the plot. If `None`, displays the plot.
     """
     plt.figure(figsize=figsize, dpi=dpi)
     plt.plot(losses)
@@ -26,18 +26,23 @@ def plot_loss(losses, title="Loss curve", output_file=None, figsize=(10, 8), dpi
 
 
 def plot_structure(
-    L_matrix, title, output_file=None, figsize=(12, 6), dpi=300, color_palette=None
+    L_matrix,
+    figsize=(12, 6),
+    dpi=300,
+    title="Structure Plot",
+    color_palette=None,
+    output_file=None,
 ):
     """
     STRUCTURE plot for visualizing document-topic distributions.
 
     Args:
         L_matrix (np.ndarray): Document-topic distribution matrix.
+        figsize (tuple, optional): Plot size. Default is `(12, 6)`.
+        dpi (int, optional): Plot resolution. Default is `300`.
         title (str): Plot title.
-        output_file (str, optional): File path to save the plot. If None, displays the plot.
-        figsize (tuple, optional): Plot size. Default is (12, 6).
-        dpi (int, optional): Plot resolution. Default is 300.
         color_palette (list or matplotlib colormap, optional): Custom color palette.
+        output_file (str, optional): File path to save the plot. If `None`, displays the plot.
     """
     n_documents, n_topics = L_matrix.shape
     ind = np.arange(n_documents)  # Document indices
@@ -77,30 +82,30 @@ def plot_structure(
 
 def plot_top_terms(
     F_matrix,
-    title,
     n_top_terms=10,
-    output_file=None,
+    term_names=None,
     figsize=(10, 8),
     dpi=300,
+    title="Top Terms",
     color_palette=None,
-    term_names=None,
     nrows=None,
     ncols=None,
+    output_file=None,
 ):
     """
     Plot top terms for each topic in horizontal bar charts.
 
     Args:
         F_matrix (np.ndarray): Topic-term distribution matrix.
-        title (str): Plot title.
-        n_top_terms (int, optional): Number of top terms to display per topic. Default is 10.
-        output_file (str, optional): File path to save the plot. If None, displays the plot.
-        figsize (tuple, optional): Plot size. Default is (10, 8).
-        dpi (int, optional): Plot resolution. Default is 300.
-        color_palette (list or matplotlib colormap, optional): Custom color palette.
+        n_top_terms (int, optional): Number of top terms to display per topic. Default is `10`.
         term_names (list, optional): List of term names corresponding to indices.
+        figsize (tuple, optional): Plot size. Default is `(10, 8)`.
+        dpi (int, optional): Plot resolution. Default is `300`.
+        title (str): Plot title.
+        color_palette (list or matplotlib colormap, optional): Custom color palette.
         nrows (int, optional): Number of rows in the subplot grid.
         ncols (int, optional): Number of columns in the subplot grid.
+        output_file (str, optional): File path to save the plot. If `None`, displays the plot.
     """
     n_topics = F_matrix.shape[0]
     top_terms_indices = np.argsort(-F_matrix, axis=1)[:, :n_top_terms]
