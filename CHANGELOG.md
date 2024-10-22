@@ -1,5 +1,11 @@
 # Changelog
 
+## tinytopics 0.1.3
+
+### Improvements
+
+- Reorder arguments in plotting functions to follow conventions.
+
 ## tinytopics 0.1.2
 
 ### Improvements
