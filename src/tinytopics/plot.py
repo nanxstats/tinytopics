@@ -8,10 +8,10 @@ def plot_loss(losses, figsize=(10, 8), dpi=300, title="Loss curve", output_file=
 
     Args:
         losses (list): List of loss values for each epoch.
-        figsize (tuple, optional): Plot size. Default is `(10, 8)`.
-        dpi (int, optional): Plot resolution. Default is `300`.
-        title (str, optional): Plot title. Default is `"Loss curve"`.
-        output_file (str, optional): File path to save the plot. If `None`, displays the plot.
+        figsize (tuple, optional): Plot size. Default is (10, 8).
+        dpi (int, optional): Plot resolution. Default is 300.
+        title (str, optional): Plot title. Default is "Loss curve".
+        output_file (str, optional): File path to save the plot. If None, displays the plot.
     """
     plt.figure(figsize=figsize, dpi=dpi)
     plt.plot(losses)
@@ -38,11 +38,11 @@ def plot_structure(
 
     Args:
         L_matrix (np.ndarray): Document-topic distribution matrix.
-        figsize (tuple, optional): Plot size. Default is `(12, 6)`.
-        dpi (int, optional): Plot resolution. Default is `300`.
+        figsize (tuple, optional): Plot size. Default is (12, 6).
+        dpi (int, optional): Plot resolution. Default is 300.
         title (str): Plot title.
         color_palette (list or matplotlib colormap, optional): Custom color palette.
-        output_file (str, optional): File path to save the plot. If `None`, displays the plot.
+        output_file (str, optional): File path to save the plot. If None, displays the plot.
     """
     n_documents, n_topics = L_matrix.shape
     ind = np.arange(n_documents)  # Document indices
@@ -97,15 +97,15 @@ def plot_top_terms(
 
     Args:
         F_matrix (np.ndarray): Topic-term distribution matrix.
-        n_top_terms (int, optional): Number of top terms to display per topic. Default is `10`.
+        n_top_terms (int, optional): Number of top terms to display per topic. Default is 10.
         term_names (list, optional): List of term names corresponding to indices.
-        figsize (tuple, optional): Plot size. Default is `(10, 8)`.
-        dpi (int, optional): Plot resolution. Default is `300`.
+        figsize (tuple, optional): Plot size. Default is (10, 8).
+        dpi (int, optional): Plot resolution. Default is 300.
         title (str): Plot title.
         color_palette (list or matplotlib colormap, optional): Custom color palette.
         nrows (int, optional): Number of rows in the subplot grid.
         ncols (int, optional): Number of columns in the subplot grid.
-        output_file (str, optional): File path to save the plot. If `None`, displays the plot.
+        output_file (str, optional): File path to save the plot. If None, displays the plot.
     """
     n_topics = F_matrix.shape[0]
     top_terms_indices = np.argsort(-F_matrix, axis=1)[:, :n_top_terms]
