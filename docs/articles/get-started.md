@@ -131,7 +131,7 @@ document-topic distributions.
 ``` python
 plot_structure(
     true_L_sorted,
-    title="True Document-Topic Distributions (Sorted)",
+    title="True document-topic distributions (sorted)",
     output_file="L-true.png",
 )
 ```
@@ -141,7 +141,7 @@ plot_structure(
 ``` python
 plot_structure(
     learned_L_sorted,
-    title="Learned Document-Topic Distributions (Sorted and Aligned)",
+    title="Learned document-topic distributions (sorted and aligned)",
     output_file="L-learned.png",
 )
 ```
@@ -154,7 +154,7 @@ We can also plot the top terms for each topic using bar charts.
 plot_top_terms(
     true_F,
     n_top_terms=15,
-    title="Top Terms per Topic - True F Matrix",
+    title="Top terms per topic - true F matrix",
     output_file="F-top-terms-true.png",
 )
 ```
@@ -165,7 +165,7 @@ plot_top_terms(
 plot_top_terms(
     learned_F_aligned,
     n_top_terms=15,
-    title="Top Terms per Topic - Learned F Matrix (Aligned)",
+    title="Top terms per topic - learned F matrix (aligned)",
     output_file="F-top-terms-learned.png",
 )
 ```
