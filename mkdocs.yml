@@ -36,6 +36,8 @@ markdown_extensions:
       anchor_linenums: true
   - pymdownx.tasklist:
       custom_checkbox: false
+  - toc:
+      permalink: true
 
 theme:
   name: material
