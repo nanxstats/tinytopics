@@ -46,6 +46,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from tinytopics.fit import fit_model
 from tinytopics.utils import generate_synthetic_data, set_random_seed
+from tinytopics.colors import scale_color_tinytopics
 ```
 
 ## Basic setup
@@ -60,7 +61,7 @@ Define parameter grids:
 
 ```{python}
 n_values = [1000, 5000]  # Number of documents
-m_values = [500, 1000, 5000, 10000]  # Vocabulary size
+m_values = [1000, 5000, 10000, 20000]  # Vocabulary size
 k_values = [10, 50, 100]  # Number of topics
 avg_doc_length = 256 * 256
 ```
@@ -116,17 +117,41 @@ Plot the number of terms (`m`) against the time consumed, conditioning on
 the number of documents (`n`), for each number of topics (`k`).
 
 ```{python}
+unique_series = len(n_values) * (2 if torch.cuda.is_available() else 1)
+colormap = scale_color_tinytopics(unique_series)
+colors_list = [colormap(i) for i in range(unique_series)]
+
 for k in k_values:
     plt.figure(figsize=(7, 4.3), dpi=300)
 
+    color_idx = 0
     for n in n_values:
-        subset = benchmark_results[(benchmark_results["n"] == n) & (benchmark_results["k"] == k)]
+        subset = benchmark_results[
+            (benchmark_results["n"] == n) & (benchmark_results["k"] == k)
+        ]
 
-        plt.plot(subset[subset["device"] == "CPU"]["m"], subset[subset["device"] == "CPU"]["time"],
-                 label=f"CPU (n={n})", linestyle="--", marker="o")
+        # Plot CPU results with a specific color
+        plt.plot(
+            subset[subset["device"] == "CPU"]["m"],
+            subset[subset["device"] == "CPU"]["time"],
+            label=f"CPU (n={n})",
+            linestyle="--",
+            marker="o",
+            color=colors_list[color_idx],
+        )
+        color_idx += 1
+
+        # Plot GPU results if available
         if torch.cuda.is_available():
-            plt.plot(subset[subset["device"] == "GPU"]["m"], subset[subset["device"] == "GPU"]["time"],
-                     label=f"GPU (n={n})", linestyle="-", marker="x")
+            plt.plot(
+                subset[subset["device"] == "GPU"]["m"],
+                subset[subset["device"] == "GPU"]["time"],
+                label=f"GPU (n={n})",
+                linestyle="-",
+                marker="x",
+                color=colors_list[color_idx],
+            )
+            color_idx += 1
 
     plt.xlabel("Vocabulary Size (m)")
     plt.ylabel("Training Time (seconds)")
