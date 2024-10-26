@@ -18,6 +18,9 @@ sync_article() {
     # Remove all comments
     awk '!/^#/' "$example_output" > temp && mv temp "$example_output"
 
+    # Consolidate consecutive blank lines into a single blank line
+    awk 'NF {p = 0} !NF {p++} p < 2' "$example_output" > temp && mv temp "$example_output"
+
     # Clean up
     rm "docs/articles/$article_name.ipynb"
 
