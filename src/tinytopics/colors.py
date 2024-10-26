@@ -65,8 +65,7 @@ def scale_color_tinytopics(n):
         n (int): The number of colors needed.
 
     Returns:
-        (matplotlib.colors.ListedColormap): A colormap with n colors,
-        possibly interpolated from the 10 colors.
+        (matplotlib.colors.ListedColormap): A colormap with n colors, possibly interpolated from the 10 colors.
     """
     base_rgb_colors = pal_tinytopics(format="rgb")
     base_lab_colors = pal_tinytopics(format="lab")
