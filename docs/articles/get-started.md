@@ -131,6 +131,7 @@ document-topic distributions.
 ``` python
 plot_structure(
     true_L_sorted,
+    normalize_rows=True,
     title="True document-topic distributions (sorted)",
     output_file="L-true.png",
 )
@@ -141,6 +142,7 @@ plot_structure(
 ``` python
 plot_structure(
     learned_L_sorted,
+    normalize_rows=True,
     title="Learned document-topic distributions (sorted and aligned)",
     output_file="L-learned.png",
 )
