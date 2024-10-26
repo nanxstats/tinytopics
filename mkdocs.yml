@@ -14,6 +14,7 @@ nav:
     - Fit: reference/fit.md
     - Models: reference/models.md
     - Plot: reference/plot.md
+    - Colors: reference/colors.md
     - Utilities: reference/utils.md
   - Changelog: changelog.md
 
