@@ -15,7 +15,7 @@ n, m, k = 5000, 1000, 10
 X, true_L, true_F = generate_synthetic_data(n, m, k, avg_doc_length=256 * 256)
 
 
-model, losses = fit_model(X, k, learning_rate=0.01)
+model, losses = fit_model(X, k)
 
 plot_loss(losses, output_file="loss.png")
 

@@ -72,7 +72,7 @@ Fit the topic model and plot the loss curve. There will be a progress
 bar.
 
 ``` python
-model, losses = fit_model(X, k, learning_rate=0.01)
+model, losses = fit_model(X, k)
 
 plot_loss(losses, output_file="loss.png")
 ```
