@@ -12,7 +12,6 @@ set_random_seed(42)
 n_values = [1000, 5000]  # Number of documents
 m_values = [500, 1000, 5000, 10000]  # Vocabulary size
 k_values = [10, 50, 100]  # Number of topics
-learning_rate = 0.01
 avg_doc_length = 256 * 256
 
 
@@ -21,7 +20,7 @@ benchmark_results = pd.DataFrame()
 
 def benchmark(X, k, device):
     start_time = time.time()
-    model, losses = fit_model(X, k, learning_rate=learning_rate, device=device)
+    model, losses = fit_model(X, k, device=device)
     elapsed_time = time.time() - start_time
 
     return elapsed_time
