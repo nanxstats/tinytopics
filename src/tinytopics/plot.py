@@ -27,6 +27,7 @@ def plot_loss(losses, figsize=(10, 8), dpi=300, title="Loss curve", output_file=
 
 def plot_structure(
     L_matrix,
+    normalize_rows=False,
     figsize=(12, 6),
     dpi=300,
     title="Structure Plot",
@@ -38,12 +39,16 @@ def plot_structure(
 
     Args:
         L_matrix (np.ndarray): Document-topic distribution matrix.
+        normalize_rows (bool, optional): If True, normalizes each row of L_matrix to sum to 1.
         figsize (tuple, optional): Plot size. Default is (12, 6).
         dpi (int, optional): Plot resolution. Default is 300.
         title (str): Plot title.
         color_palette (list or matplotlib colormap, optional): Custom color palette.
         output_file (str, optional): File path to save the plot. If None, displays the plot.
     """
+    if normalize_rows:
+        L_matrix = L_matrix / L_matrix.sum(axis=1, keepdims=True)
+
     n_documents, n_topics = L_matrix.shape
     ind = np.arange(n_documents)  # Document indices
     cumulative = np.zeros(n_documents)
@@ -71,6 +76,7 @@ def plot_structure(
     plt.xlabel("Documents (sorted)")
     plt.ylabel("Topic Proportions")
     plt.xlim([0, n_documents])
+    plt.ylim(0, 1)
     plt.tight_layout()
 
     if output_file:
