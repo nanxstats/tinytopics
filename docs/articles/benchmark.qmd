@@ -153,9 +153,9 @@ for k in k_values:
             )
             color_idx += 1
 
-    plt.xlabel("Vocabulary Size (m)")
-    plt.ylabel("Training Time (seconds)")
-    plt.title(f"Training Time vs. Vocabulary Size (k={k})")
+    plt.xlabel("Vocabulary size (m)")
+    plt.ylabel("Training time (seconds)")
+    plt.title(f"Training time vs. vocabulary size (k={k})")
     plt.legend()
     plt.grid(True)
     plt.savefig(f"training-time-k-{k}.png", dpi=300)
