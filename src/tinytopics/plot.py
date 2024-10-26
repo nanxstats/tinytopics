@@ -1,8 +1,16 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from .colors import scale_color_tinytopics
 
 
-def plot_loss(losses, figsize=(10, 8), dpi=300, title="Loss curve", output_file=None):
+def plot_loss(
+    losses,
+    figsize=(10, 8),
+    dpi=300,
+    title="Loss curve",
+    color_palette=None,
+    output_file=None,
+):
     """
     Plot the loss curve over training epochs.
 
@@ -11,10 +19,14 @@ def plot_loss(losses, figsize=(10, 8), dpi=300, title="Loss curve", output_file=
         figsize (tuple, optional): Plot size. Default is (10, 8).
         dpi (int, optional): Plot resolution. Default is 300.
         title (str, optional): Plot title. Default is "Loss curve".
+        color_palette (list or matplotlib colormap, optional): Custom color palette.
         output_file (str, optional): File path to save the plot. If None, displays the plot.
     """
+    if color_palette is None:
+        color_palette = scale_color_tinytopics(1)
+
     plt.figure(figsize=figsize, dpi=dpi)
-    plt.plot(losses)
+    plt.plot(losses, color=color_palette(0))
     plt.title(title)
     plt.xlabel("Epochs")
     plt.ylabel("Loss")
@@ -53,14 +65,8 @@ def plot_structure(
     ind = np.arange(n_documents)  # Document indices
     cumulative = np.zeros(n_documents)
 
-    # Color palette
     if color_palette is None:
-        colors = plt.cm.tab20(np.linspace(0, 1, n_topics))
-    else:
-        if isinstance(color_palette, list):
-            colors = color_palette
-        else:
-            colors = color_palette(np.linspace(0, 1, n_topics))
+        color_palette = scale_color_tinytopics(n_topics)
 
     plt.figure(figsize=figsize, dpi=dpi)
     for k in range(n_topics):
@@ -68,7 +74,7 @@ def plot_structure(
             ind,
             L_matrix[:, k],
             bottom=cumulative,
-            color=colors[k % len(colors)],
+            color=color_palette(k),
             width=1.0,
         )
         cumulative += L_matrix[:, k]
@@ -123,14 +129,8 @@ def plot_top_terms(
     else:
         top_terms_labels = top_terms_indices.astype(str)
 
-    # Color palette
     if color_palette is None:
-        colors = plt.cm.tab20(np.linspace(0, 1, n_topics))
-    else:
-        if isinstance(color_palette, list):
-            colors = color_palette
-        else:
-            colors = color_palette(np.linspace(0, 1, n_topics))
+        color_palette = scale_color_tinytopics(n_topics)
 
     # Grid layout
     if nrows is None and ncols is None:
@@ -154,7 +154,7 @@ def plot_top_terms(
 
         # Place highest probability terms at the top
         y_pos = np.arange(n_top_terms)[::-1]
-        ax.barh(y_pos, probs, color=colors[i % len(colors)])
+        ax.barh(y_pos, probs, color=color_palette(i))
         ax.set_yticks(y_pos)
         ax.set_yticklabels(labels)
         ax.set_xlabel("Probability")
