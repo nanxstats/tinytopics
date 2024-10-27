@@ -77,7 +77,7 @@ model, losses = fit_model(X, k)
 plot_loss(losses, output_file="loss.png")
 ```
 
-![](images/loss.png)
+![](images/get-started/loss.png)
 
 !!! tip
 
@@ -134,7 +134,7 @@ plot_structure(
 )
 ```
 
-![](images/L-true.png)
+![](images/get-started/L-true.png)
 
 ``` python
 plot_structure(
@@ -145,7 +145,7 @@ plot_structure(
 )
 ```
 
-![](images/L-learned.png)
+![](images/get-started/L-learned.png)
 
 We can also plot the top terms for each topic using bar charts.
 
@@ -158,7 +158,7 @@ plot_top_terms(
 )
 ```
 
-![](images/F-top-terms-true.png)
+![](images/get-started/F-top-terms-true.png)
 
 ``` python
 plot_top_terms(
@@ -169,7 +169,7 @@ plot_top_terms(
 )
 ```
 
-![](images/F-top-terms-learned.png)
+![](images/get-started/F-top-terms-learned.png)
 
 ## References
 
