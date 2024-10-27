@@ -1,11 +1,12 @@
 """
-Topic modeling via sum-to-one constrained Poisson non-negative matrix factorization (NMF).
+Topic modeling via sum-to-one constrained neural Poisson NMF.
 
 Modules:
-    models: NeuralPoissonNMF model definition.
     fit: Model fitting and loss calculation.
-    utils: Utility functions for data generation, topic alignment, and document sorting.
+    models: NeuralPoissonNMF model definition.
     plot: Functions for plotting loss curves, document-topic distributions, and top terms.
+    colors: Color palettes.
+    utils: Utility functions for data generation, topic alignment, and document sorting.
 """
 
 from .models import NeuralPoissonNMF
@@ -16,4 +17,5 @@ from .utils import (
     align_topics,
     sort_documents,
 )
+from .colors import pal_tinytopics, scale_color_tinytopics
 from .plot import plot_loss, plot_structure, plot_top_terms
