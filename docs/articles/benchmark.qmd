@@ -14,9 +14,10 @@ eval: false
     python3 examples/benchmark.py
     ```
 
-In this article, we compare the topic model training speed on CPU vs. GPU
-on mainstream consumer hardware. We will compare the time consumed under
-combinations of the three key parameters defining the problem size:
+Let's evaluate the tinytopics topic model training speed on CPU vs. GPU on
+mainstream consumer hardware using simulated data.
+We will compare the time consumed under combinations of the three
+key parameters defining the problem size:
 
 - Number of documents (`n`).
 - Number of terms or vocabulary size (`m`).
@@ -34,8 +35,7 @@ Experiment environment:
 - Similarly, training time grows as the number of topics (`k`) grows.
 - With `n` and `k` fixed and vocabulary size (`m`) grows,
   CPU time will grow linearly while GPU time stays constant.
-  For `m` larger than a certain threshold (1,000 to 5,000),
-  training on GPU will be faster than CPU.
+  For `m` larger than a certain threshold, training on GPU will be faster than CPU.
 
 ## Import tinytopics
 
@@ -162,8 +162,8 @@ for k in k_values:
     plt.close()
 ```
 
-![](images/training-time-k-10.png)
+![](images/benchmark/training-time-k-10.png)
 
-![](images/training-time-k-50.png)
+![](images/benchmark/training-time-k-50.png)
 
-![](images/training-time-k-100.png)
+![](images/benchmark/training-time-k-100.png)
