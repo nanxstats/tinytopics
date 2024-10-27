@@ -162,8 +162,8 @@ for k in k_values:
     plt.close()
 ```
 
-![](images/training-time-k-10.png)
+![](images/benchmark/training-time-k-10.png)
 
-![](images/training-time-k-50.png)
+![](images/benchmark/training-time-k-50.png)
 
-![](images/training-time-k-100.png)
+![](images/benchmark/training-time-k-100.png)
