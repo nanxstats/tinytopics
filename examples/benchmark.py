@@ -4,16 +4,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from tinytopics.fit import fit_model
 from tinytopics.utils import generate_synthetic_data, set_random_seed
-
+from tinytopics.colors import scale_color_tinytopics
 
 set_random_seed(42)
 
-
 n_values = [1000, 5000]  # Number of documents
-m_values = [500, 1000, 5000, 10000]  # Vocabulary size
+m_values = [1000, 5000, 10000, 20000]  # Vocabulary size
 k_values = [10, 50, 100]  # Number of topics
 avg_doc_length = 256 * 256
-
 
 benchmark_results = pd.DataFrame()
 
@@ -58,25 +56,33 @@ for n in n_values:
                         [benchmark_results, gpu_result], ignore_index=True
                     )
 
-
 benchmark_results.to_csv("benchmark-results.csv", index=False)
 
+unique_series = len(n_values) * (2 if torch.cuda.is_available() else 1)
+colormap = scale_color_tinytopics(unique_series)
+colors_list = [colormap(i) for i in range(unique_series)]
 
 for k in k_values:
     plt.figure(figsize=(7, 4.3), dpi=300)
 
+    color_idx = 0
     for n in n_values:
         subset = benchmark_results[
             (benchmark_results["n"] == n) & (benchmark_results["k"] == k)
         ]
 
+        # Plot CPU results with a specific color
         plt.plot(
             subset[subset["device"] == "CPU"]["m"],
             subset[subset["device"] == "CPU"]["time"],
             label=f"CPU (n={n})",
             linestyle="--",
             marker="o",
+            color=colors_list[color_idx],
         )
+        color_idx += 1
+
+        # Plot GPU results if available
         if torch.cuda.is_available():
             plt.plot(
                 subset[subset["device"] == "GPU"]["m"],
@@ -84,11 +90,13 @@ for k in k_values:
                 label=f"GPU (n={n})",
                 linestyle="-",
                 marker="x",
+                color=colors_list[color_idx],
             )
+            color_idx += 1
 
-    plt.xlabel("Vocabulary Size (m)")
-    plt.ylabel("Training Time (seconds)")
-    plt.title(f"Training Time vs. Vocabulary Size (k={k})")
+    plt.xlabel("Vocabulary size (m)")
+    plt.ylabel("Training time (seconds)")
+    plt.title(f"Training time vs. vocabulary size (k={k})")
     plt.legend()
     plt.grid(True)
     plt.savefig(f"training-time-k-{k}.png", dpi=300)

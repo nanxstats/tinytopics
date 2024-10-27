@@ -47,7 +47,7 @@ def plot_structure(
     output_file=None,
 ):
     """
-    STRUCTURE plot for visualizing document-topic distributions.
+    Structure plot for visualizing document-topic distributions.
 
     Args:
         L_matrix (np.ndarray): Document-topic distribution matrix.

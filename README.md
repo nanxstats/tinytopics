@@ -4,8 +4,9 @@
 ![License](https://img.shields.io/pypi/l/tinytopics)
 ![Python versions](https://img.shields.io/pypi/pyversions/tinytopics)
 
-Topic modeling via sum-to-one constrained Poisson non-negative
-matrix factorization, built with PyTorch, runs on both CPUs and GPUs.
+Topic modeling via sum-to-one constrained neural Poisson NMF.
+
+Built with PyTorch, runs on both CPUs and GPUs.
 
 ## Installation
 
@@ -29,7 +30,7 @@ The above will install the CPU version of PyTorch by default. To enable GPU supp
 follow the [PyTorch official guide](https://pytorch.org/get-started/locally/)
 to install the appropriate PyTorch version.
 
-For example, to install PyTorch for Windows with CUDA 12.4:
+For example, install PyTorch for Windows with CUDA 12.4:
 
 ```bash
 pip3 uninstall torch
@@ -40,12 +41,9 @@ To manage the PyTorch dependency under a project context using virtual
 environments, you might want to set up manual sources. For example,
 [using Rye](https://rye.astral.sh/guide/faq/#how-do-i-install-pytorch).
 
-## Get started
+## Examples
 
-After tinytopics is installed, try the example from the
-[getting started guide](https://nanx.me/tinytopics/articles/get-started/)
-or see the [speed benchmark](https://nanx.me/tinytopics/articles/benchmark/).
+After tinytopics is installed, try the example from:
 
-## License
-
-MIT
+- [Getting started guide with simulated data](https://nanx.me/tinytopics/articles/get-started/)
+- [CPU vs. GPU speed benchmark](https://nanx.me/tinytopics/articles/benchmark/)
