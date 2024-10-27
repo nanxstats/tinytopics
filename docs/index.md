@@ -43,7 +43,7 @@ environments, you might want to set up manual sources. For example,
 
 ## Examples
 
-After tinytopics is installed, try the example from:
+After tinytopics is installed, try examples from:
 
 - [Getting started guide with simulated count data](https://nanx.me/tinytopics/articles/get-started/)
 - [CPU vs. GPU speed benchmark](https://nanx.me/tinytopics/articles/benchmark/)
