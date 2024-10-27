@@ -45,5 +45,6 @@ environments, you might want to set up manual sources. For example,
 
 After tinytopics is installed, try the example from:
 
-- [Getting started guide with simulated data](https://nanx.me/tinytopics/articles/get-started/)
+- [Getting started guide with simulated count data](https://nanx.me/tinytopics/articles/get-started/)
 - [CPU vs. GPU speed benchmark](https://nanx.me/tinytopics/articles/benchmark/)
+- [Text data topic modeling example](https://nanx.me/tinytopics/articles/text/)
