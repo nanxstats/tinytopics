@@ -10,6 +10,7 @@ nav:
   - Articles:
     - articles/get-started.md
     - articles/benchmark.md
+    - articles/text.md
   - API Reference:
     - Fit: reference/fit.md
     - Models: reference/models.md
