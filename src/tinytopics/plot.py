@@ -1,35 +1,40 @@
+from typing import List, Optional, Tuple, Union
+
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
+from matplotlib.axes import Axes
+
 from .colors import scale_color_tinytopics
 
 
 def plot_loss(
-    losses,
-    figsize=(10, 8),
-    dpi=300,
-    title="Loss curve",
-    color_palette=None,
-    output_file=None,
-):
+    losses: List[float],
+    figsize: Tuple[int, int] = (10, 8),
+    dpi: int = 300,
+    title: str = "Loss curve",
+    color_palette: Optional[Union[List[str], str]] = None,
+    output_file: Optional[str] = None,
+) -> None:
     """
     Plot the loss curve over training epochs.
 
     Args:
-        losses (list): List of loss values for each epoch.
-        figsize (tuple, optional): Plot size. Default is (10, 8).
-        dpi (int, optional): Plot resolution. Default is 300.
-        title (str, optional): Plot title. Default is "Loss curve".
-        color_palette (list or matplotlib colormap, optional): Custom color palette.
-        output_file (str, optional): File path to save the plot. If None, displays the plot.
+        losses: List of loss values for each epoch.
+        figsize: Plot size. Default is (10, 8).
+        dpi: Plot resolution. Default is 300.
+        title: Plot title. Default is "Loss curve".
+        color_palette: Custom color palette.
+        output_file: File path to save the plot. If None, displays the plot.
     """
-    if color_palette is None:
-        color_palette = scale_color_tinytopics(1)
+    palette = scale_color_tinytopics(1) if color_palette is None else color_palette
 
-    plt.figure(figsize=figsize, dpi=dpi)
-    plt.plot(losses, color=color_palette(0))
+    fig = plt.figure(figsize=figsize, dpi=dpi)
+    plt.plot(losses, color=palette(0))
     plt.title(title)
     plt.xlabel("Epochs")
     plt.ylabel("Loss")
+
     if output_file:
         plt.savefig(output_file, dpi=dpi)
         plt.close()
@@ -38,46 +43,47 @@ def plot_loss(
 
 
 def plot_structure(
-    L_matrix,
-    normalize_rows=False,
-    figsize=(12, 6),
-    dpi=300,
-    title="Structure Plot",
-    color_palette=None,
-    output_file=None,
-):
+    L_matrix: np.ndarray,
+    normalize_rows: bool = False,
+    figsize: Tuple[int, int] = (12, 6),
+    dpi: int = 300,
+    title: str = "Structure Plot",
+    color_palette: Optional[Union[List[str], str]] = None,
+    output_file: Optional[str] = None,
+) -> None:
     """
     Structure plot for visualizing document-topic distributions.
 
     Args:
-        L_matrix (np.ndarray): Document-topic distribution matrix.
-        normalize_rows (bool, optional): If True, normalizes each row of L_matrix to sum to 1.
-        figsize (tuple, optional): Plot size. Default is (12, 6).
-        dpi (int, optional): Plot resolution. Default is 300.
-        title (str): Plot title.
-        color_palette (list or matplotlib colormap, optional): Custom color palette.
-        output_file (str, optional): File path to save the plot. If None, displays the plot.
+        L_matrix: Document-topic distribution matrix.
+        normalize_rows: If True, normalizes each row of L_matrix to sum to 1.
+        figsize: Plot size. Default is (12, 6).
+        dpi: Plot resolution. Default is 300.
+        title: Plot title.
+        color_palette: Custom color palette.
+        output_file: File path to save the plot. If None, displays the plot.
     """
-    if normalize_rows:
-        L_matrix = L_matrix / L_matrix.sum(axis=1, keepdims=True)
-
-    n_documents, n_topics = L_matrix.shape
-    ind = np.arange(n_documents)  # Document indices
+    matrix = (
+        L_matrix / L_matrix.sum(axis=1, keepdims=True) if normalize_rows else L_matrix
+    )
+    n_documents, n_topics = matrix.shape
+    ind = np.arange(n_documents)
     cumulative = np.zeros(n_documents)
-
-    if color_palette is None:
-        color_palette = scale_color_tinytopics(n_topics)
+    palette = (
+        scale_color_tinytopics(n_topics) if color_palette is None else color_palette
+    )
 
     plt.figure(figsize=figsize, dpi=dpi)
     for k in range(n_topics):
         plt.bar(
             ind,
-            L_matrix[:, k],
+            matrix[:, k],
             bottom=cumulative,
-            color=color_palette(k),
+            color=palette(k),
             width=1.0,
         )
-        cumulative += L_matrix[:, k]
+        cumulative += matrix[:, k]
+
     plt.title(title)
     plt.xlabel("Documents (sorted)")
     plt.ylabel("Topic Proportions")
@@ -93,46 +99,45 @@ def plot_structure(
 
 
 def plot_top_terms(
-    F_matrix,
-    n_top_terms=10,
-    term_names=None,
-    figsize=(10, 8),
-    dpi=300,
-    title="Top Terms",
-    color_palette=None,
-    nrows=None,
-    ncols=None,
-    output_file=None,
-):
+    F_matrix: np.ndarray,
+    n_top_terms: int = 10,
+    term_names: Optional[List[str]] = None,
+    figsize: Tuple[int, int] = (10, 8),
+    dpi: int = 300,
+    title: str = "Top Terms",
+    color_palette: Optional[Union[List[str], str]] = None,
+    nrows: Optional[int] = None,
+    ncols: Optional[int] = None,
+    output_file: Optional[str] = None,
+) -> None:
     """
     Plot top terms for each topic in horizontal bar charts.
 
     Args:
-        F_matrix (np.ndarray): Topic-term distribution matrix.
-        n_top_terms (int, optional): Number of top terms to display per topic. Default is 10.
-        term_names (list, optional): List of term names corresponding to indices.
-        figsize (tuple, optional): Plot size. Default is (10, 8).
-        dpi (int, optional): Plot resolution. Default is 300.
-        title (str): Plot title.
-        color_palette (list or matplotlib colormap, optional): Custom color palette.
-        nrows (int, optional): Number of rows in the subplot grid.
-        ncols (int, optional): Number of columns in the subplot grid.
-        output_file (str, optional): File path to save the plot. If None, displays the plot.
+        F_matrix: Topic-term distribution matrix.
+        n_top_terms: Number of top terms to display per topic. Default is 10.
+        term_names: List of term names corresponding to indices.
+        figsize: Plot size. Default is (10, 8).
+        dpi: Plot resolution. Default is 300.
+        title: Plot title.
+        color_palette: Custom color palette.
+        nrows: Number of rows in the subplot grid.
+        ncols: Number of columns in the subplot grid.
+        output_file: File path to save the plot. If None, displays the plot.
     """
     n_topics = F_matrix.shape[0]
     top_terms_indices = np.argsort(-F_matrix, axis=1)[:, :n_top_terms]
     top_terms_probs = np.take_along_axis(F_matrix, top_terms_indices, axis=1)
+    top_terms_labels = (
+        np.array(term_names)[top_terms_indices]
+        if term_names is not None
+        else top_terms_indices.astype(str)
+    )
+    palette = (
+        scale_color_tinytopics(n_topics) if color_palette is None else color_palette
+    )
 
-    # Use term names if provided
-    if term_names is not None:
-        top_terms_labels = np.array(term_names)[top_terms_indices]
-    else:
-        top_terms_labels = top_terms_indices.astype(str)
-
-    if color_palette is None:
-        color_palette = scale_color_tinytopics(n_topics)
-
-    # Grid layout
+    # Calculate grid dimensions
     if nrows is None and ncols is None:
         ncols = 5
         nrows = int(np.ceil(n_topics / ncols))
@@ -144,25 +149,26 @@ def plot_top_terms(
     fig, axes = plt.subplots(
         nrows, ncols, figsize=figsize, dpi=dpi, constrained_layout=True
     )
-    axes = axes.flatten()
+    axes_flat = axes.flatten()
 
-    for i in range(n_topics):
-        ax = axes[i]
-        # Get data for topic i
-        probs = top_terms_probs[i]
-        labels = top_terms_labels[i]
-
-        # Place highest probability terms at the top
+    def plot_topic(ax: Axes, topic_idx: int) -> None:
+        probs = top_terms_probs[topic_idx]
+        labels = top_terms_labels[topic_idx]
         y_pos = np.arange(n_top_terms)[::-1]
-        ax.barh(y_pos, probs, color=color_palette(i))
+
+        ax.barh(y_pos, probs, color=palette(topic_idx))
         ax.set_yticks(y_pos)
         ax.set_yticklabels(labels)
         ax.set_xlabel("Probability")
-        ax.set_title(f"Topic {i}")
+        ax.set_title(f"Topic {topic_idx}")
         ax.set_xlim(0, top_terms_probs.max() * 1.1)
+
+    for i in range(n_topics):
+        plot_topic(axes_flat[i], i)
+
     # Hide unused subplots
-    for j in range(n_topics, len(axes)):
-        fig.delaxes(axes[j])
+    for j in range(n_topics, len(axes_flat)):
+        fig.delaxes(axes_flat[j])
 
     fig.suptitle(title)
 
