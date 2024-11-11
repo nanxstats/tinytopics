@@ -1,5 +1,12 @@
 # Changelog
 
+## tinytopics 0.3.0
+
+### Improvements
+
+- Refactor the code to use a more functional style and add type hints
+  to improve code clarity (#9).
+
 ## tinytopics 0.2.0
 
 ### New features

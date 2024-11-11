@@ -1,10 +1,13 @@
+from typing import Optional, Tuple, List
+from collections import defaultdict
+
 import torch
 import numpy as np
-from tqdm import tqdm
 from scipy.optimize import linear_sum_assignment
+from tqdm import tqdm
 
 
-def set_random_seed(seed):
+def set_random_seed(seed: int) -> None:
     """
     Set the random seed for reproducibility across Torch and NumPy.
 
@@ -17,7 +20,13 @@ def set_random_seed(seed):
         torch.cuda.manual_seed_all(seed)
 
 
-def generate_synthetic_data(n, m, k, avg_doc_length=1000, device=None):
+def generate_synthetic_data(
+    n: int,
+    m: int,
+    k: int,
+    avg_doc_length: int = 1000,
+    device: Optional[torch.device] = None,
+) -> Tuple[torch.Tensor, np.ndarray, np.ndarray]:
     """
     Generate synthetic document-term matrix for testing the model.
 
@@ -47,30 +56,28 @@ def generate_synthetic_data(n, m, k, avg_doc_length=1000, device=None):
     # Initialize document-term matrix X
     X = np.zeros((n, m), dtype=np.int32)
 
-    for i in tqdm(range(n), desc="Generating Documents"):
-        # Sample topic counts for document i
+    def generate_document(i: int, doc_length: int) -> np.ndarray:
         topic_probs = true_L[i]
-        topic_counts = np.random.multinomial(doc_lengths[i], topic_probs)
+        topic_counts = np.random.multinomial(doc_length, topic_probs)
 
-        # Initialize term counts for document i
-        term_counts = np.zeros(m, dtype=np.int32)
+        def sample_terms_for_topic(j: int, count: int) -> np.ndarray:
+            if count == 0:
+                return np.zeros(m, dtype=np.int32)
+            term_probs = true_F[j]
+            return np.random.multinomial(count, term_probs)
 
-        # For each topic j
-        for j in range(k):
-            if topic_counts[j] > 0:
-                # Sample term counts for topic j
-                term_probs = true_F[j]
-                term_counts_j = np.random.multinomial(topic_counts[j], term_probs)
-                # Add term counts to document i
-                term_counts += term_counts_j
+        term_counts = sum(
+            sample_terms_for_topic(j, count) for j, count in enumerate(topic_counts)
+        )
+        return term_counts
 
-        # Assign term counts to X[i,:]
-        X[i, :] = term_counts
+    for i in tqdm(range(n), desc="Generating Documents"):
+        X[i, :] = generate_document(i, doc_lengths[i])
 
     return torch.tensor(X, device=device, dtype=torch.float32), true_L, true_F
 
 
-def align_topics(true_F, learned_F):
+def align_topics(true_F: np.ndarray, learned_F: np.ndarray) -> np.ndarray:
     """
     Align learned topics with true topics for visualization,
     using cosine similarity and linear sum assignment.
@@ -82,21 +89,21 @@ def align_topics(true_F, learned_F):
     Returns:
         (np.ndarray): Permutation of learned topics aligned with true topics.
     """
-    # Normalize topic-term distributions
-    true_F_norm = true_F / np.linalg.norm(true_F, axis=1, keepdims=True)
-    learned_F_norm = learned_F / np.linalg.norm(learned_F, axis=1, keepdims=True)
 
-    # Compute the cosine similarity matrix
+    def normalize_matrix(matrix: np.ndarray) -> np.ndarray:
+        return matrix / np.linalg.norm(matrix, axis=1, keepdims=True)
+
+    true_F_norm = normalize_matrix(true_F)
+    learned_F_norm = normalize_matrix(learned_F)
+
     similarity_matrix = np.dot(true_F_norm, learned_F_norm.T)
-    # Compute the cost matrix for assignment (use negative similarity)
     cost_matrix = -similarity_matrix
-    # Solve the assignment problem
-    row_ind, col_ind = linear_sum_assignment(cost_matrix)
+    _, col_ind = linear_sum_assignment(cost_matrix)
 
     return col_ind
 
 
-def sort_documents(L_matrix):
+def sort_documents(L_matrix: np.ndarray) -> List[int]:
     """
     Sort documents grouped by dominant topics for visualization.
 
@@ -107,29 +114,27 @@ def sort_documents(L_matrix):
         (list): Indices of documents sorted by dominant topics.
     """
     n, k = L_matrix.shape
-    # Normalize L
     L_normalized = L_matrix / L_matrix.sum(axis=1, keepdims=True)
 
-    # Determine dominant topics and their proportions
-    dominant_topics = np.argmax(L_normalized, axis=1)
-    dominant_props = L_normalized[np.arange(n), dominant_topics]
+    def get_document_info() -> List[Tuple[int, int, float]]:
+        dominant_topics = np.argmax(L_normalized, axis=1)
+        dominant_props = L_normalized[np.arange(n), dominant_topics]
+        return list(zip(range(n), dominant_topics, dominant_props))
 
-    # Combine indices, dominant topics, and proportions
-    doc_info = list(zip(np.arange(n), dominant_topics, dominant_props))
+    def group_by_topic(doc_info: List[Tuple[int, int, float]]) -> defaultdict:
+        groups: defaultdict = defaultdict(list)
+        for idx, topic, prop in doc_info:
+            groups[topic].append((idx, prop))
+        return groups
 
-    # Group documents by dominant topic
-    from collections import defaultdict
+    def sort_topic_groups(grouped_docs: defaultdict) -> List[int]:
+        sorted_indices = []
+        for topic in range(k):
+            docs_in_topic = grouped_docs.get(topic, [])
+            docs_sorted = sorted(docs_in_topic, key=lambda x: x[1], reverse=True)
+            sorted_indices.extend(idx for idx, _ in docs_sorted)
+        return sorted_indices
 
-    grouped_docs = defaultdict(list)
-    for idx, topic, prop in doc_info:
-        grouped_docs[topic].append((idx, prop))
-
-    # Sort documents within each group by proportion of the dominant topic
-    sorted_indices = []
-    for topic in range(k):
-        docs_in_topic = grouped_docs.get(topic, [])
-        # Sort by proportion in descending order
-        docs_sorted = sorted(docs_in_topic, key=lambda x: x[1], reverse=True)
-        sorted_indices.extend([idx for idx, _ in docs_sorted])
-
-    return sorted_indices
+    doc_info = get_document_info()
+    grouped_docs = group_by_topic(doc_info)
+    return sort_topic_groups(grouped_docs)

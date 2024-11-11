@@ -33,7 +33,7 @@ babel==2.16.0
     # via mkdocs-material
 beautifulsoup4==4.12.3
     # via nbconvert
-bleach==6.1.0
+bleach==6.2.0
     # via nbconvert
 certifi==2024.8.30
     # via httpcore
@@ -56,7 +56,7 @@ contourpy==1.3.0
     # via matplotlib
 cycler==0.12.1
     # via matplotlib
-debugpy==1.8.7
+debugpy==1.8.8
     # via ipykernel
 decorator==5.1.1
     # via ipython
@@ -95,7 +95,7 @@ ipykernel==6.29.5
     # via jupyter
     # via jupyter-console
     # via jupyterlab
-ipython==8.28.0
+ipython==8.29.0
     # via ipykernel
     # via ipywidgets
     # via jupyter-console
@@ -103,7 +103,7 @@ ipywidgets==8.1.5
     # via jupyter
 isoduration==20.11.0
     # via jsonschema
-jedi==0.19.1
+jedi==0.19.2
     # via ipython
 jinja2==3.1.4
     # via jupyter-server
@@ -114,7 +114,7 @@ jinja2==3.1.4
     # via mkdocstrings
     # via nbconvert
     # via torch
-json5==0.9.25
+json5==0.9.28
     # via jupyterlab-server
 jsonpointer==3.0.0
     # via jsonschema
@@ -198,10 +198,10 @@ mkdocs-autorefs==1.2.0
     # via mkdocstrings-python
 mkdocs-get-deps==0.2.0
     # via mkdocs
-mkdocs-material==9.5.42
+mkdocs-material==9.5.44
 mkdocs-material-extensions==1.3.1
     # via mkdocs-material
-mkdocstrings==0.26.2
+mkdocstrings==0.27.0
     # via mkdocstrings-python
 mkdocstrings-python==1.12.2
 mpmath==1.3.0
@@ -225,7 +225,7 @@ notebook==7.2.2
 notebook-shim==0.2.4
     # via jupyterlab
     # via notebook
-numpy==2.1.2
+numpy==2.1.3
     # via contourpy
     # via imageio
     # via matplotlib
@@ -235,7 +235,7 @@ numpy==2.1.2
     # via tinytopics
 overrides==7.7.0
     # via jupyter-server
-packaging==24.1
+packaging==24.2
     # via ipykernel
     # via jupyter-server
     # via jupyterlab
@@ -282,7 +282,7 @@ pygments==2.18.0
     # via jupyter-console
     # via mkdocs-material
     # via nbconvert
-pymdown-extensions==10.11.2
+pymdown-extensions==10.12
     # via mkdocs-material
     # via mkdocstrings
 pyparsing==3.2.0
@@ -311,7 +311,7 @@ referencing==0.35.1
     # via jsonschema
     # via jsonschema-specifications
     # via jupyter-events
-regex==2024.9.11
+regex==2024.11.6
     # via mkdocs-material
 requests==2.32.3
     # via jupyterlab-server
@@ -322,10 +322,10 @@ rfc3339-validator==0.1.4
 rfc3986-validator==0.1.1
     # via jsonschema
     # via jupyter-events
-rpds-py==0.20.0
+rpds-py==0.21.0
     # via jsonschema
     # via referencing
-ruff==0.7.0
+ruff==0.7.3
 scikit-image==0.24.0
     # via tinytopics
 scipy==1.14.1
@@ -333,12 +333,11 @@ scipy==1.14.1
     # via tinytopics
 send2trash==1.8.3
     # via jupyter-server
-setuptools==75.2.0
+setuptools==75.4.0
     # via jupyterlab
     # via torch
 six==1.16.0
     # via asttokens
-    # via bleach
     # via python-dateutil
     # via rfc3339-validator
 sniffio==1.3.1
@@ -355,9 +354,9 @@ terminado==0.18.1
     # via jupyter-server-terminals
 tifffile==2024.9.20
     # via scikit-image
-tinycss2==1.3.0
+tinycss2==1.4.0
     # via nbconvert
-torch==2.5.0
+torch==2.5.1
     # via tinytopics
 tornado==6.4.1
     # via ipykernel
@@ -366,7 +365,7 @@ tornado==6.4.1
     # via jupyterlab
     # via notebook
     # via terminado
-tqdm==4.66.5
+tqdm==4.67.0
     # via tinytopics
 traitlets==5.14.3
     # via comm
@@ -391,11 +390,11 @@ uri-template==1.3.0
     # via jsonschema
 urllib3==2.2.3
     # via requests
-watchdog==5.0.3
+watchdog==6.0.0
     # via mkdocs
 wcwidth==0.2.13
     # via prompt-toolkit
-webcolors==24.8.0
+webcolors==24.11.1
     # via jsonschema
 webencodings==0.5.1
     # via bleach
