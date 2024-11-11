@@ -42,6 +42,7 @@ import time
 import torch
 import pandas as pd
 import matplotlib.pyplot as plt
+
 from tinytopics.fit import fit_model
 from tinytopics.utils import generate_synthetic_data, set_random_seed
 from tinytopics.colors import scale_color_tinytopics

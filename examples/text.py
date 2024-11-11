@@ -1,7 +1,8 @@
+import torch
 import numpy as np
 import pandas as pd
-import torch
 from pyreadr import read_r
+
 from tinytopics.fit import fit_model
 from tinytopics.plot import plot_loss, plot_structure, plot_top_terms
 from tinytopics.utils import (
