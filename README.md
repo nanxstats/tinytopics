@@ -14,7 +14,7 @@ Built with PyTorch, runs on both CPUs and GPUs.
 You can install tinytopics from PyPI:
 
 ```bash
-pip3 install tinytopics
+pip install tinytopics
 ```
 
 Or install the development version from GitHub:
@@ -22,7 +22,7 @@ Or install the development version from GitHub:
 ```bash
 git clone https://github.com/nanxstats/tinytopics.git
 cd tinytopics
-python3 -m pip install -e .
+python -m pip install -e .
 ```
 
 ## GPU support
@@ -34,8 +34,8 @@ to install the appropriate PyTorch version.
 For example, install PyTorch for Windows with CUDA 12.4:
 
 ```bash
-pip3 uninstall torch
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+pip uninstall torch
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 ```
 
 To manage the PyTorch dependency under a project context using virtual
