@@ -1,4 +1,5 @@
-from typing import List, Optional, Tuple
+from typing import Tuple
+from collections.abc import Sequence
 
 import torch
 from torch import Tensor
@@ -36,8 +37,8 @@ def fit_model(
     T_0: int = 20,
     T_mult: int = 1,
     weight_decay: float = 1e-5,
-    device: Optional[torch.device] = None,
-) -> Tuple[NeuralPoissonNMF, List[float]]:
+    device: torch.device | None = None,
+) -> Tuple[NeuralPoissonNMF, Sequence[float]]:
     """
     Fit topic model using sum-to-one constrained neural Poisson NMF,
     optimized with AdamW and a cosine annealing with warm restarts scheduler.
@@ -69,7 +70,7 @@ def fit_model(
         optimizer, T_0=T_0, T_mult=T_mult, eta_min=base_lr
     )
 
-    losses: List[float] = []
+    losses: Sequence[float] = []
     num_batches: int = n // batch_size
 
     with tqdm(total=num_epochs, desc="Training Progress") as pbar:

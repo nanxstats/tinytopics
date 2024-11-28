@@ -1,4 +1,5 @@
-from typing import Optional, Tuple, List
+from typing import Tuple
+from collections.abc import Sequence, MutableMapping
 from collections import defaultdict
 
 import torch
@@ -25,7 +26,7 @@ def generate_synthetic_data(
     m: int,
     k: int,
     avg_doc_length: int = 1000,
-    device: Optional[torch.device] = None,
+    device: torch.device | None = None,
 ) -> Tuple[torch.Tensor, np.ndarray, np.ndarray]:
     """
     Generate synthetic document-term matrix for testing the model.
@@ -103,7 +104,7 @@ def align_topics(true_F: np.ndarray, learned_F: np.ndarray) -> np.ndarray:
     return col_ind
 
 
-def sort_documents(L_matrix: np.ndarray) -> List[int]:
+def sort_documents(L_matrix: np.ndarray) -> Sequence[int]:
     """
     Sort documents grouped by dominant topics for visualization.
 
@@ -111,23 +112,25 @@ def sort_documents(L_matrix: np.ndarray) -> List[int]:
         L_matrix (np.ndarray): Document-topic distribution matrix.
 
     Returns:
-        (list): Indices of documents sorted by dominant topics.
+        Sequence[int]: Indices of documents sorted by dominant topics.
     """
     n, k = L_matrix.shape
     L_normalized = L_matrix / L_matrix.sum(axis=1, keepdims=True)
 
-    def get_document_info() -> List[Tuple[int, int, float]]:
+    def get_document_info() -> Sequence[Tuple[int, int, float]]:
         dominant_topics = np.argmax(L_normalized, axis=1)
         dominant_props = L_normalized[np.arange(n), dominant_topics]
         return list(zip(range(n), dominant_topics, dominant_props))
 
-    def group_by_topic(doc_info: List[Tuple[int, int, float]]) -> defaultdict:
-        groups: defaultdict = defaultdict(list)
+    def group_by_topic(
+        doc_info: Sequence[Tuple[int, int, float]],
+    ) -> MutableMapping[int, list]:
+        groups: MutableMapping[int, list] = defaultdict(list)
         for idx, topic, prop in doc_info:
             groups[topic].append((idx, prop))
         return groups
 
-    def sort_topic_groups(grouped_docs: defaultdict) -> List[int]:
+    def sort_topic_groups(grouped_docs: MutableMapping[int, list]) -> Sequence[int]:
         sorted_indices = []
         for topic in range(k):
             docs_in_topic = grouped_docs.get(topic, [])
