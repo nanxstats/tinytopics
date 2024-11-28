@@ -1,4 +1,4 @@
-from typing import Optional, Tuple, Union
+from typing import Tuple
 from collections.abc import Sequence
 
 import numpy as np
@@ -14,8 +14,8 @@ def plot_loss(
     figsize: Tuple[int, int] = (10, 8),
     dpi: int = 300,
     title: str = "Loss curve",
-    color_palette: Optional[Union[Sequence[str], str]] = None,
-    output_file: Optional[str] = None,
+    color_palette: Sequence[str] | str | None = None,
+    output_file: str | None = None,
 ) -> None:
     """
     Plot the loss curve over training epochs.
@@ -49,8 +49,8 @@ def plot_structure(
     figsize: Tuple[int, int] = (12, 6),
     dpi: int = 300,
     title: str = "Structure Plot",
-    color_palette: Optional[Union[Sequence[str], str]] = None,
-    output_file: Optional[str] = None,
+    color_palette: Sequence[str] | str | None = None,
+    output_file: str | None = None,
 ) -> None:
     """
     Structure plot for visualizing document-topic distributions.
@@ -102,14 +102,14 @@ def plot_structure(
 def plot_top_terms(
     F_matrix: np.ndarray,
     n_top_terms: int = 10,
-    term_names: Optional[Sequence[str]] = None,
+    term_names: Sequence[str] | None = None,
     figsize: Tuple[int, int] = (10, 8),
     dpi: int = 300,
     title: str = "Top Terms",
-    color_palette: Optional[Union[Sequence[str], str]] = None,
-    nrows: Optional[int] = None,
-    ncols: Optional[int] = None,
-    output_file: Optional[str] = None,
+    color_palette: Sequence[str] | str | None = None,
+    nrows: int | None = None,
+    ncols: int | None = None,
+    output_file: str | None = None,
 ) -> None:
     """
     Plot top terms for each topic in horizontal bar charts.

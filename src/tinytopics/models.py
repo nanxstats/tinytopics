@@ -1,5 +1,3 @@
-from typing import Optional
-
 import torch
 import torch.nn as nn
 from torch import Tensor
@@ -7,7 +5,7 @@ from torch import Tensor
 
 class NeuralPoissonNMF(nn.Module):
     def __init__(
-        self, n: int, m: int, k: int, device: Optional[torch.device] = None
+        self, n: int, m: int, k: int, device: torch.device | None = None
     ) -> None:
         """
         Neural Poisson NMF model with sum-to-one constraints on document-topic and topic-term distributions.

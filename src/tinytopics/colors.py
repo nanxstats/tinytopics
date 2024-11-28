@@ -1,4 +1,4 @@
-from typing import Union, Literal, overload
+from typing import Literal, overload
 from collections.abc import Sequence, MutableSequence
 
 import numpy as np
@@ -22,7 +22,7 @@ def pal_tinytopics(format: Literal["rgb", "lab"]) -> NDArray[np.float64]: ...
 
 def pal_tinytopics(
     format: ColorFormat = "hex",
-) -> Union[MutableSequence[str], NDArray[np.float64]]:
+) -> MutableSequence[str] | NDArray[np.float64]:
     """
     The tinytopics 10 color palette.
 

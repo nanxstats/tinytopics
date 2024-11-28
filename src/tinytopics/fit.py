@@ -1,4 +1,4 @@
-from typing import Optional, Tuple
+from typing import Tuple
 from collections.abc import Sequence
 
 import torch
@@ -37,7 +37,7 @@ def fit_model(
     T_0: int = 20,
     T_mult: int = 1,
     weight_decay: float = 1e-5,
-    device: Optional[torch.device] = None,
+    device: torch.device | None = None,
 ) -> Tuple[NeuralPoissonNMF, Sequence[float]]:
     """
     Fit topic model using sum-to-one constrained neural Poisson NMF,

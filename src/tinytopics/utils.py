@@ -1,4 +1,4 @@
-from typing import Optional, Tuple
+from typing import Tuple
 from collections.abc import Sequence, MutableMapping
 from collections import defaultdict
 
@@ -26,7 +26,7 @@ def generate_synthetic_data(
     m: int,
     k: int,
     avg_doc_length: int = 1000,
-    device: Optional[torch.device] = None,
+    device: torch.device | None = None,
 ) -> Tuple[torch.Tensor, np.ndarray, np.ndarray]:
     """
     Generate synthetic document-term matrix for testing the model.
