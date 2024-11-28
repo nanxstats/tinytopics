@@ -1,4 +1,5 @@
-from typing import List, Union, Literal, overload
+from typing import Union, Literal, overload
+from collections.abc import Sequence, MutableSequence
 
 import numpy as np
 from numpy.typing import NDArray
@@ -12,7 +13,7 @@ ColorFormat = Literal["hex", "rgb", "lab"]
 
 
 @overload
-def pal_tinytopics(format: Literal["hex"]) -> List[str]: ...
+def pal_tinytopics(format: Literal["hex"]) -> MutableSequence[str]: ...
 
 
 @overload
@@ -21,7 +22,7 @@ def pal_tinytopics(format: Literal["rgb", "lab"]) -> NDArray[np.float64]: ...
 
 def pal_tinytopics(
     format: ColorFormat = "hex",
-) -> Union[List[str], NDArray[np.float64]]:
+) -> Union[MutableSequence[str], NDArray[np.float64]]:
     """
     The tinytopics 10 color palette.
 
@@ -45,7 +46,7 @@ def pal_tinytopics(
     Raises:
         ValueError: If format is not 'hex', 'rgb', or 'lab'.
     """
-    TINYTOPICS_10_COLORS: tuple[str, ...] = (
+    TINYTOPICS_10_COLORS: Sequence[str] = (
         "#4269D0",  # Blue
         "#EFB118",  # Orange
         "#3CA951",  # Green

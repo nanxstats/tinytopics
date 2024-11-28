@@ -1,4 +1,5 @@
-from typing import List, Optional, Tuple, Union
+from typing import Optional, Tuple, Union
+from collections.abc import Sequence
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -9,11 +10,11 @@ from .colors import scale_color_tinytopics
 
 
 def plot_loss(
-    losses: List[float],
+    losses: Sequence[float],
     figsize: Tuple[int, int] = (10, 8),
     dpi: int = 300,
     title: str = "Loss curve",
-    color_palette: Optional[Union[List[str], str]] = None,
+    color_palette: Optional[Union[Sequence[str], str]] = None,
     output_file: Optional[str] = None,
 ) -> None:
     """
@@ -48,7 +49,7 @@ def plot_structure(
     figsize: Tuple[int, int] = (12, 6),
     dpi: int = 300,
     title: str = "Structure Plot",
-    color_palette: Optional[Union[List[str], str]] = None,
+    color_palette: Optional[Union[Sequence[str], str]] = None,
     output_file: Optional[str] = None,
 ) -> None:
     """
@@ -101,11 +102,11 @@ def plot_structure(
 def plot_top_terms(
     F_matrix: np.ndarray,
     n_top_terms: int = 10,
-    term_names: Optional[List[str]] = None,
+    term_names: Optional[Sequence[str]] = None,
     figsize: Tuple[int, int] = (10, 8),
     dpi: int = 300,
     title: str = "Top Terms",
-    color_palette: Optional[Union[List[str], str]] = None,
+    color_palette: Optional[Union[Sequence[str], str]] = None,
     nrows: Optional[int] = None,
     ncols: Optional[int] = None,
     output_file: Optional[str] = None,
