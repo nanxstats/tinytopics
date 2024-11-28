@@ -3,12 +3,9 @@ import time
 import torch
 import pandas as pd
 import matplotlib.pyplot as plt
+import tinytopics as tt
 
-from tinytopics.fit import fit_model
-from tinytopics.utils import generate_synthetic_data, set_random_seed
-from tinytopics.colors import scale_color_tinytopics
-
-set_random_seed(42)
+tt.set_random_seed(42)
 
 n_values = [1000, 5000]  # Number of documents
 m_values = [1000, 5000, 10000, 20000]  # Vocabulary size
@@ -20,7 +17,7 @@ benchmark_results = pd.DataFrame()
 
 def benchmark(X, k, device):
     start_time = time.time()
-    model, losses = fit_model(X, k, device=device)
+    model, losses = tt.fit_model(X, k, device=device)
     elapsed_time = time.time() - start_time
 
     return elapsed_time
@@ -31,7 +28,7 @@ for n in n_values:
         for k in k_values:
             print(f"Benchmarking for n={n}, m={m}, k={k}...")
 
-            X, true_L, true_F = generate_synthetic_data(
+            X, true_L, true_F = tt.generate_synthetic_data(
                 n, m, k, avg_doc_length=avg_doc_length
             )
 
@@ -61,7 +58,7 @@ for n in n_values:
 benchmark_results.to_csv("benchmark-results.csv", index=False)
 
 unique_series = len(n_values) * (2 if torch.cuda.is_available() else 1)
-colormap = scale_color_tinytopics(unique_series)
+colormap = tt.scale_color_tinytopics(unique_series)
 colors_list = [colormap(i) for i in range(unique_series)]
 
 for k in k_values:
