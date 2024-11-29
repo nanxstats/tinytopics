@@ -1,15 +1,8 @@
 import torch
 import numpy as np
 import pandas as pd
+import tinytopics as tt
 from pyreadr import read_r
-
-from tinytopics.fit import fit_model
-from tinytopics.plot import plot_loss, plot_structure, plot_top_terms
-from tinytopics.utils import (
-    set_random_seed,
-    align_topics,
-    sort_documents,
-)
 
 
 def read_rds_numpy(file_path):
@@ -28,11 +21,11 @@ X = read_rds_torch("counts.rds")
 with open("terms.txt", "r") as file:
     terms = [line.strip() for line in file]
 
-set_random_seed(42)
+tt.set_random_seed(42)
 
 k = 10
-model, losses = fit_model(X, k)
-plot_loss(losses, output_file="loss.png")
+model, losses = tt.fit_model(X, k)
+tt.plot_loss(losses, output_file="loss.png")
 
 L_tt = model.get_normalized_L().numpy()
 F_tt = model.get_normalized_F().numpy()
@@ -40,28 +33,28 @@ F_tt = model.get_normalized_F().numpy()
 L_ft = read_rds_numpy("L_fastTopics.rds")
 F_ft = read_rds_numpy("F_fastTopics.rds")
 
-aligned_indices = align_topics(F_ft, F_tt)
+aligned_indices = tt.align_topics(F_ft, F_tt)
 F_aligned_tt = F_tt[aligned_indices]
 L_aligned_tt = L_tt[:, aligned_indices]
 
-sorted_indices_ft = sort_documents(L_ft)
+sorted_indices_ft = tt.sort_documents(L_ft)
 L_sorted_ft = L_ft[sorted_indices_ft]
-sorted_indices_tt = sort_documents(L_aligned_tt)
+sorted_indices_tt = tt.sort_documents(L_aligned_tt)
 L_sorted_tt = L_aligned_tt[sorted_indices_tt]
 
-plot_structure(
+tt.plot_structure(
     L_sorted_ft,
     title="fastTopics document-topic distributions (sorted)",
     output_file="L-fastTopics.png",
 )
 
-plot_structure(
+tt.plot_structure(
     L_sorted_tt,
     title="tinytopics document-topic distributions (sorted and aligned)",
     output_file="L-tinytopics.png",
 )
 
-plot_top_terms(
+tt.plot_top_terms(
     F_ft,
     n_top_terms=15,
     term_names=terms,
@@ -69,7 +62,7 @@ plot_top_terms(
     output_file="F-top-terms-fastTopics.png",
 )
 
-plot_top_terms(
+tt.plot_top_terms(
     F_aligned_tt,
     n_top_terms=15,
     term_names=terms,

@@ -8,7 +8,7 @@
     To run the code from this article as a Python script:
 
     ```bash
-    python3 examples/get-started.py
+    python examples/get-started.py
     ```
 
 Let’s walk through a canonical tinytopics workflow using a synthetic
@@ -17,14 +17,7 @@ dataset.
 ## Import tinytopics
 
 ``` python
-from tinytopics.fit import fit_model
-from tinytopics.plot import plot_loss, plot_structure, plot_top_terms
-from tinytopics.utils import (
-    set_random_seed,
-    generate_synthetic_data,
-    align_topics,
-    sort_documents,
-)
+import tinytopics as tt
 ```
 
 ## Generate synthetic data
@@ -32,14 +25,14 @@ from tinytopics.utils import (
 Set random seed for reproducibility:
 
 ``` python
-set_random_seed(42)
+tt.set_random_seed(42)
 ```
 
 Generate a synthetic dataset:
 
 ``` python
 n, m, k = 5000, 1000, 10
-X, true_L, true_F = generate_synthetic_data(n, m, k, avg_doc_length=256 * 256)
+X, true_L, true_F = tt.generate_synthetic_data(n, m, k, avg_doc_length=256 * 256)
 ```
 
 ## Fit topic model
@@ -48,9 +41,9 @@ Fit the topic model and plot the loss curve. There will be a progress
 bar.
 
 ``` python
-model, losses = fit_model(X, k)
+model, losses = tt.fit_model(X, k)
 
-plot_loss(losses, output_file="loss.png")
+tt.plot_loss(losses, output_file="loss.png")
 ```
 
 ![](images/get-started/loss.png)
@@ -77,7 +70,7 @@ To make it easier to inspect the results visually, we should try to
 similarity.
 
 ``` python
-aligned_indices = align_topics(true_F, learned_F)
+aligned_indices = tt.align_topics(true_F, learned_F)
 learned_F_aligned = learned_F[aligned_indices]
 learned_L_aligned = learned_L[:, aligned_indices]
 ```
@@ -86,7 +79,7 @@ Sort the documents in both the true document-topic matrix and the
 learned document-topic matrix, grouped by dominant topics.
 
 ``` python
-sorted_indices = sort_documents(true_L)
+sorted_indices = tt.sort_documents(true_L)
 true_L_sorted = true_L[sorted_indices]
 learned_L_sorted = learned_L_aligned[sorted_indices]
 ```
@@ -102,7 +95,7 @@ We can use a “Structure plot” to visualize and compare the
 document-topic distributions.
 
 ``` python
-plot_structure(
+tt.plot_structure(
     true_L_sorted,
     normalize_rows=True,
     title="True document-topic distributions (sorted)",
@@ -113,7 +106,7 @@ plot_structure(
 ![](images/get-started/L-true.png)
 
 ``` python
-plot_structure(
+tt.plot_structure(
     learned_L_sorted,
     normalize_rows=True,
     title="Learned document-topic distributions (sorted and aligned)",
@@ -126,7 +119,7 @@ plot_structure(
 We can also plot the top terms for each topic using bar charts.
 
 ``` python
-plot_top_terms(
+tt.plot_top_terms(
     true_F,
     n_top_terms=15,
     title="Top terms per topic - true F matrix",
@@ -137,7 +130,7 @@ plot_top_terms(
 ![](images/get-started/F-top-terms-true.png)
 
 ``` python
-plot_top_terms(
+tt.plot_top_terms(
     learned_F_aligned,
     n_top_terms=15,
     title="Top terms per topic - learned F matrix (aligned)",
