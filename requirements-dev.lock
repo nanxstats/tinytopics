@@ -91,6 +91,8 @@ idna==3.10
     # via requests
 imageio==2.36.0
     # via scikit-image
+iniconfig==2.0.0
+    # via pytest
 ipykernel==6.29.5
     # via jupyter
     # via jupyter-console
@@ -245,6 +247,7 @@ packaging==24.2
     # via matplotlib
     # via mkdocs
     # via nbconvert
+    # via pytest
     # via scikit-image
 paginate==0.5.7
     # via mkdocs-material
@@ -266,6 +269,8 @@ platformdirs==4.3.6
     # via jupyter-core
     # via mkdocs-get-deps
     # via mkdocstrings
+pluggy==1.5.0
+    # via pytest
 prometheus-client==0.21.0
     # via jupyter-server
 prompt-toolkit==3.0.48
@@ -291,6 +296,7 @@ pymdown-extensions==10.12
 pyparsing==3.2.0
     # via matplotlib
 pyreadr==0.5.2
+pytest==8.3.3
 python-dateutil==2.9.0.post0
     # via arrow
     # via ghp-import

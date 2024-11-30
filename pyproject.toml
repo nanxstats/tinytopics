@@ -50,6 +50,7 @@ build-backend = "hatchling.build"
 [tool.rye]
 managed = true
 dev-dependencies = [
+    "pytest>=8.3.3",
     "mkdocs>=1.6.1",
     "mkdocs-material>=9.5.42",
     "mkdocstrings-python>=1.12.2",
