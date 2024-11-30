@@ -1,5 +1,32 @@
 # Changelog
 
+## tinytopics 0.4.0
+
+### Breaking changes
+
+- tinytopics now requires Python >= 3.10 to use PEP 604 style shorthand syntax
+  for union and optional types (#14).
+
+### Typing
+
+- Refactor type hints to use more base abstract classes, making them less
+  limiting to specific implementations (#14).
+
+### Testing
+
+- Add unit tests for all functions using pytest, with a GitHub Actions workflow
+  to run tests under Linux and Windows (#18).
+
+### Improvements
+
+- Update articles to simplify import syntax using `import tinytopics as tt` (#16).
+- Close precise figure handles in plot functions instead of the current figure (#18).
+
+### Bug fixes
+
+- Plot functions now correctly use string and list type color palette inputs
+  when specified (do not call them as functions) (#18).
+
 ## tinytopics 0.3.0
 
 ### Improvements
