@@ -28,17 +28,22 @@ def plot_loss(
         color_palette: Custom color palette.
         output_file: File path to save the plot. If None, displays the plot.
     """
-    palette = scale_color_tinytopics(1) if color_palette is None else color_palette
+    if isinstance(color_palette, list):
+        color = color_palette[0]
+    elif isinstance(color_palette, str):
+        color = color_palette
+    else:
+        color = scale_color_tinytopics(1)(0)
 
     fig = plt.figure(figsize=figsize, dpi=dpi)
-    plt.plot(losses, color=palette(0))
+    plt.plot(losses, color=color)
     plt.title(title)
     plt.xlabel("Epochs")
     plt.ylabel("Loss")
 
     if output_file:
         plt.savefig(output_file, dpi=dpi)
-        plt.close()
+        plt.close(fig)
     else:
         plt.show()
 
@@ -70,17 +75,18 @@ def plot_structure(
     n_documents, n_topics = matrix.shape
     ind = np.arange(n_documents)
     cumulative = np.zeros(n_documents)
-    palette = (
-        scale_color_tinytopics(n_topics) if color_palette is None else color_palette
-    )
+    if isinstance(color_palette, list):
+        colors = color_palette
+    else:
+        colors = [scale_color_tinytopics(n_topics)(k) for k in range(n_topics)]
 
-    plt.figure(figsize=figsize, dpi=dpi)
+    fig = plt.figure(figsize=figsize, dpi=dpi)
     for k in range(n_topics):
         plt.bar(
             ind,
             matrix[:, k],
             bottom=cumulative,
-            color=palette(k),
+            color=colors[k],
             width=1.0,
         )
         cumulative += matrix[:, k]
@@ -94,7 +100,7 @@ def plot_structure(
 
     if output_file:
         plt.savefig(output_file, dpi=dpi)
-        plt.close()
+        plt.close(fig)
     else:
         plt.show()
 
@@ -134,9 +140,10 @@ def plot_top_terms(
         if term_names is not None
         else top_terms_indices.astype(str)
     )
-    palette = (
-        scale_color_tinytopics(n_topics) if color_palette is None else color_palette
-    )
+    if isinstance(color_palette, list):
+        colors = color_palette
+    else:
+        colors = [scale_color_tinytopics(n_topics)(k) for k in range(n_topics)]
 
     # Calculate grid dimensions
     if nrows is None and ncols is None:
@@ -157,7 +164,7 @@ def plot_top_terms(
         labels = top_terms_labels[topic_idx]
         y_pos = np.arange(n_top_terms)[::-1]
 
-        ax.barh(y_pos, probs, color=palette(topic_idx))
+        ax.barh(y_pos, probs, color=colors[topic_idx])
         ax.set_yticks(y_pos)
         ax.set_yticklabels(labels)
         ax.set_xlabel("Probability")
@@ -175,6 +182,6 @@ def plot_top_terms(
 
     if output_file:
         plt.savefig(output_file, dpi=dpi, bbox_inches="tight")
-        plt.close()
+        plt.close(fig)
     else:
         plt.show()
