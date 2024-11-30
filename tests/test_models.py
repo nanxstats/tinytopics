@@ -71,11 +71,11 @@ def test_device_placement():
     if not torch.cuda.is_available():
         pytest.skip("CUDA not available")
 
-    device = torch.device("cuda")
+    device = torch.device("cuda:0")
     model = NeuralPoissonNMF(n=N_DOCS, m=N_TERMS, k=N_TOPICS, device=device)
 
-    assert model.L.weight.device == device
-    assert model.F.device == device
+    assert model.L.weight.device.type == device.type
+    assert model.F.device.type == device.type
 
     # Test forward pass on GPU
     doc_indices = torch.tensor([0, 1, 2], device=device)
