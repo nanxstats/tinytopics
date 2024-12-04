@@ -1,5 +1,11 @@
 # Changelog
 
+## tinytopics 0.4.1
+
+### Documentation
+
+- Use `pip` and `python3` in command line instructions consistently.
+
 ## tinytopics 0.4.0
 
 ### Breaking changes
