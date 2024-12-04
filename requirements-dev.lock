@@ -64,11 +64,11 @@ defusedxml==0.7.1
     # via nbconvert
 executing==2.1.0
     # via stack-data
-fastjsonschema==2.21.0
+fastjsonschema==2.21.1
     # via nbformat
 filelock==3.16.1
     # via torch
-fonttools==4.55.0
+fonttools==4.55.1
     # via matplotlib
 fqdn==1.5.1
     # via jsonschema
@@ -155,7 +155,7 @@ jupyter-server==2.14.2
     # via notebook-shim
 jupyter-server-terminals==0.5.3
     # via jupyter-server
-jupyterlab==4.2.6
+jupyterlab==4.3.2
     # via jupyter
     # via notebook
 jupyterlab-pygments==0.3.0
@@ -222,7 +222,7 @@ nest-asyncio==1.6.0
 networkx==3.4.2
     # via scikit-image
     # via torch
-notebook==7.2.2
+notebook==7.3.0
     # via jupyter
 notebook-shim==0.2.4
     # via jupyterlab
@@ -271,7 +271,7 @@ platformdirs==4.3.6
     # via mkdocstrings
 pluggy==1.5.0
     # via pytest
-prometheus-client==0.21.0
+prometheus-client==0.21.1
     # via jupyter-server
 prompt-toolkit==3.0.48
     # via ipython
@@ -335,7 +335,7 @@ rfc3339-validator==0.1.4
 rfc3986-validator==0.1.1
     # via jsonschema
     # via jupyter-events
-rpds-py==0.21.0
+rpds-py==0.22.3
     # via jsonschema
     # via referencing
 ruff==0.8.1
@@ -349,7 +349,7 @@ send2trash==1.8.3
 setuptools==75.6.0
     # via jupyterlab
     # via torch
-six==1.16.0
+six==1.17.0
     # via python-dateutil
     # via rfc3339-validator
 sniffio==1.3.1

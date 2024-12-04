@@ -16,7 +16,7 @@ cycler==0.12.1
     # via matplotlib
 filelock==3.16.1
     # via torch
-fonttools==4.55.0
+fonttools==4.55.1
     # via matplotlib
 fsspec==2024.10.0
     # via torch
@@ -64,7 +64,7 @@ scipy==1.14.1
     # via tinytopics
 setuptools==75.6.0
     # via torch
-six==1.16.0
+six==1.17.0
     # via python-dateutil
 sympy==1.13.1
     # via torch
