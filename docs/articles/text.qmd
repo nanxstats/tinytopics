@@ -18,7 +18,7 @@ eval: false
     To run the code from this article as a Python script:
 
     ```bash
-    python examples/text.py
+    python3 examples/text.py
     ```
 
 We show a minimal example of text data topic modeling using tinytopics.

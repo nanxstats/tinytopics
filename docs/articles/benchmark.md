@@ -8,7 +8,7 @@
     To run the code from this article as a Python script:
 
     ```bash
-    python examples/benchmark.py
+    python3 examples/benchmark.py
     ```
 
 Let’s evaluate the tinytopics topic model training speed on CPU vs. GPU

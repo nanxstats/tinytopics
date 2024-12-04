@@ -8,7 +8,7 @@
     To run the code from this article as a Python script:
 
     ```bash
-    python examples/get-started.py
+    python3 examples/get-started.py
     ```
 
 Let’s walk through a canonical tinytopics workflow using a synthetic

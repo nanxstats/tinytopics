@@ -22,7 +22,7 @@ Or install the development version from GitHub:
 ```bash
 git clone https://github.com/nanxstats/tinytopics.git
 cd tinytopics
-python -m pip install -e .
+python3 -m pip install -e .
 ```
 
 ## GPU support
