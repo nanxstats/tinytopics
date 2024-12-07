@@ -16,7 +16,7 @@ cycler==0.12.1
     # via matplotlib
 filelock==3.16.1
     # via torch
-fonttools==4.55.1
+fonttools==4.55.2
     # via matplotlib
 fsspec==2024.10.0
     # via torch
