@@ -57,23 +57,11 @@ def generate_synthetic_data(
     # Initialize document-term matrix X
     X = np.zeros((n, m), dtype=np.int32)
 
-    def generate_document(i: int, doc_length: int) -> np.ndarray:
-        topic_probs = true_L[i]
-        topic_counts = np.random.multinomial(doc_length, topic_probs)
-
-        def sample_terms_for_topic(j: int, count: int) -> np.ndarray:
-            if count == 0:
-                return np.zeros(m, dtype=np.int32)
-            term_probs = true_F[j]
-            return np.random.multinomial(count, term_probs)
-
-        term_counts = sum(
-            sample_terms_for_topic(j, count) for j, count in enumerate(topic_counts)
-        )
-        return term_counts
-
     for i in tqdm(range(n), desc="Generating Documents"):
-        X[i, :] = generate_document(i, doc_lengths[i])
+        # Compute document-specific term distribution by mixing topic-term distributions
+        doc_term_probs = true_L[i] @ true_F  # shape (m,)
+        # Single multinomial draw for all terms in the document
+        X[i, :] = np.random.multinomial(doc_lengths[i], doc_term_probs)
 
     return torch.tensor(X, device=device, dtype=torch.float32), true_L, true_F
 
