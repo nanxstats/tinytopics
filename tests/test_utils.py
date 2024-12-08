@@ -55,6 +55,34 @@ def test_generate_synthetic_data(n, m, k, avg_doc_length):
     assert np.allclose(true_F.sum(axis=1), 1.0)
 
 
+def test_generate_synthetic_data_reproducibility():
+    """Test that synthetic data generation is reproducible with seeds."""
+    n, m, k = 10, 20, 3
+    avg_doc_length = 100
+
+    # Generate with a seed
+    set_random_seed(42)
+    X1, L1, F1 = generate_synthetic_data(n=n, m=m, k=k, avg_doc_length=avg_doc_length)
+
+    # Generate with the same seed
+    set_random_seed(42)
+    X2, L2, F2 = generate_synthetic_data(n=n, m=m, k=k, avg_doc_length=avg_doc_length)
+
+    # Generate with a different seed
+    set_random_seed(43)
+    X3, L3, F3 = generate_synthetic_data(n=n, m=m, k=k, avg_doc_length=avg_doc_length)
+
+    # Check that same seeds produce identical results
+    assert torch.allclose(X1, X2)
+    assert np.allclose(L1, L2)
+    assert np.allclose(F1, F2)
+
+    # Check that different seeds produce different results
+    assert not torch.allclose(X1, X3)
+    assert not np.allclose(L1, L3)
+    assert not np.allclose(F1, F3)
+
+
 def test_align_topics():
     """Test topic alignment functionality."""
     # Create synthetic topic matrices
