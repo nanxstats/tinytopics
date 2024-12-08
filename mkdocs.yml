@@ -83,4 +83,3 @@ theme:
   - search.highlight
   - search.suggest
   - toc.follow
-  - toc.integrate
