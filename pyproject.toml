@@ -1,6 +1,6 @@
 [project]
 name = "tinytopics"
-version = "0.4.1"
+version = "0.5.0"
 description = "Topic modeling via sum-to-one constrained neural Poisson non-negative matrix factorization"
 authors = [
     { name = "Nan Xiao", email = "me@nanx.me" }

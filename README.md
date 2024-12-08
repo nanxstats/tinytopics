@@ -6,7 +6,6 @@
 ![License](https://img.shields.io/pypi/l/tinytopics)
 
 Topic modeling via sum-to-one constrained neural Poisson NMF.
-
 Built with PyTorch, runs on both CPUs and GPUs.
 
 ## Installation

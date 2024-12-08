@@ -1,5 +1,18 @@
 # Changelog
 
+## tinytopics 0.5.0
+
+### Improvements
+
+- Increased the speed of `generate_synthetic_data()` significantly by using
+  direct mixture sampling, which leverages the properties of multinomial
+  distributions (#21).
+
+    This change makes simulating data at the scale of 100K x 100K
+    more feasible. Although the approaches before and after are mathematically
+    equivalent, the data generated with the same seed in previous versions and
+    this version onward will be bitwise different.
+
 ## tinytopics 0.4.1
 
 ### Documentation
