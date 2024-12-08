@@ -37,7 +37,7 @@ mpmath==1.3.0
 networkx==3.4.2
     # via scikit-image
     # via torch
-numpy==2.1.3
+numpy==2.2.0
     # via contourpy
     # via imageio
     # via matplotlib
