@@ -39,7 +39,8 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 
 To manage the PyTorch dependency under a project context using virtual
 environments, you might want to set up manual sources. For example,
-[using Rye](https://rye.astral.sh/guide/faq/#how-do-i-install-pytorch).
+[using Rye](https://rye.astral.sh/guide/faq/#how-do-i-install-pytorch) or
+[using uv](https://docs.astral.sh/uv/guides/integration/pytorch/).
 
 ## Examples
 
