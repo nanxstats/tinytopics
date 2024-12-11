@@ -68,7 +68,7 @@ fastjsonschema==2.21.1
     # via nbformat
 filelock==3.16.1
     # via torch
-fonttools==4.55.2
+fonttools==4.55.3
     # via matplotlib
 fqdn==1.5.1
     # via jsonschema
@@ -155,7 +155,7 @@ jupyter-server==2.14.2
     # via notebook-shim
 jupyter-server-terminals==0.5.3
     # via jupyter-server
-jupyterlab==4.3.2
+jupyterlab==4.3.3
     # via jupyter
     # via notebook
 jupyterlab-pygments==0.3.0
