@@ -30,7 +30,7 @@ lazy-loader==0.4
     # via scikit-image
 markupsafe==3.0.2
     # via jinja2
-matplotlib==3.9.4
+matplotlib==3.10.0
     # via tinytopics
 mpmath==1.3.0
     # via sympy

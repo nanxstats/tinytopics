@@ -35,7 +35,7 @@ beautifulsoup4==4.12.3
     # via nbconvert
 bleach==6.2.0
     # via nbconvert
-certifi==2024.8.30
+certifi==2024.12.14
     # via httpcore
     # via httpx
     # via requests
@@ -181,7 +181,7 @@ markupsafe==3.0.2
     # via mkdocs-autorefs
     # via mkdocstrings
     # via nbconvert
-matplotlib==3.9.4
+matplotlib==3.10.0
     # via tinytopics
 matplotlib-inline==0.1.7
     # via ipykernel
