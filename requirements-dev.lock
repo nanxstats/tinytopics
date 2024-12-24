@@ -25,7 +25,7 @@ asttokens==3.0.0
     # via stack-data
 async-lru==2.0.4
     # via jupyterlab
-attrs==24.2.0
+attrs==24.3.0
     # via jsonschema
     # via referencing
 babel==2.16.0
@@ -41,9 +41,9 @@ certifi==2024.12.14
     # via requests
 cffi==1.17.1
     # via argon2-cffi-bindings
-charset-normalizer==3.4.0
+charset-normalizer==3.4.1
     # via requests
-click==8.1.7
+click==8.1.8
     # via mkdocs
     # via mkdocstrings
 colorama==0.4.6
@@ -72,7 +72,7 @@ fonttools==4.55.3
     # via matplotlib
 fqdn==1.5.1
     # via jsonschema
-fsspec==2024.10.0
+fsspec==2024.12.0
     # via torch
 ghp-import==2.1.0
     # via mkdocs
@@ -97,7 +97,7 @@ ipykernel==6.29.5
     # via jupyter
     # via jupyter-console
     # via jupyterlab
-ipython==8.30.0
+ipython==8.31.0
     # via ipykernel
     # via ipywidgets
     # via jupyter-console
@@ -107,7 +107,7 @@ isoduration==20.11.0
     # via jsonschema
 jedi==0.19.2
     # via ipython
-jinja2==3.1.4
+jinja2==3.1.5
     # via jupyter-server
     # via jupyterlab
     # via jupyterlab-server
@@ -143,11 +143,11 @@ jupyter-core==5.7.2
     # via nbclient
     # via nbconvert
     # via nbformat
-jupyter-events==0.10.0
+jupyter-events==0.11.0
     # via jupyter-server
 jupyter-lsp==2.2.5
     # via jupyterlab
-jupyter-server==2.14.2
+jupyter-server==2.15.0
     # via jupyter-lsp
     # via jupyterlab
     # via jupyterlab-server
@@ -155,7 +155,7 @@ jupyter-server==2.14.2
     # via notebook-shim
 jupyter-server-terminals==0.5.3
     # via jupyter-server
-jupyterlab==4.3.3
+jupyterlab==4.3.4
     # via jupyter
     # via notebook
 jupyterlab-pygments==0.3.0
@@ -165,7 +165,7 @@ jupyterlab-server==2.27.3
     # via notebook
 jupyterlab-widgets==3.0.13
     # via ipywidgets
-kiwisolver==1.4.7
+kiwisolver==1.4.8
     # via matplotlib
 lazy-loader==0.4
     # via scikit-image
@@ -200,7 +200,7 @@ mkdocs-autorefs==1.2.0
     # via mkdocstrings-python
 mkdocs-get-deps==0.2.0
     # via mkdocs
-mkdocs-material==9.5.48
+mkdocs-material==9.5.49
 mkdocs-material-extensions==1.3.1
     # via mkdocs-material
 mkdocstrings==0.27.0
@@ -208,7 +208,7 @@ mkdocstrings==0.27.0
 mkdocstrings-python==1.12.2
 mpmath==1.3.0
     # via sympy
-nbclient==0.10.1
+nbclient==0.10.2
     # via nbconvert
 nbconvert==7.16.4
     # via jupyter
@@ -222,12 +222,12 @@ nest-asyncio==1.6.0
 networkx==3.4.2
     # via scikit-image
     # via torch
-notebook==7.3.1
+notebook==7.3.2
     # via jupyter
 notebook-shim==0.2.4
     # via jupyterlab
     # via notebook
-numpy==2.2.0
+numpy==2.2.1
     # via contourpy
     # via imageio
     # via matplotlib
@@ -276,7 +276,7 @@ prometheus-client==0.21.1
 prompt-toolkit==3.0.48
     # via ipython
     # via jupyter-console
-psutil==6.1.0
+psutil==6.1.1
     # via ipykernel
 ptyprocess==0.7.0
     # via pexpect
@@ -290,7 +290,7 @@ pygments==2.18.0
     # via jupyter-console
     # via mkdocs-material
     # via nbconvert
-pymdown-extensions==10.12
+pymdown-extensions==10.13
     # via mkdocs-material
     # via mkdocstrings
 pyparsing==3.2.0
@@ -303,7 +303,7 @@ python-dateutil==2.9.0.post0
     # via jupyter-client
     # via matplotlib
     # via pandas
-python-json-logger==3.2.0
+python-json-logger==3.2.1
     # via jupyter-events
 pytz==2024.2
     # via pandas
@@ -338,7 +338,7 @@ rfc3986-validator==0.1.1
 rpds-py==0.22.3
     # via jsonschema
     # via referencing
-ruff==0.8.3
+ruff==0.8.4
 scikit-image==0.25.0
     # via tinytopics
 scipy==1.14.1
@@ -402,7 +402,7 @@ tzdata==2024.2
     # via pandas
 uri-template==1.3.0
     # via jsonschema
-urllib3==2.2.3
+urllib3==2.3.0
     # via requests
 watchdog==6.0.0
     # via mkdocs
