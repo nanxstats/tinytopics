@@ -44,7 +44,7 @@ Issues = "https://github.com/nanxstats/tinytopics/issues"
 Changelog = "https://github.com/nanxstats/tinytopics/blob/main/CHANGELOG.md"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling==1.26.3"] # <https://github.com/astral-sh/rye/issues/1446>
 build-backend = "hatchling.build"
 
 [tool.rye]
