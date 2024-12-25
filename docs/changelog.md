@@ -1,5 +1,17 @@
 # Changelog
 
+## tinytopics 0.5.1
+
+### Documentation
+
+- Add badges for CI tests and mkdocs workflows to `README.md` (#24).
+- Add PyTorch management guide link for uv to `README.md` (735fcca).
+
+### Maintenance
+
+- Use hatchling 1.26.3 in `pyproject.toml` to work around `rye publish`
+  errors (c56387c).
+
 ## tinytopics 0.5.0
 
 ### Improvements
