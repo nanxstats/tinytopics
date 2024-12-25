@@ -2,6 +2,8 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/tinytopics)](https://pypi.org/project/tinytopics/)
 ![Python versions](https://img.shields.io/pypi/pyversions/tinytopics)
+[![CI Tests](https://github.com/nanxstats/tinytopics/actions/workflows/ci-tests.yaml/badge.svg)](https://github.com/nanxstats/tinytopics/actions/workflows/ci-tests.yaml)
+[![mkdocs](https://github.com/nanxstats/tinytopics/actions/workflows/mkdocs.yml/badge.svg)](https://nanx.me/tinytopics/)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/tinytopics)](https://pypistats.org/packages/tinytopics)
 ![License](https://img.shields.io/pypi/l/tinytopics)
 
