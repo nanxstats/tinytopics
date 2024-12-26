@@ -182,5 +182,5 @@ class NumpyDiskDataset(Dataset):
 
     @property
     def num_terms(self) -> int:
-        """Return vocabulary size (number of columns)"""
+        """Return vocabulary size (number of columns)."""
         return self.shape[1]
