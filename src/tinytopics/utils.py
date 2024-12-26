@@ -102,7 +102,7 @@ def sort_documents(L_matrix: np.ndarray) -> Sequence[int]:
         L_matrix (np.ndarray): Document-topic distribution matrix.
 
     Returns:
-        Sequence[int]: Indices of documents sorted by dominant topics.
+        Indices of documents sorted by dominant topics.
     """
     n, k = L_matrix.shape
     L_normalized = L_matrix / L_matrix.sum(axis=1, keepdims=True)
