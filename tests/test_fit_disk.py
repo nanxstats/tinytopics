@@ -1,6 +1,3 @@
-from pathlib import Path
-import tempfile
-
 import pytest
 import torch
 import numpy as np
@@ -16,16 +13,15 @@ N_EPOCHS = 3
 
 
 @pytest.fixture
-def sample_data():
+def sample_data(tmp_path):
     """Generate sample data and return both tensor and file path."""
-    with tempfile.TemporaryDirectory() as tmp_dir:
-        set_random_seed(42)
-        X, _, _ = generate_synthetic_data(n=N_DOCS, m=N_TERMS, k=N_TOPICS)
+    set_random_seed(42)
+    X, _, _ = generate_synthetic_data(n=N_DOCS, m=N_TERMS, k=N_TOPICS)
 
-        file_path = Path(tmp_dir) / "test_data.npy"
-        np.save(file_path, X.cpu().numpy())
+    file_path = tmp_path / "test_data.npy"
+    np.save(file_path, X.cpu().numpy())
 
-        yield X, file_path
+    return X, file_path
 
 
 def test_disk_dataset_reproducibility(sample_data):
