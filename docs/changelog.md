@@ -1,5 +1,20 @@
 # Changelog
 
+## tinytopics 0.6.0
+
+### New features
+
+- `fit_model()` now supports using PyTorch `Dataset` as input, in addition
+  to in-memory tensors. This allows fitting topic models on data larger than
+  GPU VRAM or system RAM. The `NumpyDiskDataset` class is added to read
+  `.npy` document-term matrices from disk on-demand (#26).
+
+### Documentation
+
+- Added a [memory-efficient training](https://nanx.me/tinytopics/articles/memory/)
+  article demonstrating the new features for fitting topic models on
+  large datasets (#27).
+
 ## tinytopics 0.5.1
 
 ### Documentation
