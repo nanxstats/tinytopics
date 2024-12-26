@@ -22,9 +22,9 @@ def plot_loss(
 
     Args:
         losses: List of loss values for each epoch.
-        figsize: Plot size. Default is (10, 8).
-        dpi: Plot resolution. Default is 300.
-        title: Plot title. Default is "Loss curve".
+        figsize: Plot size.
+        dpi: Plot resolution.
+        title: Plot title.
         color_palette: Custom color palette.
         output_file: File path to save the plot. If None, displays the plot.
     """
@@ -63,8 +63,8 @@ def plot_structure(
     Args:
         L_matrix: Document-topic distribution matrix.
         normalize_rows: If True, normalizes each row of L_matrix to sum to 1.
-        figsize: Plot size. Default is (12, 6).
-        dpi: Plot resolution. Default is 300.
+        figsize: Plot size.
+        dpi: Plot resolution.
         title: Plot title.
         color_palette: Custom color palette.
         output_file: File path to save the plot. If None, displays the plot.
@@ -122,10 +122,10 @@ def plot_top_terms(
 
     Args:
         F_matrix: Topic-term distribution matrix.
-        n_top_terms: Number of top terms to display per topic. Default is 10.
+        n_top_terms: Number of top terms to display per topic.
         term_names: List of term names corresponding to indices.
-        figsize: Plot size. Default is (10, 8).
-        dpi: Plot resolution. Default is 300.
+        figsize: Plot size.
+        dpi: Plot resolution.
         title: Plot title.
         color_palette: Custom color palette.
         nrows: Number of rows in the subplot grid.

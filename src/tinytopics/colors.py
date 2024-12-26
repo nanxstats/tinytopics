@@ -34,17 +34,20 @@ def pal_tinytopics(
 
     Args:
         format: Returned color format. Options are:
-            `hex`: Hex strings (default).
-            `rgb`: Array of RGB values.
-            `lab`: Array of CIELAB values.
+
+            - `hex`: Hex strings (default).
+            - `rgb`: Array of RGB values.
+            - `lab`: Array of CIELAB values.
 
     Returns:
-        - If `format='hex'`, returns a list of hex color strings.
-        - If `format='rgb'`, returns an Nx3 numpy array of RGB values.
-        - If `format='lab'`, returns an Nx3 numpy array of CIELAB values.
+        Colors in the requested format:
+
+            - If `format='hex'`, returns a list of hex color strings.
+            - If `format='rgb'`, returns an Nx3 numpy array of RGB values.
+            - If `format='lab'`, returns an Nx3 numpy array of CIELAB values.
 
     Raises:
-        ValueError: If format is not 'hex', 'rgb', or 'lab'.
+        ValueError: If format is not `'hex'`, `'rgb'`, or `'lab'`.
     """
     TINYTOPICS_10_COLORS: Sequence[str] = (
         "#4269D0",  # Blue
