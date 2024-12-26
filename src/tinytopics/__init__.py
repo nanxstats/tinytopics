@@ -16,6 +16,7 @@ from .utils import (
     generate_synthetic_data,
     align_topics,
     sort_documents,
+    NumpyDiskDataset,
 )
 from .colors import pal_tinytopics, scale_color_tinytopics
 from .plot import plot_loss, plot_structure, plot_top_terms
