@@ -29,7 +29,7 @@ sync_article() {
 }
 
 # Sync articles
-for article in get-started benchmark text; do
+for article in get-started benchmark text memory; do
     sync_article "$article"
 done
 
