@@ -15,6 +15,8 @@ nav:
   - API Reference:
     - Fit: reference/fit.md
     - Models: reference/models.md
+    - Loss: reference/loss.md
+    - Data: reference/data.md
     - Plot: reference/plot.md
     - Colors: reference/colors.md
     - Utilities: reference/utils.md
