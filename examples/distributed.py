@@ -9,6 +9,7 @@ import torch
 import numpy as np
 from accelerate.utils import set_seed
 from tqdm.auto import tqdm
+from accelerate import Accelerator
 
 import tinytopics as tt
 from tinytopics.fit_distributed import fit_model_distributed
@@ -41,25 +42,37 @@ def save_data_to_disk(X, data_path, chunk_size=10_000):
 
 
 def main():
+    accelerator = Accelerator()
     set_seed(42)
     n, m, k = 100_000, 100_000, 20
     data_path = "X.npy"
 
-    if os.path.exists(data_path):
-        print(f"Loading data from {data_path}")
-        X = torch.from_numpy(np.load(data_path))
+    # Only the main process should handle data generation and saving
+    if accelerator.is_main_process:
+        if os.path.exists(data_path):
+            print(f"Loading data from {data_path}")
+            X = torch.from_numpy(np.load(data_path))
+        else:
+            print("Generating synthetic data...")
+            X, true_L, true_F = tt.generate_synthetic_data(
+                n, m, k, avg_doc_length=256 * 256
+            )
+            print(f"Saving data to {data_path}")
+            save_data_to_disk(X, data_path)
+            X = torch.from_numpy(np.load(data_path))
     else:
-        print("Generating synthetic data...")
-        X, true_L, true_F = tt.generate_synthetic_data(
-            n, m, k, avg_doc_length=256 * 256
-        )
-        print(f"Saving data to {data_path}")
-        save_data_to_disk(X, data_path)
+        # Other processes should wait for the main process to finish
+        accelerator.wait_for_everyone()
         X = torch.from_numpy(np.load(data_path))
+
+    # Ensure all processes have the data before proceeding
+    accelerator.wait_for_everyone()
 
     model, losses = fit_model_distributed(X, k=k)
 
-    tt.plot_loss(losses, output_file="loss.png")
+    # Only the main process should plot the loss
+    if accelerator.is_main_process:
+        tt.plot_loss(losses, output_file="loss.png")
 
 
 if __name__ == "__main__":
