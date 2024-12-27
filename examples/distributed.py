@@ -18,7 +18,7 @@ def main():
     data_path = "X.npy"
 
     print(f"Loading data from {data_path}")
-    X = torch.from_numpy(np.load(data_path))
+    X = tt.NumpyDiskDataset(data_path)
 
     # Ensure all processes have the data before proceeding
     accelerator.wait_for_everyone()
