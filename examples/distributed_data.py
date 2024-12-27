@@ -1,5 +1,5 @@
 # Run:
-# python examples/generate_data.py
+# python examples/distributed_data.py
 
 import os
 
