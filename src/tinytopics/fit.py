@@ -6,7 +6,7 @@ from torch import Tensor
 from torch.optim import AdamW
 from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
 from torch.utils.data import DataLoader, Dataset
-from tqdm import tqdm
+from tqdm.auto import tqdm
 
 from .models import NeuralPoissonNMF
 
