@@ -1,7 +1,7 @@
 import pytest
 import torch
 
-from tinytopics.fit import poisson_nmf_loss, fit_model
+from tinytopics.fit import fit_model
 from tinytopics.utils import set_random_seed, generate_synthetic_data
 
 # Test data dimensions
@@ -15,20 +15,6 @@ def sample_data():
     """Fixture providing sample document-term matrix for testing."""
     set_random_seed(42)
     return generate_synthetic_data(n=N_DOCS, m=N_TERMS, k=N_TOPICS)
-
-
-def test_poisson_nmf_loss():
-    """Test the Poisson NMF loss function."""
-    X = torch.tensor([[1.0, 2.0], [3.0, 4.0]])
-    X_reconstructed = torch.tensor([[1.1, 1.9], [2.9, 4.1]])
-
-    loss = poisson_nmf_loss(X, X_reconstructed)
-
-    # Test with perfect reconstruction
-    perfect_loss = poisson_nmf_loss(X, X)
-
-    # Perfect reconstruction should have lower loss
-    assert perfect_loss < loss
 
 
 def test_fit_model_basic(sample_data):

@@ -1,8 +1,8 @@
-# Fit topic models
+# Losses
 
-::: tinytopics.fit
+::: tinytopics.loss
     options:
       members:
-        - fit_model
+        - poisson_nmf_loss
       show_root_heading: true
       show_source: false

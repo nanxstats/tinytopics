@@ -2,7 +2,8 @@ import pytest
 import torch
 import numpy as np
 
-from tinytopics.utils import set_random_seed, generate_synthetic_data, NumpyDiskDataset
+from tinytopics.utils import set_random_seed, generate_synthetic_data
+from tinytopics.data import NumpyDiskDataset
 from tinytopics.fit import fit_model
 
 # Test data dimensions

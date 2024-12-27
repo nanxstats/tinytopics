@@ -8,43 +8,9 @@ from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
 from torch.utils.data import DataLoader, Dataset
 from tqdm.auto import tqdm
 
+from .data import IndexTrackingDataset
 from .models import NeuralPoissonNMF
-
-
-def poisson_nmf_loss(X: Tensor, X_reconstructed: Tensor) -> Tensor:
-    """
-    Compute the Poisson NMF loss function (negative log-likelihood).
-
-    Args:
-        X: Original document-term matrix.
-        X_reconstructed: Reconstructed matrix from the model.
-
-    Returns:
-        The computed Poisson NMF loss.
-    """
-    epsilon: float = 1e-10
-    return (
-        X_reconstructed - X * torch.log(torch.clamp(X_reconstructed, min=epsilon))
-    ).sum()
-
-
-class IndexTrackingDataset(Dataset):
-    """Dataset wrapper that tracks indices through shuffling"""
-
-    def __init__(self, dataset: Dataset | Tensor) -> None:
-        self.dataset = dataset
-        self.shape: tuple[int, int] = (
-            dataset.shape
-            if hasattr(dataset, "shape")
-            else (len(dataset), dataset[0].shape[0])
-        )
-        self.is_tensor: bool = isinstance(dataset, torch.Tensor)
-
-    def __len__(self) -> int:
-        return len(self.dataset)
-
-    def __getitem__(self, idx: int) -> tuple[Tensor, Tensor]:
-        return self.dataset[idx], torch.tensor(idx)
+from .loss import poisson_nmf_loss
 
 
 def fit_model(
