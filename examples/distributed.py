@@ -20,6 +20,9 @@ def main():
     print(f"Loading data from {data_path}")
     X = torch.from_numpy(np.load(data_path))
 
+    # Ensure all processes have the data before proceeding
+    accelerator.wait_for_everyone()
+
     model, losses = fit_model_distributed(X, k=k)
 
     # Only the main process should plot the loss
