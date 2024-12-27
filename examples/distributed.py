@@ -3,10 +3,12 @@
 # accelerate config
 # accelerate launch examples/distributed.py
 
-import torch
+import os
+
 import numpy as np
 from accelerate.utils import set_seed
 from accelerate import Accelerator
+
 import tinytopics as tt
 from tinytopics.fit_distributed import fit_model_distributed
 
@@ -14,8 +16,25 @@ from tinytopics.fit_distributed import fit_model_distributed
 def main():
     accelerator = Accelerator()
     set_seed(42)
-    k = 20
+    n, m, k = 100_000, 100_000, 20
     data_path = "X.npy"
+
+    # Only generate data on main process
+    if accelerator.is_main_process:
+        if os.path.exists(data_path):
+            print(f"Data already exists at {data_path}")
+        else:
+            print("Generating synthetic data...")
+            X, true_L, true_F = tt.generate_synthetic_data(
+                n, m, k, avg_doc_length=256 * 256
+            )
+
+            print(f"Saving data to {data_path}")
+            X_numpy = X.cpu().numpy()
+            np.save(data_path, X_numpy)
+
+    # Wait for main process to finish generating data
+    accelerator.wait_for_everyone()
 
     print(f"Loading data from {data_path}")
     X = tt.NumpyDiskDataset(data_path)
