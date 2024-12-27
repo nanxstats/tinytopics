@@ -35,7 +35,7 @@ model, losses = tt.fit_model(dataset, k=k, num_epochs=100)
 tt.plot_loss(losses, output_file="loss.png")
 
 import numpy as np
-from tqdm import tqdm
+from tqdm.auto import tqdm
 
 import tinytopics as tt
 

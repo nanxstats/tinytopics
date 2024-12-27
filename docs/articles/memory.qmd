@@ -92,7 +92,7 @@ and save it into a 186GB `.npy` file using NumPy memory-mapped mode.
 
 ```{python}
 import numpy as np
-from tqdm import tqdm
+from tqdm.auto import tqdm
 
 import tinytopics as tt
 

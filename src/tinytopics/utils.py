@@ -7,7 +7,7 @@ import torch
 import numpy as np
 from torch.utils.data import Dataset
 from scipy.optimize import linear_sum_assignment
-from tqdm import tqdm
+from tqdm.auto import tqdm
 
 
 def set_random_seed(seed: int) -> None:
