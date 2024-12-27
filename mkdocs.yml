@@ -12,6 +12,7 @@ nav:
     - articles/benchmark.md
     - articles/text.md
     - articles/memory.md
+    - articles/distributed.md
   - API Reference:
     - Fit: reference/fit.md
     - Models: reference/models.md
