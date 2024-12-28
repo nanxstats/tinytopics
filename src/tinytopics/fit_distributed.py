@@ -7,10 +7,9 @@ from torch.optim import AdamW
 from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
 from torch.utils.data import DataLoader, Dataset
 from accelerate import Accelerator
-from accelerate import DataLoaderConfiguration
 from tqdm.auto import tqdm
 
-from .data import IndexTrackingDataset, PlaceholderDataset
+from .data import IndexTrackingDataset
 from .models import NeuralPoissonNMF
 from .loss import poisson_nmf_loss
 
@@ -56,30 +55,18 @@ def fit_model_distributed(
             - Trained NeuralPoissonNMF model.
             - List of training losses per epoch.
     """
-    # Initialize Accelerator with dispatch_batches=True
-    # This ensures batches are only created on main process and distributed to others
-    # <https://github.com/huggingface/accelerate/issues/3001>
-    accelerator = Accelerator(
-        dataloader_config=DataLoaderConfiguration(dispatch_batches=True)
-    )
+    # Initialize Accelerator
+    accelerator = Accelerator()
 
-    # Handle different input types and create appropriate dataset
+    # Handle different input types
     if isinstance(X, Dataset):
-        if accelerator.is_local_main_process:
-            base_dataset = X
-        else:
-            # Create placeholder dataset with identical dimensions
-            n = len(X)
-            m = X.num_terms if hasattr(X, "num_terms") else X[0].shape[0]
-            base_dataset = PlaceholderDataset(length=n, num_terms=m)
+        base_dataset = X
         n = len(X)
         m = X.num_terms if hasattr(X, "num_terms") else X[0].shape[0]
     else:  # torch.Tensor
+        # Do NOT X.to(device) manually here as Accelerate will do it later
         n, m = X.shape
-        if accelerator.is_local_main_process:
-            base_dataset = X
-        else:
-            base_dataset = PlaceholderDataset(length=n, num_terms=m)
+        base_dataset = X  # Pass tensor directly
 
     # Wrap dataset to track indices
     # Use standard DataLoader as Accelerate will handle multi-GPU distribution
