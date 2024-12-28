@@ -15,7 +15,9 @@ def main():
 
     print("Generating synthetic data...")
     tt.set_random_seed(42)
-    X, true_L, true_F = tt.generate_synthetic_data(n, m, k, avg_doc_length=256 * 256)
+    X, true_L, true_F = tt.generate_synthetic_data(
+        n=n, m=m, k=k, avg_doc_length=256 * 256
+    )
 
     print(f"Saving data to {data_path}")
     X_numpy = X.cpu().numpy()
@@ -31,7 +33,6 @@ from accelerate import Accelerator
 from accelerate.utils import set_seed
 
 import tinytopics as tt
-from tinytopics.fit_distributed import fit_model_distributed
 
 
 def main():
@@ -42,16 +43,16 @@ def main():
 
     if not os.path.exists(data_path):
         raise FileNotFoundError(
-            f"Data file {data_path} not found. Run distributed_data.py first."
+            f"{data_path} not found. Run distributed_data.py first."
         )
 
     print(f"Loading data from {data_path}")
     X = tt.NumpyDiskDataset(data_path)
 
-    # Ensure all processes have the data before proceeding
+    # All processes should have the data before proceeding
     accelerator.wait_for_everyone()
 
-    model, losses = fit_model_distributed(X, k=k)
+    model, losses = tt.fit_model_distributed(X, k=k)
 
     # Only the main process should plot the loss
     if accelerator.is_main_process:

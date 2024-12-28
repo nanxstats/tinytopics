@@ -2,7 +2,7 @@
 Topic modeling via sum-to-one constrained neural Poisson NMF.
 """
 
-from .fit import fit_model
+from .fit import fit_model, fit_model_distributed
 from .models import NeuralPoissonNMF
 from .loss import poisson_nmf_loss
 from .data import NumpyDiskDataset

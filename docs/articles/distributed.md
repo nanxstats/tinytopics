@@ -35,10 +35,10 @@ train larger models.
 100k x 100k matrix with 20 topics.
 
 To generate data for distributed training, save the following code to
-`examples/distributed_data.py` and run:
+`distributed_data.py` and run:
 
 ``` bash
-python examples/distributed_data.py
+python distributed_data.py
 ```
 
 ``` python
@@ -59,7 +59,9 @@ def main():
 
     print("Generating synthetic data...")
     tt.set_random_seed(42)
-    X, true_L, true_F = tt.generate_synthetic_data(n, m, k, avg_doc_length=256 * 256)
+    X, true_L, true_F = tt.generate_synthetic_data(
+        n=n, m=m, k=k, avg_doc_length=256 * 256
+    )
 
     print(f"Saving data to {data_path}")
     X_numpy = X.cpu().numpy()
@@ -82,10 +84,10 @@ Run the following command to configure the distributed environment:
 accelerate config
 ```
 
-Then save the following code to `examples/distributed.py` and run:
+Then save the following code to `distributed_training.py` and run:
 
 ``` bash
-accelerate launch examples/distributed.py
+accelerate launch distributed_training.py
 ```
 
 ``` python
@@ -95,7 +97,6 @@ from accelerate import Accelerator
 from accelerate.utils import set_seed
 
 import tinytopics as tt
-from tinytopics.fit_distributed import fit_model_distributed
 
 
 def main():
@@ -106,16 +107,16 @@ def main():
 
     if not os.path.exists(data_path):
         raise FileNotFoundError(
-            f"Data file {data_path} not found. Run distributed_data.py first."
+            f"{data_path} not found. Run distributed_data.py first."
         )
 
     print(f"Loading data from {data_path}")
     X = tt.NumpyDiskDataset(data_path)
 
-    # Ensure all processes have the data before proceeding
+    # All processes should have the data before proceeding
     accelerator.wait_for_everyone()
 
-    model, losses = fit_model_distributed(X, k=k)
+    model, losses = tt.fit_model_distributed(X, k=k)
 
     # Only the main process should plot the loss
     if accelerator.is_main_process:
@@ -126,14 +127,15 @@ if __name__ == "__main__":
     main()
 ```
 
-1x H100 (80 GB SXM5): 24 seconds per epoch. GPU utilization is 16%, VRAM
-1%.
+| Metric                | 1x H100 (80 GB SXM5) | 4x H100 (80 GB SXM5) |
+|:----------------------|---------------------:|---------------------:|
+| Time per epoch (s)    |                   24 |                    6 |
+| Total time (min)      |                   80 |                   20 |
+| GPU utilization       |                  16% |               30-40% |
+| VRAM usage            |                   1% |                   4% |
+| Instance cost (USD/h) |                 3.29 |                12.36 |
+| Total cost (USD)      |                 4.38 |                 4.12 |
 
-4x H100 (80 GB SXM5): 7 seconds per epoch. GPU utilization is 20% to
-40%, VRAM 4%.
+![](images/distributed/nvtop-4x-h100.png)
 
-![](images/distributed/nvtop.png)
-
-Finishes training in 24 minutes (200 epochs).
-
-![](images/distributed/loss.png)
+![](images/distributed/loss-4x-h100.png)
