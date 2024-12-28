@@ -52,3 +52,4 @@ After tinytopics is installed, try examples from:
 - [CPU vs. GPU speed benchmark](https://nanx.me/tinytopics/articles/benchmark/)
 - [Text data topic modeling example](https://nanx.me/tinytopics/articles/text/)
 - [Memory-efficient training](https://nanx.me/tinytopics/articles/memory/)
+- [Distributed training](https://nanx.me/tinytopics/articles/distributed/)

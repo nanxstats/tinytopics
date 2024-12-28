@@ -12,6 +12,7 @@ nav:
     - articles/benchmark.md
     - articles/text.md
     - articles/memory.md
+    - articles/distributed.md
   - API Reference:
     - Fit: reference/fit.md
     - Models: reference/models.md
@@ -41,6 +42,7 @@ markdown_extensions:
       anchor_linenums: true
   - pymdownx.tasklist:
       custom_checkbox: false
+  - tables
   - toc:
       permalink: true
 

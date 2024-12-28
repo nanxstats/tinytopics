@@ -10,6 +10,8 @@
 #   universal: false
 
 -e file:.
+accelerate==1.2.1
+    # via tinytopics
 anyio==4.7.0
     # via httpx
     # via jupyter-server
@@ -67,12 +69,14 @@ executing==2.1.0
 fastjsonschema==2.21.1
     # via nbformat
 filelock==3.16.1
+    # via huggingface-hub
     # via torch
 fonttools==4.55.3
     # via matplotlib
 fqdn==1.5.1
     # via jsonschema
 fsspec==2024.12.0
+    # via huggingface-hub
     # via torch
 ghp-import==2.1.0
     # via mkdocs
@@ -84,6 +88,8 @@ httpcore==1.0.7
     # via httpx
 httpx==0.28.1
     # via jupyterlab
+huggingface-hub==0.27.0
+    # via accelerate
 idna==3.10
     # via anyio
     # via httpx
@@ -228,6 +234,7 @@ notebook-shim==0.2.4
     # via jupyterlab
     # via notebook
 numpy==2.2.1
+    # via accelerate
     # via contourpy
     # via imageio
     # via matplotlib
@@ -239,6 +246,8 @@ numpy==2.2.1
 overrides==7.7.0
     # via jupyter-server
 packaging==24.2
+    # via accelerate
+    # via huggingface-hub
     # via ipykernel
     # via jupyter-server
     # via jupyterlab
@@ -277,6 +286,7 @@ prompt-toolkit==3.0.48
     # via ipython
     # via jupyter-console
 psutil==6.1.1
+    # via accelerate
     # via ipykernel
 ptyprocess==0.7.0
     # via pexpect
@@ -308,6 +318,8 @@ python-json-logger==3.2.1
 pytz==2024.2
     # via pandas
 pyyaml==6.0.2
+    # via accelerate
+    # via huggingface-hub
     # via jupyter-events
     # via mkdocs
     # via mkdocs-get-deps
@@ -327,6 +339,7 @@ referencing==0.35.1
 regex==2024.11.6
     # via mkdocs-material
 requests==2.32.3
+    # via huggingface-hub
     # via jupyterlab-server
     # via mkdocs-material
 rfc3339-validator==0.1.4
@@ -339,6 +352,8 @@ rpds-py==0.22.3
     # via jsonschema
     # via referencing
 ruff==0.8.4
+safetensors==0.4.5
+    # via accelerate
 scikit-image==0.25.0
     # via tinytopics
 scipy==1.14.1
@@ -368,6 +383,7 @@ tifffile==2024.12.12
 tinycss2==1.4.0
     # via nbconvert
 torch==2.5.1
+    # via accelerate
     # via tinytopics
 tornado==6.4.2
     # via ipykernel
@@ -377,6 +393,7 @@ tornado==6.4.2
     # via notebook
     # via terminado
 tqdm==4.67.1
+    # via huggingface-hub
     # via tinytopics
 traitlets==5.14.3
     # via comm
@@ -397,6 +414,7 @@ types-python-dateutil==2.9.0.20241206
     # via arrow
 typing-extensions==4.12.2
     # via anyio
+    # via huggingface-hub
     # via torch
 tzdata==2024.2
     # via pandas

@@ -41,7 +41,7 @@ def fit_model(
         batch_size: Number of documents per batch.
         base_lr: Minimum learning rate after annealing.
         max_lr: Starting maximum learning rate.
-        T_0: Number of epochs until first restart
+        T_0: Number of epochs until first restart.
         T_mult: Factor increasing restart interval.
         weight_decay: Weight decay for AdamW optimizer.
         device: Device to run training on.
