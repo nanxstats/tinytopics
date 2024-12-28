@@ -9,7 +9,7 @@ from torch.utils.data import DataLoader, Dataset
 from accelerate import Accelerator
 from tqdm.auto import tqdm
 
-from .data import IndexTrackingDataset
+from .data import IndexTrackingDataset, PlaceholderDataset
 from .models import NeuralPoissonNMF
 from .loss import poisson_nmf_loss
 
@@ -58,15 +58,23 @@ def fit_model_distributed(
     # Initialize Accelerator
     accelerator = Accelerator()
 
-    # Handle different input types
+    # Handle different input types and create appropriate dataset
     if isinstance(X, Dataset):
-        base_dataset = X
+        if accelerator.is_local_main_process:
+            base_dataset = X
+        else:
+            # Create placeholder dataset with identical dimensions
+            n = len(X)
+            m = X.num_terms if hasattr(X, "num_terms") else X[0].shape[0]
+            base_dataset = PlaceholderDataset(length=n, num_terms=m)
         n = len(X)
         m = X.num_terms if hasattr(X, "num_terms") else X[0].shape[0]
     else:  # torch.Tensor
-        # Do NOT X.to(device) manually here as Accelerate will do it later
         n, m = X.shape
-        base_dataset = X  # Pass tensor directly
+        if accelerator.is_local_main_process:
+            base_dataset = X
+        else:
+            base_dataset = PlaceholderDataset(length=n, num_terms=m)
 
     # Wrap dataset to track indices
     # Use standard DataLoader as Accelerate will handle multi-GPU distribution

@@ -7,25 +7,6 @@ from torch import Tensor
 from torch.utils.data import Dataset
 
 
-class IndexTrackingDataset(Dataset):
-    """Dataset wrapper that tracks indices through shuffling"""
-
-    def __init__(self, dataset: Dataset | Tensor) -> None:
-        self.dataset = dataset
-        self.shape: tuple[int, int] = (
-            dataset.shape
-            if hasattr(dataset, "shape")
-            else (len(dataset), dataset[0].shape[0])
-        )
-        self.is_tensor: bool = isinstance(dataset, torch.Tensor)
-
-    def __len__(self) -> int:
-        return len(self.dataset)
-
-    def __getitem__(self, idx: int) -> tuple[Tensor, Tensor]:
-        return self.dataset[idx], torch.tensor(idx)
-
-
 class NumpyDiskDataset(Dataset):
     """
     A PyTorch Dataset class for loading document-term matrices from disk.
@@ -77,3 +58,44 @@ class NumpyDiskDataset(Dataset):
     def num_terms(self) -> int:
         """Return vocabulary size (number of columns)."""
         return self.shape[1]
+
+
+class IndexTrackingDataset(Dataset):
+    """
+    Dataset wrapper that tracks indices through shuffling.
+    """
+
+    def __init__(self, dataset: Dataset | Tensor) -> None:
+        self.dataset = dataset
+        self.shape: tuple[int, int] = (
+            dataset.shape
+            if hasattr(dataset, "shape")
+            else (len(dataset), dataset[0].shape[0])
+        )
+        self.is_tensor: bool = isinstance(dataset, torch.Tensor)
+
+    def __len__(self) -> int:
+        return len(self.dataset)
+
+    def __getitem__(self, idx: int) -> tuple[Tensor, Tensor]:
+        return self.dataset[idx], torch.tensor(idx)
+
+
+class PlaceholderDataset(Dataset):
+    """
+    A placeholder dataset that mimics the real dataset's interface and
+    dimensions without loading data. Used for distributed training.
+    See [huggingface/accelerate#3001](https://github.com/huggingface/accelerate/issues/3001)
+    for details.
+    """
+
+    def __init__(self, length: int, num_terms: int):
+        self.length = length
+        self.num_terms = num_terms
+
+    def __len__(self) -> int:
+        return self.length
+
+    def __getitem__(self, idx: int) -> Tensor:
+        # Return an empty tensor - it will NOT be used anyway
+        return torch.empty(self.num_terms)
