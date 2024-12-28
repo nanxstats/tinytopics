@@ -97,5 +97,6 @@ class PlaceholderDataset(Dataset):
         return self.length
 
     def __getitem__(self, idx: int) -> Tensor:
-        # Return an empty tensor - it will NOT be used anyway
+        # Return an empty tensor
+        # It will NOT be used when dispatch_batches=True in DataLoaderConfiguration
         return torch.empty(self.num_terms)

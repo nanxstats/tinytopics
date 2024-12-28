@@ -7,6 +7,7 @@ from torch.optim import AdamW
 from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
 from torch.utils.data import DataLoader, Dataset
 from accelerate import Accelerator
+from accelerate import DataLoaderConfiguration
 from tqdm.auto import tqdm
 
 from .data import IndexTrackingDataset, PlaceholderDataset
@@ -55,8 +56,12 @@ def fit_model_distributed(
             - Trained NeuralPoissonNMF model.
             - List of training losses per epoch.
     """
-    # Initialize Accelerator
-    accelerator = Accelerator()
+    # Initialize Accelerator with dispatch_batches=True
+    # This ensures batches are only created on main process and distributed to others
+    # <https://github.com/huggingface/accelerate/issues/3001>
+    accelerator = Accelerator(
+        dataloader_config=DataLoaderConfiguration(dispatch_batches=True)
+    )
 
     # Handle different input types and create appropriate dataset
     if isinstance(X, Dataset):
