@@ -1,5 +1,20 @@
 # Changelog
 
+## tinytopics 0.7.0
+
+### New features
+
+- Add `fit_model_distributed()` to support distributed training using
+  Hugging Face Accelerate.
+  See the [distributed training](https://nanx.me/tinytopics/articles/distributed/)
+  article for details (#32).
+
+### Improvements
+
+- Use `tqdm.auto` for better progress bar visuals when used in notebooks (#30).
+- Move dataset classes and loss functions into dedicated modules to improve
+  code structure and reusability (#31).
+
 ## tinytopics 0.6.0
 
 ### New features
