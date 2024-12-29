@@ -151,22 +151,25 @@ each epoch, going through all batches in each epoch.
 
 ## Sample runs
 
-We ran the distributed training example on a 1-GPU and a 4-GPU cloud instance
-with H100 (80 GB SXM5) GPUs. The table below shows the training time per epoch,
+We ran the distributed training example on a 1-GPU, 4-GPU, and 8-GPU setup
+with H100 and A100 GPUs. The table below shows the training time per epoch,
 total time, GPU utilization, VRAM usage, instance cost, and total cost.
 
-| Metric | 1x H100 (80 GB SXM5) | 4x H100 (80 GB SXM5) |
-| :--- | ---: | ---: |
-| Time per epoch (s) | 24 | 6 |
-| Total time (min) | 80 | 20 |
-| GPU utilization | 16% | 30-40% |
-| VRAM usage | 1% | 4% |
-| Instance cost (USD/h) | 3.29 | 12.36 |
-| Total cost (USD) | 4.38 | 4.12 |
+| Metric | 1x H100 (80 GB SXM5) | 4x H100 (80 GB SXM5) | 8x A100 (40 GB SXM4) |
+| :--- | ---: | ---: | ---: |
+| Time per epoch (s) | 24 | 6 | 6 |
+| Total time (min) | 80 | 20 | 20 |
+| GPU utilization | 16% | 30-40% | 30-50% |
+| VRAM usage | 1% | 4% | 4% |
+| Instance cost (USD/h) | 3.29 | 12.36 | 10.32 |
+| Total cost (USD) | 4.38 | 4.12 | 3.44 |
 
-Using 4 GPUs is approximately 4x faster than using 1 GPU, with a slightly
-lower total cost. The loss plot and real-time GPU utilization monitoring
-via `nvtop` on the 4-GPU instance are shown below.
+Using 4 H100 GPUs is approximately 4x faster than using 1 H100 GPU, with
+a slightly lower total cost. Using 8x A100 GPUs has similar speed comparing to
+4x H100 GPUs but with an even lower total cost due to the lower instance cost.
+
+The loss plot and real-time GPU utilization monitoring via `nvtop` on the
+4x H100 GPU instance are shown below.
 
 ![](images/distributed/loss-4x-h100.png)
 
