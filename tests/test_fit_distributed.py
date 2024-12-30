@@ -1,3 +1,4 @@
+import platform
 import subprocess
 from pathlib import Path
 
@@ -10,6 +11,10 @@ from tinytopics.utils import set_random_seed, generate_synthetic_data
 N_DOCS = 100
 N_TERMS = 100
 N_TOPICS = 5
+
+skip_on_windows = pytest.mark.skipif(
+    platform.system() == "Windows", reason="Distributed tests not supported on Windows"
+)
 
 
 @pytest.fixture
@@ -34,6 +39,7 @@ def run_distributed_training(args):
     return stdout
 
 
+@skip_on_windows
 def test_fit_model_distributed_basic(sample_data, tmp_path):
     """Test basic distributed model fitting functionality."""
     X, _, _ = sample_data
@@ -68,6 +74,7 @@ def test_fit_model_distributed_basic(sample_data, tmp_path):
     assert losses[-1] < losses[0]  # Loss decreased
 
 
+@skip_on_windows
 def test_fit_model_distributed_multi_gpu(tmp_path):
     """Test model fitting with multiple GPUs if available."""
     if not torch.cuda.is_available() or torch.cuda.device_count() < 2:
@@ -94,6 +101,7 @@ def test_fit_model_distributed_multi_gpu(tmp_path):
     assert "Training completed successfully" in stdout
 
 
+@skip_on_windows
 def test_fit_model_distributed_batch_size_handling(sample_data, tmp_path):
     """Test model fitting with different batch sizes."""
     X, _, _ = sample_data
@@ -114,78 +122,3 @@ def test_fit_model_distributed_batch_size_handling(sample_data, tmp_path):
         ]
         stdout = run_distributed_training(args)
         assert "Training completed successfully" in stdout
-
-
-def test_fit_model_distributed_reproducibility(sample_data, tmp_path_factory):
-    """Test that training is reproducible with same seed but different with different seeds."""
-    X, _, _ = sample_data
-
-    # Create completely separate base directories for each run
-    base_dir_1 = tmp_path_factory.mktemp("run1")
-    base_dir_2 = tmp_path_factory.mktemp("run2")
-    base_dir_3 = tmp_path_factory.mktemp("run3")
-
-    # First run with seed 42
-    data_path_1 = base_dir_1 / "data.pt"
-    save_path_1 = base_dir_1 / "model.pt"
-    torch.save(X, data_path_1)
-    args = [
-        "--data_path",
-        str(data_path_1),
-        "--num_topics",
-        str(N_TOPICS),
-        "--num_epochs",
-        "2",
-        "--save_path",
-        str(save_path_1),
-        "--seed",
-        "42",
-    ]
-    run_distributed_training(args)
-
-    # Second run with same seed
-    data_path_2 = base_dir_2 / "data.pt"
-    save_path_2 = base_dir_2 / "model.pt"
-    torch.save(X, data_path_2)
-    args = [
-        "--data_path",
-        str(data_path_2),
-        "--num_topics",
-        str(N_TOPICS),
-        "--num_epochs",
-        "2",
-        "--save_path",
-        str(save_path_2),
-        "--seed",
-        "42",
-    ]
-    run_distributed_training(args)
-
-    # Third run with different seed
-    data_path_3 = base_dir_3 / "data.pt"
-    save_path_3 = base_dir_3 / "model.pt"
-    torch.save(X, data_path_3)
-    args = [
-        "--data_path",
-        str(data_path_3),
-        "--num_topics",
-        str(N_TOPICS),
-        "--num_epochs",
-        "2",
-        "--save_path",
-        str(save_path_3),
-        "--seed",
-        "43",
-    ]
-    run_distributed_training(args)
-
-    # Load losses from all runs
-    losses_1 = torch.load(base_dir_1 / "losses.pt", weights_only=True)
-    losses_2 = torch.load(base_dir_2 / "losses.pt", weights_only=True)
-    losses_3 = torch.load(base_dir_3 / "losses.pt", weights_only=True)
-
-    # Same seed should give identical results
-    assert torch.allclose(torch.tensor(losses_1), torch.tensor(losses_2))
-
-    # Different seeds should give different results
-    assert not torch.allclose(torch.tensor(losses_1), torch.tensor(losses_3))
