@@ -1,5 +1,18 @@
 # Changelog
 
+## tinytopics 0.7.1
+
+### Documentation
+
+- Add distributed training speed and cost metrics on 8x A100 (40 GB SXM4) to
+  the [distributed training](https://nanx.me/tinytopics/articles/distributed/)
+  article (#34). This supplements the existing 1x H100 and 4x H100 metrics.
+
+### Testing
+
+- Add unit tests for `fit_model_distributed()` (#35).
+- Add pytest-cov to development dependencies (#35).
+
 ## tinytopics 0.7.0
 
 ### New features
