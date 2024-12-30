@@ -80,7 +80,7 @@ fsspec==2024.12.0
     # via torch
 ghp-import==2.1.0
     # via mkdocs
-griffe==1.5.1
+griffe==1.5.4
     # via mkdocstrings-python
 h11==0.14.0
     # via httpcore
@@ -211,7 +211,7 @@ mkdocs-material-extensions==1.3.1
     # via mkdocs-material
 mkdocstrings==0.27.0
     # via mkdocstrings-python
-mkdocstrings-python==1.12.2
+mkdocstrings-python==1.13.0
 mpmath==1.3.0
     # via sympy
 nbclient==0.10.2
