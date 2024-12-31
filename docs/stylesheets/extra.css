@@ -19,7 +19,8 @@ body {
 }
 
 .md-nav {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    line-height: 1.2;
 }
 
 .md-typeset h1,
