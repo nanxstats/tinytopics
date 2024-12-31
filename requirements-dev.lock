@@ -197,7 +197,7 @@ matplotlib-inline==0.1.7
 mergedeep==1.3.4
     # via mkdocs
     # via mkdocs-get-deps
-mistune==3.0.2
+mistune==3.1.0
     # via nbconvert
 mkdocs==1.6.1
     # via mkdocs-autorefs
