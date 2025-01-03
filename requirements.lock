@@ -64,13 +64,13 @@ packaging==24.2
     # via lazy-loader
     # via matplotlib
     # via scikit-image
-pillow==11.0.0
+pillow==11.1.0
     # via imageio
     # via matplotlib
     # via scikit-image
 psutil==6.1.1
     # via accelerate
-pyparsing==3.2.0
+pyparsing==3.2.1
     # via matplotlib
 python-dateutil==2.9.0.post0
     # via matplotlib
@@ -79,11 +79,11 @@ pyyaml==6.0.2
     # via huggingface-hub
 requests==2.32.3
     # via huggingface-hub
-safetensors==0.4.5
+safetensors==0.5.0
     # via accelerate
 scikit-image==0.25.0
     # via tinytopics
-scipy==1.14.1
+scipy==1.15.0
     # via scikit-image
     # via tinytopics
 setuptools==75.6.0
