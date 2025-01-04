@@ -1,38 +1,52 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 from torch import Tensor
 
 
 class NeuralPoissonNMF(nn.Module):
     def __init__(
-        self, n: int, m: int, k: int, device: torch.device | None = None
-    ) -> None:
+        self,
+        n: int,
+        m: int,
+        k: int,
+        device: torch.device | None = None,
+        eps: float = 1e-10,
+    ):
         """
-        Neural Poisson NMF model with sum-to-one constraints on document-topic and topic-term distributions.
+        Poisson NMF model with nonnegative factors (via softplus),
+        but *no* row normalization in the forward pass.
+        The normalization is done *post hoc*, only when calling
+        get_normalized_L() or get_normalized_F().
 
         Args:
             n: Number of documents.
             m: Number of terms (vocabulary size).
             k: Number of topics.
             device: Device to run the model on. Defaults to CPU.
+            eps: Small constant for numerical stability.
         """
         super(NeuralPoissonNMF, self).__init__()
 
         self.device: torch.device = device or torch.device("cpu")
+        self.eps = eps
 
-        # Use embedding for L to handle batches efficiently
-        self.L: nn.Embedding = nn.Embedding(n, k).to(self.device)
+        # Raw embeddings for documents
+        self.L_raw: nn.Embedding = nn.Embedding(n, k).to(self.device)
+        # Initialize L with near-zero values
+        nn.init.uniform_(self.L_raw.weight, a=-0.1, b=0.1)
 
-        # Initialize L with small positive values
-        nn.init.uniform_(self.L.weight, a=0.0, b=0.1)
-
-        # Define F as a parameter and initialize with small positive values
-        self.F: nn.Parameter = nn.Parameter(torch.empty(k, m, device=self.device))
-        nn.init.uniform_(self.F, a=0.0, b=0.1)
+        # Define F as a parameter and initialize with near-zero values
+        self.F_raw: nn.Parameter = nn.Parameter(torch.empty(k, m, device=self.device))
+        nn.init.uniform_(self.F_raw, a=-0.1, b=0.1)
 
     def forward(self, doc_indices: Tensor) -> Tensor:
         """
-        Forward pass of the neural Poisson NMF model.
+        Forward pass:
+        1. Look up document-topic embeddings -> L_raw(doc_indices).
+        2. softplus -> ensures nonnegativity but no normalization.
+        3. Same for topic-term embeddings -> F_raw.
+        4. Multiply to get reconstruction.
 
         Args:
             doc_indices: Indices of documents in the batch.
@@ -41,32 +55,35 @@ class NeuralPoissonNMF(nn.Module):
             Reconstructed document-term matrix for the batch.
         """
         # Get the L vectors for the batch
-        L_batch: Tensor = self.L(doc_indices)
+        L_batch_raw: Tensor = self.L_raw(doc_indices)
+        L_pos: Tensor = F.softplus(L_batch_raw)
 
-        # Sum-to-one constraints across topics for each document
-        L_normalized: Tensor = torch.softmax(L_batch, dim=1)
-        # Sum-to-one constraints across terms for each topic
-        F_normalized: Tensor = torch.softmax(self.F, dim=1)
+        # Get the F vectors for the batch
+        F_pos: Tensor = F.softplus(self.F_raw)
 
         # Return the matrix product to approximate X_batch
-        return torch.matmul(L_normalized, F_normalized)
+        return torch.matmul(L_pos, F_pos)
 
     def get_normalized_L(self) -> Tensor:
         """
-        Get the learned, normalized document-topic distribution matrix (L).
+        Get the learned, *post hoc* normalized document-topic distribution matrix (L).
 
         Returns:
-            Normalized L matrix on the CPU.
+            Posthoc normalized L matrix on the CPU.
         """
         with torch.no_grad():
-            return torch.softmax(self.L.weight, dim=1).cpu()
+            L_pos = F.softplus(self.L_raw.weight)
+            row_sums = L_pos.sum(dim=1, keepdim=True) + self.eps
+            return (L_pos / row_sums).cpu()
 
     def get_normalized_F(self) -> Tensor:
         """
-        Get the learned, normalized topic-term distribution matrix (F).
+        Get the learned, *post hoc* normalized topic-term distribution matrix (F).
 
         Returns:
-            Normalized F matrix on the CPU.
+            Posthoc normalized F matrix on the CPU.
         """
         with torch.no_grad():
-            return torch.softmax(self.F, dim=1).cpu()
+            F_pos = F.softplus(self.F_raw)
+            row_sums = F_pos.sum(dim=1, keepdim=True) + self.eps
+            return (F_pos / row_sums).cpu()

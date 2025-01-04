@@ -26,8 +26,9 @@ def fit_model(
     device: torch.device | None = None,
 ) -> Tuple[NeuralPoissonNMF, Sequence[float]]:
     """
-    Fit topic model using sum-to-one constrained neural Poisson NMF.
-    Supports both in-memory tensors and custom datasets.
+    Fit Poisson NMF where:
+      - Forward pass is unconstrained aside from nonnegativity via softplus.
+      - Normalization is only done post hoc.
 
     Args:
         X: Input data, can be:
