@@ -1,5 +1,15 @@
 # Changelog
 
+## tinytopics 0.7.2
+
+### New features
+
+- Add `TorchDiskDataset` class to support using `.pt` or `.pth` files
+  as inputs for `fit_model()` and `fit_model_distributed()` (#38).
+  Similar to `NumpyDiskDataset` added in tinytopics 0.6.0, this class also
+  uses memory-mapped mode to load data so that larger than system memory
+  datasets can be used for training.
+
 ## tinytopics 0.7.1
 
 ### Documentation
