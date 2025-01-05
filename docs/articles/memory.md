@@ -52,9 +52,9 @@ A more general solution in PyTorch is to use map-style and
 iterable-style datasets to stream data from disk on-demand, without
 loading the entire tensor into system memory.
 
-Starting from tinytopics 0.6.0, you can use the `NumpyDiskDataset` class
-to load `.npy` datasets from disk as training data, supported by
-`fit_model()`. Here is an example:
+You can use the `NumpyDiskDataset` or `TorchDiskDataset` classes to load
+`.npy` or `.pt` datasets from disk as training data, supported by both
+`fit_model()` and `fit_model_distributed()`. Here is an example:
 
 ``` python
 import numpy as np
