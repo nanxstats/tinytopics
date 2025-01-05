@@ -109,7 +109,6 @@ def test_torch_disk_dataset_from_file(tmp_path):
         assert isinstance(item, torch.Tensor)
         assert item.shape == (5,)
         assert torch.allclose(item, data[i])
-        assert item.device == torch.device("cpu")
 
 
 def test_torch_disk_dataset_with_indices(tmp_path):
@@ -132,39 +131,6 @@ def test_torch_disk_dataset_with_indices(tmp_path):
         assert isinstance(item, torch.Tensor)
         assert item.shape == (5,)
         assert torch.allclose(item, data[orig_idx])
-
-
-def test_torch_disk_dataset_with_device(tmp_path):
-    """Test TorchDiskDataset with specific device."""
-    data = torch.rand(10, 5, dtype=torch.float32)
-    file_path = tmp_path / "test_data.pt"
-    torch.save(data, file_path)
-
-    device = torch.device("cpu")  # Use CPU for testing
-    dataset = TorchDiskDataset(file_path, device=device)
-
-    # Test data access with device
-    for i in range(len(dataset)):
-        item = dataset[i]
-        assert item.device == device
-        assert torch.allclose(item, data[i])
-
-
-@pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA device not available")
-def test_torch_disk_dataset_cuda_device(tmp_path):
-    """Test TorchDiskDataset with CUDA device."""
-    data = torch.rand(10, 5, dtype=torch.float32)
-    file_path = tmp_path / "test_data.pt"
-    torch.save(data, file_path)
-
-    device = torch.device("cuda")
-    dataset = TorchDiskDataset(file_path, device=device)
-
-    # Test data access with CUDA device
-    for i in range(len(dataset)):
-        item = dataset[i]
-        assert item.device == device
-        assert torch.allclose(item.cpu(), data[i])
 
 
 def test_torch_disk_dataset_file_not_found():

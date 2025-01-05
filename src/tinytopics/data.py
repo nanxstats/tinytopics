@@ -114,13 +114,11 @@ class TorchDiskDataset(Dataset):
         self,
         data: str | Path,
         indices: Sequence[int] | None = None,
-        device: torch.device | None = None,
     ) -> None:
         """
         Args:
             data: Path to `.pt` file (str or Path).
             indices: Optional sequence of indices to use as valid indices.
-            device: Optional device to load tensors to. Defaults to CPU.
         """
         self.data_path = Path(data)
         if not self.data_path.exists():
@@ -147,7 +145,6 @@ class TorchDiskDataset(Dataset):
             self.mmap_supported = False
 
         self.indices = indices or range(self.shape[0])
-        self.device = device or torch.device("cpu")
 
     def __len__(self) -> int:
         return len(self.indices)
@@ -160,9 +157,9 @@ class TorchDiskDataset(Dataset):
                 self.mmap_data = torch.load(
                     self.data_path, map_location="cpu", weights_only=True, mmap=True
                 )
-            return self.mmap_data[real_idx].to(self.device)
+            return self.mmap_data[real_idx]
         else:
-            return self.data[real_idx].to(self.device)
+            return self.data[real_idx]
 
     @property
     def num_terms(self) -> int:
