@@ -6,7 +6,7 @@ from .fit import fit_model
 from .fit_distributed import fit_model_distributed
 from .models import NeuralPoissonNMF
 from .loss import poisson_nmf_loss
-from .data import NumpyDiskDataset
+from .data import NumpyDiskDataset, TorchDiskDataset
 from .utils import (
     set_random_seed,
     generate_synthetic_data,
