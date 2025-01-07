@@ -87,3 +87,27 @@ class NeuralPoissonNMF(nn.Module):
             F_pos = F.softplus(self.F_raw)
             row_sums = F_pos.sum(dim=1, keepdim=True) + self.eps
             return (F_pos / row_sums).cpu()
+
+    def get_unnormalized_L(self) -> Tensor:
+        """
+        Get the learned, unnormalized document-topic matrix (L).
+        Values are nonnegative (via softplus) but not normalized.
+
+        Returns:
+            Unnormalized L matrix on the CPU.
+        """
+        with torch.no_grad():
+            L_pos = F.softplus(self.L_raw.weight)
+            return L_pos.cpu()
+
+    def get_unnormalized_F(self) -> Tensor:
+        """
+        Get the learned, unnormalized topic-term matrix (F).
+        Values are nonnegative (via softplus) but not normalized.
+
+        Returns:
+            Unnormalized F matrix on the CPU.
+        """
+        with torch.no_grad():
+            F_pos = F.softplus(self.F_raw)
+            return F_pos.cpu()
