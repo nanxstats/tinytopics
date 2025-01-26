@@ -1,5 +1,12 @@
 # Changelog
 
+## tinytopics 0.7.3
+
+### Maintenance
+
+- Use `.yml` extension for GitHub Actions workflows consistently (#40).
+- Use isort and ruff to sort imports and format Python code (#41).
+
 ## tinytopics 0.7.2
 
 ### New features
