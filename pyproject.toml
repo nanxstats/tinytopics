@@ -59,9 +59,10 @@ dev-dependencies = [
     "mkdocstrings-python>=1.12.2",
     "nbconvert>=7.16.4",
     "jupyter>=1.1.1",
-    "ruff>=0.7.0",
     "pandas>=2.2.3",
     "pyreadr>=0.5.2",
+    "ruff>=0.7.0",
+    "isort>=5.13.2",
 ]
 
 [tool.hatch.metadata]
