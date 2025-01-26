@@ -1,9 +1,9 @@
-from typing import Tuple
-from collections.abc import Sequence, MutableMapping
 from collections import defaultdict
+from collections.abc import MutableMapping, Sequence
+from typing import Tuple
 
-import torch
 import numpy as np
+import torch
 from scipy.optimize import linear_sum_assignment
 from tqdm.auto import tqdm
 

@@ -26,11 +26,12 @@ repo](https://github.com/stephenslab/fastTopics-experiments).
 ## Import tinytopics
 
 ``` python
-import torch
 import numpy as np
 import pandas as pd
-import tinytopics as tt
+import torch
 from pyreadr import read_r
+
+import tinytopics as tt
 ```
 
 ## Read count data

@@ -1,17 +1,17 @@
-from typing import Tuple
 from collections.abc import Sequence
+from typing import Tuple
 
 import torch
+from accelerate import Accelerator
 from torch import Tensor
 from torch.optim import AdamW
 from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
 from torch.utils.data import DataLoader, Dataset
-from accelerate import Accelerator
 from tqdm.auto import tqdm
 
 from .data import IndexTrackingDataset
-from .models import NeuralPoissonNMF
 from .loss import poisson_nmf_loss
+from .models import NeuralPoissonNMF
 
 
 def fit_model_distributed(
@@ -95,7 +95,7 @@ def fit_model_distributed(
         # Show only one tqdm progress bar on the local main process
         loop = tqdm(
             dataloader,
-            desc=f"Epoch {epoch+1}/{num_epochs}",
+            desc=f"Epoch {epoch + 1}/{num_epochs}",
             disable=not accelerator.is_local_main_process,
         )
 
@@ -124,7 +124,7 @@ def fit_model_distributed(
 
         # Only print on the main process
         if accelerator.is_main_process:
-            print(f"Epoch {epoch+1}, Loss = {epoch_loss:.4f}")
+            print(f"Epoch {epoch + 1}, Loss = {epoch_loss:.4f}")
 
     # Final model state is already synchronized across all processes.
     # Accelerate says all GPUs should have the same weights.

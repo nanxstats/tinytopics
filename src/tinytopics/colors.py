@@ -1,13 +1,12 @@
+from collections.abc import MutableSequence, Sequence
 from typing import Literal, overload
-from collections.abc import Sequence, MutableSequence
 
 import numpy as np
-from numpy.typing import NDArray
 from matplotlib import colors
 from matplotlib.colors import ListedColormap
-from skimage import color
+from numpy.typing import NDArray
 from scipy.interpolate import make_interp_spline
-
+from skimage import color
 
 ColorFormat = Literal["hex", "rgb", "lab"]
 
