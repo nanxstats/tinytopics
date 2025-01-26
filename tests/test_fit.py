@@ -2,7 +2,7 @@ import pytest
 import torch
 
 from tinytopics.fit import fit_model
-from tinytopics.utils import set_random_seed, generate_synthetic_data
+from tinytopics.utils import generate_synthetic_data, set_random_seed
 
 # Test data dimensions
 N_DOCS = 50

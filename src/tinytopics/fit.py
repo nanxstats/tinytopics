@@ -1,5 +1,5 @@
-from typing import Tuple
 from collections.abc import Sequence
+from typing import Tuple
 
 import torch
 from torch import Tensor
@@ -9,8 +9,8 @@ from torch.utils.data import DataLoader, Dataset
 from tqdm.auto import tqdm
 
 from .data import IndexTrackingDataset
-from .models import NeuralPoissonNMF
 from .loss import poisson_nmf_loss
+from .models import NeuralPoissonNMF
 
 
 def fit_model(

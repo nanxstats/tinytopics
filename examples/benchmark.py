@@ -1,8 +1,9 @@
 import time
 
-import torch
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
+import torch
+
 import tinytopics as tt
 
 tt.set_random_seed(42)

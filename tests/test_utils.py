@@ -1,11 +1,11 @@
+import numpy as np
 import pytest
 import torch
-import numpy as np
 
 from tinytopics.utils import (
-    set_random_seed,
-    generate_synthetic_data,
     align_topics,
+    generate_synthetic_data,
+    set_random_seed,
     sort_documents,
 )
 

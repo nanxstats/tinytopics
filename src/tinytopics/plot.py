@@ -1,10 +1,10 @@
-from typing import Tuple
 from collections.abc import Sequence
+from typing import Tuple
 
-import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.figure import Figure
+import numpy as np
 from matplotlib.axes import Axes
+from matplotlib.figure import Figure
 
 from .colors import scale_color_tinytopics
 

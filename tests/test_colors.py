@@ -1,5 +1,5 @@
-import pytest
 import numpy as np
+import pytest
 from matplotlib.colors import ListedColormap
 
 from tinytopics.colors import pal_tinytopics, scale_color_tinytopics

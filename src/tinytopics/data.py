@@ -1,8 +1,8 @@
 from collections.abc import Sequence
 from pathlib import Path
 
-import torch
 import numpy as np
+import torch
 from torch import Tensor
 from torch.utils.data import Dataset
 
