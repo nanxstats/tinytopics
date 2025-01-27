@@ -359,7 +359,7 @@ rpds-py==0.22.3
 ruff==0.9.3
 safetensors==0.5.2
     # via accelerate
-scikit-image==0.25.0
+scikit-image==0.25.1
     # via tinytopics
 scipy==1.15.1
     # via scikit-image
