@@ -81,7 +81,7 @@ requests==2.32.3
     # via huggingface-hub
 safetensors==0.5.2
     # via accelerate
-scikit-image==0.25.0
+scikit-image==0.25.1
     # via tinytopics
 scipy==1.15.1
     # via scikit-image
