@@ -1,4 +1,4 @@
-# tinytopics <img src="docs/assets/logo.png" align="right" width="120" />
+# tinytopics <img src="https://github.com/nanxstats/tinytopics/raw/main/docs/assets/logo.png" align="right" width="120" />
 
 [![PyPI version](https://img.shields.io/pypi/v/tinytopics)](https://pypi.org/project/tinytopics/)
 ![Python versions](https://img.shields.io/pypi/pyversions/tinytopics)
