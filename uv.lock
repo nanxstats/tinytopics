@@ -2,7 +2,8 @@ version = 1
 revision = 1
 requires-python = ">=3.10"
 resolution-markers = [
-    "python_full_version >= '3.12'",
+    "python_full_version >= '3.13'",
+    "python_full_version == '3.12.*'",
     "python_full_version == '3.11.*'",
     "python_full_version < '3.11'",
 ]
@@ -2768,7 +2769,8 @@ requires-dist = [
     { name = "numpy", specifier = ">=2.0.0" },
     { name = "scikit-image", specifier = ">=0.22.0" },
     { name = "scipy", specifier = ">=1.13.0" },
-    { name = "torch", specifier = ">=2.3.0" },
+    { name = "torch", marker = "python_full_version < '3.13'", specifier = ">=2.3.0" },
+    { name = "torch", marker = "python_full_version >= '3.13'", specifier = ">=2.6.0" },
     { name = "tqdm", specifier = ">=4.65.0" },
 ]
 
