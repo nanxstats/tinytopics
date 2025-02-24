@@ -12,6 +12,8 @@ Built with PyTorch, runs on both CPUs and GPUs.
 
 ## Installation
 
+### Using pip
+
 You can install tinytopics from PyPI:
 
 ```bash
@@ -26,21 +28,38 @@ cd tinytopics
 python3 -m pip install -e .
 ```
 
-## GPU support
+### Install PyTorch with GPU support
 
-The above will install the CPU version of PyTorch by default. To enable GPU support,
-follow the [PyTorch official guide](https://pytorch.org/get-started/locally/)
-to install the appropriate PyTorch version.
+The above will likely install the CPU version of PyTorch by default.
+To install PyTorch with GPU support, follow the
+[official guide](https://pytorch.org/get-started/locally/).
 
-For example, install PyTorch for Windows with CUDA 12.4:
+For example, install PyTorch for Windows with CUDA 12.6:
 
 ```bash
 pip uninstall torch
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
 ```
 
-To manage the PyTorch dependency under a project context using virtual
-environments, you might want to set up manual sources. For example,
+### Install alternative PyTorch versions
+
+For users stuck with older PyTorch or NumPy versions, for instance, in HPC
+cluster settings, a workaround is to skip installing the dependencies with
+`--no-deps` and install specific versions of all dependencies manually:
+
+```bash
+pip install tinytopics --no-deps
+pip install torch==2.2.0
+```
+
+### Use tinytopics in a project
+
+To have a more hassle-free package management experience, it is recommended
+to use tinytopics as a dependency under a project context using
+virtual environments.
+
+You should probably set up a manual source/index for PyTorch.
+As examples, check out the official guidelines when
 [using Rye](https://rye.astral.sh/guide/faq/#how-do-i-install-pytorch) or
 [using uv](https://docs.astral.sh/uv/guides/integration/pytorch/).
 
