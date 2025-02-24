@@ -1,5 +1,25 @@
 # Changelog
 
+## tinytopics 0.7.4
+
+### Improvements
+
+- Add Python 3.13 support by conditionally requiring torch >= 2.6.0 under
+  Python >= 3.13 (#47).
+
+### Documentation
+
+- Extend the installation section in `README.md` to explain the use cases
+  on GPU support, dependency override, and project dependency management (#48).
+
+### Maintenance
+
+- Manage project with uv (#46).
+- Change logo typeface for a fresh look. Improve the logo text rendering
+  workflow to use SVG (#45).
+- Change logo image path from relative to absolute URL for proper rendering
+  on PyPI (#44).
+
 ## tinytopics 0.7.3
 
 ### Maintenance
