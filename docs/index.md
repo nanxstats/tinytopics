@@ -4,7 +4,6 @@
 ![Python versions](https://img.shields.io/pypi/pyversions/tinytopics)
 [![CI Tests](https://github.com/nanxstats/tinytopics/actions/workflows/ci-tests.yml/badge.svg)](https://github.com/nanxstats/tinytopics/actions/workflows/ci-tests.yml)
 [![mkdocs](https://github.com/nanxstats/tinytopics/actions/workflows/mkdocs.yml/badge.svg)](https://nanx.me/tinytopics/)
-[![PyPI Downloads](https://img.shields.io/pypi/dm/tinytopics)](https://pypistats.org/packages/tinytopics)
 ![License](https://img.shields.io/pypi/l/tinytopics)
 
 Topic modeling via sum-to-one constrained neural Poisson NMF.
