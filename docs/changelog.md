@@ -1,5 +1,13 @@
 # Changelog
 
+## tinytopics 0.7.5
+
+### Maintenance
+
+- Removed download statistics badge from `README.md` due to availability issues
+  with the service (#52).
+- Use Python 3.13.7 for the default package development environment (#53).
+
 ## tinytopics 0.7.4
 
 ### Improvements
