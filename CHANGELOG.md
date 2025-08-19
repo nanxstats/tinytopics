@@ -1,5 +1,15 @@
 # Changelog
 
+## tinytopics 0.8.0
+
+### Typing
+
+- Add mypy as a development dependency and fix all mypy type checking issues (#56).
+
+### Maintenance
+
+- Add a GitHub Actions workflow to run mypy checks and a mypy badge to `README.md` (#57).
+
 ## tinytopics 0.7.5
 
 ### Maintenance
