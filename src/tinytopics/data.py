@@ -1,5 +1,6 @@
 from collections.abc import Sequence
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import torch
@@ -12,15 +13,16 @@ class IndexTrackingDataset(Dataset):
 
     def __init__(self, dataset: Dataset | Tensor) -> None:
         self.dataset = dataset
-        self.shape: tuple[int, int] = (
-            dataset.shape
-            if hasattr(dataset, "shape")
-            else (len(dataset), dataset[0].shape[0])
-        )
+        if hasattr(dataset, "shape"):
+            self.shape: tuple[int, int] = tuple(dataset.shape)  # type: ignore
+        else:
+            self.shape = (len(dataset), dataset[0].shape[0])  # type: ignore
         self.is_tensor: bool = isinstance(dataset, torch.Tensor)
 
     def __len__(self) -> int:
-        return len(self.dataset)
+        if isinstance(self.dataset, torch.Tensor):
+            return self.dataset.shape[0]
+        return len(self.dataset)  # type: ignore
 
     def __getitem__(self, idx: int) -> tuple[Tensor, Tensor]:
         return self.dataset[idx], torch.tensor(idx)
@@ -49,12 +51,12 @@ class NumpyDiskDataset(Dataset):
             if not data_path.exists():
                 raise FileNotFoundError(f"Data file not found: {data_path}")
             # Get shape without loading full array
-            self.shape: tuple[int, int] = tuple(np.load(data_path, mmap_mode="r").shape)
-            self.data_path: Path = data_path
+            self.shape = tuple(np.load(data_path, mmap_mode="r").shape)  # type: ignore
+            self.data_path: Path | None = data_path
             self.mmap_data: np.ndarray | None = None
         else:
-            self.shape: tuple[int, int] = data.shape
-            self.data_path: None = None
+            self.shape = tuple(data.shape)  # type: ignore
+            self.data_path = None
             self.data: np.ndarray = data
 
         self.indices: Sequence[int] = indices or range(self.shape[0])
@@ -91,7 +93,7 @@ class TorchDiskDataset(Dataset):
     matrix data.
     """
 
-    def _validate_tensor_data(self, tensor_data: any) -> torch.Tensor:
+    def _validate_tensor_data(self, tensor_data: Any) -> torch.Tensor:
         """Validate that the loaded data is a single tensor and return it.
 
         Args:

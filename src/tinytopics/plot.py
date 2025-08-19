@@ -150,10 +150,13 @@ def plot_top_terms(
         ncols = 5
         nrows = int(np.ceil(n_topics / ncols))
     elif nrows is None:
+        assert ncols is not None
         nrows = int(np.ceil(n_topics / ncols))
     elif ncols is None:
+        assert nrows is not None
         ncols = int(np.ceil(n_topics / nrows))
 
+    assert nrows is not None and ncols is not None
     fig, axes = plt.subplots(
         nrows, ncols, figsize=figsize, dpi=dpi, constrained_layout=True
     )

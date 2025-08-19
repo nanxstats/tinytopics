@@ -119,7 +119,7 @@ def sort_documents(L_matrix: np.ndarray) -> Sequence[int]:
         return groups
 
     def sort_topic_groups(grouped_docs: MutableMapping[int, list]) -> Sequence[int]:
-        sorted_indices = []
+        sorted_indices: list[int] = []
         for topic in range(k):
             docs_in_topic = grouped_docs.get(topic, [])
             docs_sorted = sorted(docs_in_topic, key=lambda x: x[1], reverse=True)
