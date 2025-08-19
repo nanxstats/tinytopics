@@ -63,4 +63,8 @@ dev = [
     "pyreadr>=0.5.2",
     "ruff>=0.7.0",
     "isort>=5.13.2",
+    "mypy>=1.17.1",
+    "scipy-stubs>=1.15.3.0",
+    "types-tqdm>=4.67.0.20250809",
+    "pandas-stubs>=2.3.0.250703",
 ]

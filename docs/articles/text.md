@@ -29,7 +29,7 @@ repo](https://github.com/stephenslab/fastTopics-experiments).
 import numpy as np
 import pandas as pd
 import torch
-from pyreadr import read_r
+from pyreadr import read_r  # type: ignore[import-untyped]
 
 import tinytopics as tt
 ```

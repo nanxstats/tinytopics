@@ -55,10 +55,11 @@ def fit_model(
     device = device or torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     # Handle different input types
+    base_dataset: Dataset | Tensor
     if isinstance(X, Dataset):
         base_dataset = X
-        n = len(X)
-        m = X.num_terms if hasattr(X, "num_terms") else X[0].shape[0]
+        n = len(X)  # type: ignore
+        m = X.num_terms if hasattr(X, "num_terms") else X[0].shape[0]  # type: ignore
     else:  # torch.Tensor
         X = X.to(device)
         n, m = X.shape
@@ -74,7 +75,7 @@ def fit_model(
         optimizer, T_0=T_0, T_mult=T_mult, eta_min=base_lr
     )
 
-    losses: Sequence[float] = []
+    losses: list[float] = []
     num_batches: int = len(dataloader)
 
     with tqdm(total=num_epochs, desc="Training Progress") as pbar:

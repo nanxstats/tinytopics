@@ -2,7 +2,7 @@ from collections.abc import Sequence
 from typing import Tuple
 
 import torch
-from accelerate import Accelerator
+from accelerate import Accelerator  # type: ignore[import-untyped]
 from torch import Tensor
 from torch.optim import AdamW
 from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
@@ -59,10 +59,11 @@ def fit_model_distributed(
     accelerator = Accelerator()
 
     # Handle different input types
+    base_dataset: Dataset | Tensor
     if isinstance(X, Dataset):
         base_dataset = X
-        n = len(X)
-        m = X.num_terms if hasattr(X, "num_terms") else X[0].shape[0]
+        n = len(X)  # type: ignore
+        m = X.num_terms if hasattr(X, "num_terms") else X[0].shape[0]  # type: ignore
     else:  # torch.Tensor
         # Do NOT X.to(device) manually here as Accelerate will do it later
         n, m = X.shape
@@ -87,7 +88,7 @@ def fit_model_distributed(
         model, optimizer, dataloader, scheduler
     )
 
-    losses: Sequence[float] = []
+    losses: list[float] = []
     for epoch in range(num_epochs):
         epoch_loss = 0.0
         num_batches = 0

@@ -2,7 +2,7 @@ import argparse
 from pathlib import Path
 
 import torch
-from accelerate.utils import set_seed
+from accelerate.utils import set_seed  # type: ignore[import-untyped]
 
 from tinytopics.fit_distributed import fit_model_distributed
 
