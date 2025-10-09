@@ -1,5 +1,12 @@
 # Changelog
 
+## tinytopics (development version)
+
+### Maintenance
+
+- Refactored the logo generation script to use ImageMagick, removing the
+  previous R and hexSticker dependency (#61).
+
 ## tinytopics 0.8.0
 
 ### Typing
