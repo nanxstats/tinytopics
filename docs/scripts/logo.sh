@@ -1,10 +1,11 @@
 #!/bin/bash
 
 # Generate logo background
-Rscript docs/scripts/logo.R
-if [ -f "Rplots.pdf" ]; then
-    rm Rplots.pdf
-fi
+magick -size 553x640 xc:none \
+    -fill "#FFF9F2" \
+    -stroke "#3F8CCC" -strokewidth 11 \
+    -draw "polygon 276.5,7 547,163 547,477 276.5,633 6,477 6,163" \
+    docs/assets/logo.png
 
 # Generate text image and compose with background due to
 # limited ligatures support in hexSticker and ImageMagick.
@@ -43,7 +44,7 @@ magick -density 2000 docs/scripts/logo-text.pdf \
 
 magick docs/assets/logo.png docs/scripts/logo-text.png \
     -gravity center \
-    -geometry +5-0 \
+    -geometry +8-0 \
     -composite docs/assets/logo.png
 
 rm docs/scripts/logo-text.pdf docs/scripts/logo-text.png
