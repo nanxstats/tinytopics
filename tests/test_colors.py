@@ -21,7 +21,7 @@ def test_pal_tinytopics_rgb():
 
     assert isinstance(colors, np.ndarray)
     assert colors.shape == (10, 3)
-    assert np.all((0 <= colors) & (colors <= 1))
+    assert np.all((colors >= 0) & (colors <= 1))
 
 
 def test_pal_tinytopics_lab():
@@ -45,7 +45,7 @@ def test_scale_color_tinytopics(n):
 
     assert isinstance(colormap, ListedColormap)
     assert len(colormap.colors) == n
-    assert np.all((0 <= colormap.colors) & (colormap.colors <= 1))
+    assert np.all((colormap.colors >= 0) & (colormap.colors <= 1))
 
 
 def test_scale_color_tinytopics_interpolation():

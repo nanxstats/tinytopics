@@ -1,17 +1,15 @@
 from collections.abc import Sequence
-from typing import Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.axes import Axes
-from matplotlib.figure import Figure
 
 from .colors import scale_color_tinytopics
 
 
 def plot_loss(
     losses: Sequence[float],
-    figsize: Tuple[int, int] = (10, 8),
+    figsize: tuple[int, int] = (10, 8),
     dpi: int = 300,
     title: str = "Loss curve",
     color_palette: Sequence[str] | str | None = None,
@@ -51,7 +49,7 @@ def plot_loss(
 def plot_structure(
     L_matrix: np.ndarray,
     normalize_rows: bool = False,
-    figsize: Tuple[int, int] = (12, 6),
+    figsize: tuple[int, int] = (12, 6),
     dpi: int = 300,
     title: str = "Structure Plot",
     color_palette: Sequence[str] | str | None = None,
@@ -109,7 +107,7 @@ def plot_top_terms(
     F_matrix: np.ndarray,
     n_top_terms: int = 10,
     term_names: Sequence[str] | None = None,
-    figsize: Tuple[int, int] = (10, 8),
+    figsize: tuple[int, int] = (10, 8),
     dpi: int = 300,
     title: str = "Top Terms",
     color_palette: Sequence[str] | str | None = None,
