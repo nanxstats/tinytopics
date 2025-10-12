@@ -42,7 +42,8 @@ def test_disk_dataset_reproducibility(sample_data):
 
 
 def test_disk_dataset_different_seeds(sample_data):
-    """Test that training with same disk dataset but different seeds gives different results."""
+    """Test that training with same disk dataset but different seeds gives
+    different results."""
     _, file_path = sample_data
     dataset = NumpyDiskDataset(file_path)
 
@@ -58,7 +59,8 @@ def test_disk_dataset_different_seeds(sample_data):
 
 
 def test_tensor_vs_disk_same_seed(sample_data):
-    """Test that training with tensor and disk dataset gives identical results with same seed."""
+    """Test that training with tensor and disk dataset gives identical results
+    with same seed."""
     X, file_path = sample_data
     dataset = NumpyDiskDataset(file_path)
 
@@ -74,7 +76,8 @@ def test_tensor_vs_disk_same_seed(sample_data):
 
 
 def test_tensor_vs_disk_different_seeds(sample_data):
-    """Test that training with tensor and disk dataset gives different results with different seeds."""
+    """Test that training with tensor and disk dataset gives different results
+    with different seeds."""
     X, file_path = sample_data
     dataset = NumpyDiskDataset(file_path)
 

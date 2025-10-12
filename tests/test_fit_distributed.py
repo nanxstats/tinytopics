@@ -63,7 +63,7 @@ def test_fit_model_distributed_basic(sample_data, tmp_path):
         str(save_path),
     ]
 
-    stdout = run_distributed_training(args)
+    run_distributed_training(args)
 
     # Check model was saved
     assert save_path.exists()

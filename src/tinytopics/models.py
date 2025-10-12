@@ -8,7 +8,8 @@ class NeuralPoissonNMF(nn.Module):
         self, n: int, m: int, k: int, device: torch.device | None = None
     ) -> None:
         """
-        Neural Poisson NMF model with sum-to-one constraints on document-topic and topic-term distributions.
+        Neural Poisson NMF model with sum-to-one constraints on
+        document-topic and topic-term distributions.
 
         Args:
             n: Number of documents.
@@ -16,7 +17,7 @@ class NeuralPoissonNMF(nn.Module):
             k: Number of topics.
             device: Device to run the model on. Defaults to CPU.
         """
-        super(NeuralPoissonNMF, self).__init__()
+        super().__init__()
 
         self.device: torch.device = device or torch.device("cpu")
 
