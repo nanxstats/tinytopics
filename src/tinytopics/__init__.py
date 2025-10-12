@@ -15,3 +15,21 @@ from .utils import (
     set_random_seed,
     sort_documents,
 )
+
+__all__ = [
+    "pal_tinytopics",
+    "scale_color_tinytopics",
+    "NumpyDiskDataset",
+    "TorchDiskDataset",
+    "fit_model",
+    "fit_model_distributed",
+    "poisson_nmf_loss",
+    "NeuralPoissonNMF",
+    "plot_loss",
+    "plot_structure",
+    "plot_top_terms",
+    "align_topics",
+    "generate_synthetic_data",
+    "set_random_seed",
+    "sort_documents",
+]

@@ -1,5 +1,4 @@
 from collections.abc import Sequence
-from typing import Tuple
 
 import torch
 from torch import Tensor
@@ -24,7 +23,7 @@ def fit_model(
     T_mult: int = 1,
     weight_decay: float = 1e-5,
     device: torch.device | None = None,
-) -> Tuple[NeuralPoissonNMF, Sequence[float]]:
+) -> tuple[NeuralPoissonNMF, Sequence[float]]:
     """
     Fit topic model using sum-to-one constrained neural Poisson NMF.
     Supports both in-memory tensors and custom datasets.

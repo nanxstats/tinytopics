@@ -1,5 +1,3 @@
-import numpy as np
-import pandas as pd
 import torch
 from pyreadr import read_r  # type: ignore[import-untyped]
 
@@ -19,7 +17,7 @@ def read_rds_torch(file_path):
 
 X = read_rds_torch("counts.rds")
 
-with open("terms.txt", "r") as file:
+with open("terms.txt") as file:
     terms = [line.strip() for line in file]
 
 tt.set_random_seed(42)

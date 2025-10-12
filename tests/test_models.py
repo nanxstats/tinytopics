@@ -27,8 +27,8 @@ def test_model_initialization():
     assert model.F.device == torch.device("cpu")
 
     # Check if values are initialized within expected range
-    assert torch.all((0.0 <= model.L.weight) & (model.L.weight <= 0.1))
-    assert torch.all((0.0 <= model.F) & (model.F <= 0.1))
+    assert torch.all((model.L.weight >= 0.0) & (model.L.weight <= 0.1))
+    assert torch.all((model.F >= 0.0) & (model.F <= 0.1))
 
 
 def test_forward_pass(sample_model):
@@ -62,8 +62,8 @@ def test_get_normalized_matrices(sample_model):
     assert torch.allclose(F_norm.sum(dim=1), torch.ones(N_TOPICS), atol=1e-6)
 
     # Check if all values are positive and <= 1
-    assert torch.all((0 <= L_norm) & (L_norm <= 1))
-    assert torch.all((0 <= F_norm) & (F_norm <= 1))
+    assert torch.all((L_norm >= 0) & (L_norm <= 1))
+    assert torch.all((F_norm >= 0) & (F_norm <= 1))
 
 
 def test_device_placement():

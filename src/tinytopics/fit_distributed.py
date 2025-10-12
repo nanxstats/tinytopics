@@ -1,5 +1,4 @@
 from collections.abc import Sequence
-from typing import Tuple
 
 import torch
 from accelerate import Accelerator  # type: ignore[import-untyped]
@@ -25,7 +24,7 @@ def fit_model_distributed(
     T_mult: int = 1,
     weight_decay: float = 1e-5,
     save_path: str | None = "model.pt",
-) -> Tuple[NeuralPoissonNMF, Sequence[float]]:
+) -> tuple[NeuralPoissonNMF, Sequence[float]]:
     """
     Fit topic model using sum-to-one constrained neural Poisson NMF with
     distributed training. Supports multi-GPU, multiple node setups via
