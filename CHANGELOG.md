@@ -1,9 +1,20 @@
 # Changelog
 
-## tinytopics (development version)
+## tinytopics 0.8.1
+
+### Linting
+
+- Added ruff linter configuration to `pyproject.toml` with popular rule sets
+  including pycodestyle, Pyflakes, pyupgrade, flake8-bugbear, flake8-simplify,
+  and isort (#63).
+- Fixed `ruff check` linting issues such as PEP 585, unused imports/variables,
+  Yoda conditions, and long lines (#63).
 
 ### Maintenance
 
+- Use Python 3.13.8 in default development environment (#62).
+- Updated GitHub Actions workflows to use the latest `checkout` and
+  `setup-python` versions (#62).
 - Refactored the logo generation script to use ImageMagick, removing the
   previous R and hexSticker dependency (#61).
 
