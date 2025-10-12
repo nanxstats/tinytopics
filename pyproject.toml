@@ -88,3 +88,6 @@ select = [
     # isort
     "I",
 ]
+
+[tool.ruff.lint.per-file-ignores]
+"examples/memory.py" = ["E402"]
