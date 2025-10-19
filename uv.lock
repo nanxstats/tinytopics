@@ -2667,37 +2667,6 @@ wheels = [
 ]
 
 [[package]]
-name = "pyreadr"
-version = "0.5.3"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "pandas" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/1a/78/36451474523a712c75d72119e4b2475b6c254d92a7eed2ab30b9abc040bd/pyreadr-0.5.3.tar.gz", hash = "sha256:71517866240ed195e7933ed9c47129e738d6f23c3269556f1db4037554ecf455", size = 1287391, upload-time = "2025-03-04T09:02:05.167Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/94/ae/8e5d7d1d487df98d8abc0e70e268dbddbd1a3bd4313ad557d669758d12d3/pyreadr-0.5.3-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:a569b88bd4772617fe047a060b5843e63aac6f0d4dea4161d36cd1d6c6f92ca7", size = 311493, upload-time = "2025-03-04T09:01:07.671Z" },
-    { url = "https://files.pythonhosted.org/packages/69/2b/73ef15c7359eb3ad9d578703fd32421af317c7008a570072470141a86530/pyreadr-0.5.3-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:885d997872396bf8f1359f06f0c4737ab864810a767b76a303b83e8b90fda704", size = 310032, upload-time = "2025-03-04T09:01:09.809Z" },
-    { url = "https://files.pythonhosted.org/packages/cd/45/f966998dd47c02ece5a17d273704f0387367b2476e12a4ca6b7f8dadfbb9/pyreadr-0.5.3-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:51f8dd37300a93a61333691be14f2ad3ce9a77d021bfc824d24de50cbec4b4ee", size = 409010, upload-time = "2025-03-04T09:01:11.765Z" },
-    { url = "https://files.pythonhosted.org/packages/f7/91/b2cd0464e9a1bb48dddc0240154a032c52c5addfb3a0954d5e2bd2831a6b/pyreadr-0.5.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e94475d284f80bde99d4633f1aa2055cbf0d304292fd3c6f666b8cea0530318a", size = 412506, upload-time = "2025-03-04T09:01:14.708Z" },
-    { url = "https://files.pythonhosted.org/packages/e3/d0/75b5656830a543dc74ed65d85cfe0f88358c54fa5e6a710e85d9a8d29341/pyreadr-0.5.3-cp310-cp310-win_amd64.whl", hash = "sha256:568ead1b58918babbd060543be430e57e30237dbdff7abc5afca24804e400466", size = 1371930, upload-time = "2025-03-04T09:01:17.129Z" },
-    { url = "https://files.pythonhosted.org/packages/7b/9d/76441d389545f2a6f8c624843bc56b6ad550a63a5a5ad354a2237b31abaf/pyreadr-0.5.3-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:ff2717438695a13e775837afe6f2c0474059f52f0dc9897c36a59ced37de4f5c", size = 311820, upload-time = "2025-03-04T09:01:19.003Z" },
-    { url = "https://files.pythonhosted.org/packages/fb/f2/8eb2b9a19d7ff05fc8da6d63d0bca2af89b26e75f32505c8c505b0f83328/pyreadr-0.5.3-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:e3ac43e6edaaf60bf5fa2419cc912483a81a1e027d7da4dc83e83b3a8b87c8d1", size = 309340, upload-time = "2025-03-04T09:01:20.924Z" },
-    { url = "https://files.pythonhosted.org/packages/06/ba/6d3fc8b540d3cb8c966b5819cf45962e4cfc149808e0fbdf921f7d84f99d/pyreadr-0.5.3-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:2f69b63a6f1360fdeb357bb5aa6350143dd2e8cde60017213e3092324b18d6eb", size = 408219, upload-time = "2025-03-04T09:01:22.822Z" },
-    { url = "https://files.pythonhosted.org/packages/3a/89/93abb893379096f3f8c132e562119f431fa16772de370d86c9d8adf91bfd/pyreadr-0.5.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b6e63eb64b16da58aee579699c808fc85137bd1efd998a2bb658df532033a266", size = 411669, upload-time = "2025-03-04T09:01:24.229Z" },
-    { url = "https://files.pythonhosted.org/packages/46/cf/2219a58023d52c7014408bec061b7e732a2890d1df49bdb4ed7c17259a5e/pyreadr-0.5.3-cp311-cp311-win_amd64.whl", hash = "sha256:4e1dc79e2659575957209bbef119c29d35b8082eb51d2cbc3e84fa9b64efe0f9", size = 1370179, upload-time = "2025-03-04T09:01:26.87Z" },
-    { url = "https://files.pythonhosted.org/packages/9e/28/042f1211e83fed2b07175cda9ac5891ff1d436039aa48e82e2dfaa5a415d/pyreadr-0.5.3-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:d789f37edf927c38fd2b23beb908b9c3a66517ed16fbd9a0062e429ea889a465", size = 317269, upload-time = "2025-03-04T09:01:28.869Z" },
-    { url = "https://files.pythonhosted.org/packages/ce/61/d61d3aab82102d32c761734273b6f0e74b8fea307b0d323650954c998836/pyreadr-0.5.3-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:f6081a4e56e2f6d77b7fbc511b14b51dbda573f41dfdccaf65867af1801c9656", size = 313791, upload-time = "2025-03-04T09:01:30.319Z" },
-    { url = "https://files.pythonhosted.org/packages/71/80/3e59724af0c219ad58780a7ef2b83fae85402caf8663caf8d780acd6ece1/pyreadr-0.5.3-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:d3c0b98a34836d403eafed0e974b8f1d750280453337e315ac79ff457f041d9e", size = 414984, upload-time = "2025-03-04T09:01:32.104Z" },
-    { url = "https://files.pythonhosted.org/packages/e3/44/ebedaf964425147920887381c1fdcad8d0648b6442f01f1b3a113808c3d9/pyreadr-0.5.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:bab98a9428ec7eddeb3b15588e549091cfa1d16713b440143162014d55b2c245", size = 418266, upload-time = "2025-03-04T09:01:34.499Z" },
-    { url = "https://files.pythonhosted.org/packages/7f/f4/1cfacf40d6943fae716b77a7376812b1b4bc049f077453f3008e2065a0ca/pyreadr-0.5.3-cp312-cp312-win_amd64.whl", hash = "sha256:2f99c44942cf1b2e14c75b31ade7bc240f6bf1b0e035cdf523da4360e09eb3c5", size = 1372609, upload-time = "2025-03-04T09:01:38.605Z" },
-    { url = "https://files.pythonhosted.org/packages/31/31/dbbe0adbc8ec886cdd7082b8cde6da866ac6acf4b7a21b2878d20536cfcb/pyreadr-0.5.3-cp313-cp313-macosx_10_13_x86_64.whl", hash = "sha256:c852e4bad01cef4ab52ca0393eb6d3c0d6a1e66900b906ab5591a4becf439ac8", size = 317119, upload-time = "2025-03-04T09:01:43.71Z" },
-    { url = "https://files.pythonhosted.org/packages/b9/49/0e233f818359e992683dcc699a8208f302c5f199556e20f02d36d4e7cba9/pyreadr-0.5.3-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:b8cdd92a2cbfb177afb3d69550afd0d7849415679bb27ca45ac826c5e2bc14ac", size = 313822, upload-time = "2025-03-04T09:01:46.083Z" },
-    { url = "https://files.pythonhosted.org/packages/44/fa/a4adff12113de0e6ed0a172e29becf4abd9e7eed9ac99b8e8a21c7a013dc/pyreadr-0.5.3-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:6a54168a089b694b529ec4c9660094aa34d17e3d90d11aaf70ac296e398344e3", size = 414992, upload-time = "2025-03-04T09:01:48.079Z" },
-    { url = "https://files.pythonhosted.org/packages/1c/bc/ba1b11ebce2e88639720b85376e7dd11d9eb5daeee0f65c9ebdf47c9c661/pyreadr-0.5.3-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:651c69396c4f15040d72b07c5751048972451191ec4101f6d3a392d1c2f20863", size = 418340, upload-time = "2025-03-04T09:01:49.925Z" },
-    { url = "https://files.pythonhosted.org/packages/78/aa/8ef7045b2f320d00be0ce63c3e2b6442dd195a7efb3a1892a06686c5c5e1/pyreadr-0.5.3-cp313-cp313-win_amd64.whl", hash = "sha256:e73699867a668e1f3b32f1aacf5c9019a8619a62e1aa0484f726687b61243763", size = 1372799, upload-time = "2025-03-04T09:01:53.543Z" },
-]
-
-[[package]]
 name = "pytest"
 version = "8.4.2"
 source = { registry = "https://pypi.org/simple" }
@@ -3559,10 +3528,10 @@ dev = [
     { name = "nbconvert" },
     { name = "pandas" },
     { name = "pandas-stubs" },
-    { name = "pyreadr" },
     { name = "pytest" },
     { name = "pytest-cov" },
     { name = "ruff" },
+    { name = "safetensors" },
     { name = "scipy-stubs", version = "1.15.3.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "scipy-stubs", version = "1.16.2.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
     { name = "types-tqdm" },
@@ -3591,10 +3560,10 @@ dev = [
     { name = "nbconvert", specifier = ">=7.16.4" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pandas-stubs", specifier = ">=2.3.0.250703" },
-    { name = "pyreadr", specifier = ">=0.5.2" },
     { name = "pytest", specifier = ">=8.3.3" },
     { name = "pytest-cov", specifier = ">=6.0.0" },
     { name = "ruff", specifier = ">=0.7.0" },
+    { name = "safetensors", specifier = ">=0.5.0" },
     { name = "scipy-stubs", specifier = ">=1.15.3.0" },
     { name = "types-tqdm", specifier = ">=4.67.0.20250809" },
 ]
