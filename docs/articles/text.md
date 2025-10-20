@@ -26,8 +26,8 @@ repo](https://github.com/stephenslab/fastTopics-experiments).
 ## Import tinytopics
 
 ``` python
-import torch
-from pyreadr import read_r  # type: ignore[import-untyped]
+from safetensors.numpy import load_file as load_safetensors_numpy
+from safetensors.torch import load_file as load_safetensors_torch
 
 import tinytopics as tt
 ```
@@ -35,18 +35,19 @@ import tinytopics as tt
 ## Read count data
 
 ``` python
-def read_rds_numpy(file_path):
-    X0 = read_r(file_path)
-    X = X0[list(X0.keys())[0]]
-    return(X.to_numpy())
+def read_safetensors_numpy(file_path):
+    tensors = load_safetensors_numpy(file_path)
+    first_key = next(iter(tensors))
+    return tensors[first_key]
 
-def read_rds_torch(file_path):
-    X = read_rds_numpy(file_path)
-    return(torch.from_numpy(X))
+def read_safetensors_torch(file_path):
+    tensors = load_safetensors_torch(file_path)
+    first_key = next(iter(tensors))
+    return tensors[first_key]
 ```
 
 ``` python
-X = read_rds_torch("counts.rds")
+X = read_safetensors_torch("counts.safetensors")
 
 with open("terms.txt") as file:
     terms = [line.strip() for line in file]
@@ -75,8 +76,8 @@ fastTopics, and sort documents grouped by dominant topics.
 L_tt = model.get_normalized_L().numpy()
 F_tt = model.get_normalized_F().numpy()
 
-L_ft = read_rds_numpy("L_fastTopics.rds")
-F_ft = read_rds_numpy("F_fastTopics.rds")
+L_ft = read_safetensors_numpy("L_fastTopics.safetensors")
+F_ft = read_safetensors_numpy("F_fastTopics.safetensors")
 
 aligned_indices = tt.align_topics(F_ft, F_tt)
 F_aligned_tt = F_tt[aligned_indices]
