@@ -8,6 +8,7 @@ authors = [
 dependencies = [
     "torch >= 2.3.0; python_version < '3.13'",
     "torch >= 2.6.0; python_version >= '3.13'",
+    "torch >= 2.9.0; python_version >= '3.14'",
     "accelerate>=1.2.1",
     "numpy>=2.0.0",
     "scipy>=1.13.0",
@@ -37,6 +38,7 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
 
   "Typing :: Typed",
 ]
