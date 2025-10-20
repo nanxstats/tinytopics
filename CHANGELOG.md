@@ -1,5 +1,14 @@
 # Changelog
 
+## tinytopics 0.9.0
+
+### Improvements
+
+- Added Python 3.14 support by conditionally requiring torch >= 2.9.0 under
+  Python 3.14 (#67).
+- Removed `pyreadr` dependency and replaced with `safetensors` for safer
+  unserialization and better forward compatibility with Python versions (#66).
+
 ## tinytopics 0.8.1
 
 ### Linting
