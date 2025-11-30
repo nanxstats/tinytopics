@@ -35,7 +35,6 @@ def generate_synthetic_data(
         m (int): Number of terms (vocabulary size).
         k (int): Number of topics.
         avg_doc_length (int, optional): Average number of terms per document.
-        Default is 1000.
         device (torch.device, optional): Device to place the output tensors on.
 
     Returns:

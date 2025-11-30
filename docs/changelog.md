@@ -1,5 +1,13 @@
 # Changelog
 
+## tinytopics 0.9.1
+
+### Maintenance
+
+- Added GitHub Actions workflow to run `ruff check` for code linting (#71).
+- Updated GitHub Actions workflows to use `actions/checkout@v6` (#71).
+- Updated badges in `README.md` (#71).
+
 ## tinytopics 0.9.0
 
 ### Improvements
