@@ -60,8 +60,6 @@ build-backend = "hatchling.build"
 dev = [
     "isort>=7.0.0",
     "jupyter>=1.1.1",
-    "mkdocs>=1.6.1",
-    "mkdocs-material>=9.7.1",
     "mkdocstrings-python>=2.0.1",
     "mypy>=1.19.1",
     "nbconvert>=7.16.6",
@@ -73,6 +71,7 @@ dev = [
     "safetensors>=0.7.0",
     "scipy-stubs>=1.15.3.0",
     "types-tqdm>=4.67.0.20250809",
+    "zensical>=0.0.15",
 ]
 
 [tool.ruff.lint]
