@@ -1,5 +1,16 @@
 # Changelog
 
+## tinytopics 0.9.2
+
+### Documentation
+
+- Migrated documentation site to use Zensical (#74, #75).
+
+### Maintenance
+
+- Added exclusion rules to the hatchling build configuration to reduce the
+  file size of built source distributions and wheels (#77).
+
 ## tinytopics 0.9.1
 
 ### Maintenance
