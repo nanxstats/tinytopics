@@ -65,7 +65,7 @@ body {
     font-weight: 600;
 }
 
-.md-nav__item--nested .md-nav__icon:after {
+.md-nav__item--nested .md-nav__icon::after {
     height: 150%;
 }
 
