@@ -11,3 +11,6 @@ wheels/
 
 # Jupyter notebooks
 .ipynb_checkpoints/
+
+# Zensical site
+/site/

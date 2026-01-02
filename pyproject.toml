@@ -2,9 +2,8 @@
 name = "tinytopics"
 version = "0.9.1"
 description = "Topic modeling via sum-to-one constrained neural Poisson non-negative matrix factorization"
-authors = [
-    { name = "Nan Xiao", email = "me@nanx.me" }
-]
+authors = [{ name = "Nan Xiao", email = "me@nanx.me" }]
+
 dependencies = [
     "torch >= 2.3.0; python_version < '3.13'",
     "torch >= 2.6.0; python_version >= '3.13'",
@@ -16,31 +15,32 @@ dependencies = [
     "scikit-image>=0.22.0",
     "tqdm>=4.65.0",
 ]
+
 readme = "README.md"
 
 classifiers = [
-  "Development Status :: 3 - Alpha",
+    "Development Status :: 3 - Alpha",
 
-  "Intended Audience :: Developers",
-  "Intended Audience :: Education",
-  "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
 
-  "Topic :: Scientific/Engineering",
-  "Topic :: Scientific/Engineering :: Mathematics",
-  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
 
-  "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: MIT License",
 
-  "Operating System :: OS Independent",
+    "Operating System :: OS Independent",
 
-  "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.12",
-  "Programming Language :: Python :: 3.13",
-  "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
 
-  "Typing :: Typed",
+    "Typing :: Typed",
 ]
 
 requires-python = ">= 3.10"
@@ -58,21 +58,20 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
-    "pytest>=8.3.3",
-    "pytest-cov>=6.0.0",
-    "mkdocs>=1.6.1",
-    "mkdocs-material>=9.5.42",
-    "mkdocstrings-python>=1.12.2",
-    "nbconvert>=7.16.4",
+    "isort>=7.0.0",
     "jupyter>=1.1.1",
-    "pandas>=2.2.3",
-    "safetensors>=0.5.0",
-    "ruff>=0.7.0",
-    "isort>=5.13.2",
-    "mypy>=1.17.1",
+    "mkdocstrings-python>=2.0.1",
+    "mypy>=1.19.1",
+    "nbconvert>=7.16.6",
+    "pandas>=2.3.3",
+    "pandas-stubs>=2.3.3.251219",
+    "pytest>=9.0.2",
+    "pytest-cov>=7.0.0",
+    "ruff>=0.14.10",
+    "safetensors>=0.7.0",
     "scipy-stubs>=1.15.3.0",
     "types-tqdm>=4.67.0.20250809",
-    "pandas-stubs>=2.3.0.250703",
+    "zensical>=0.0.15",
 ]
 
 [tool.ruff.lint]

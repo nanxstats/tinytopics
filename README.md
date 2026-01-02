@@ -5,7 +5,7 @@
 [![CI tests](https://github.com/nanxstats/tinytopics/actions/workflows/ci-tests.yml/badge.svg)](https://github.com/nanxstats/tinytopics/actions/workflows/ci-tests.yml)
 [![Mypy check](https://github.com/nanxstats/tinytopics/actions/workflows/mypy.yml/badge.svg)](https://github.com/nanxstats/tinytopics/actions/workflows/mypy.yml)
 [![Ruff check](https://github.com/nanxstats/tinytopics/actions/workflows/ruff-check.yml/badge.svg)](https://github.com/nanxstats/tinytopics/actions/workflows/ruff-check.yml)
-[![mkdocs](https://github.com/nanxstats/tinytopics/actions/workflows/mkdocs.yml/badge.svg)](https://nanx.me/tinytopics/)
+[![Documentation](https://github.com/nanxstats/tinytopics/actions/workflows/docs.yml/badge.svg)](https://nanx.me/tinytopics/)
 ![License](https://img.shields.io/pypi/l/tinytopics)
 
 Topic modeling via sum-to-one constrained neural Poisson NMF.

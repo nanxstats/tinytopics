@@ -1,0 +1,102 @@
+[project]
+site_name = "tinytopics"
+site_description = "GPU-accelerated topic modeling via sum-to-one constrained neural Poisson NMF with PyTorch"
+site_author = "Nan Xiao"
+site_url = "https://nanx.me/tinytopics/"
+repo_url = "https://github.com/nanxstats/tinytopics"
+repo_name = "nanxstats/tinytopics"
+edit_uri = "edit/main/docs/"
+copyright = """
+Copyright &copy; 2026 tinytopics authors
+"""
+
+nav = [
+    { Home = "index.md" },
+    { Articles = [
+        "articles/get-started.md",
+        "articles/benchmark.md",
+        "articles/text.md",
+        "articles/memory.md",
+        "articles/distributed.md",
+    ] },
+    { "API Reference" = [
+        { Fit = "reference/fit.md" },
+        { Models = "reference/models.md" },
+        { Loss = "reference/loss.md" },
+        { Data = "reference/data.md" },
+        { Plot = "reference/plot.md" },
+        { Colors = "reference/colors.md" },
+        { Utilities = "reference/utils.md" },
+    ] },
+    { Changelog = "changelog.md" },
+]
+
+extra_css = ["stylesheets/extra.css"]
+
+# ----------------------------------------------------------------------------
+# Section for configuring theme options
+# ----------------------------------------------------------------------------
+[project.theme]
+logo = "assets/logo.png"
+favicon = "assets/favicon.png"
+language = "en"
+
+features = [
+    "announce.dismiss",
+    "content.action.edit",
+    "content.action.view",
+    "content.code.annotate",
+    "content.code.copy",
+    "content.code.select",
+    "content.footnote.tooltips",
+    "content.tabs.link",
+    "content.tooltips",
+    "header.autohide",
+    #"navigation.expand",
+    "navigation.footer",
+    "navigation.indexes",
+    "navigation.instant",
+    "navigation.instant.prefetch",
+    #"navigation.instant.progress",
+    "navigation.path",
+    #"navigation.prune",
+    "navigation.sections",
+    #"navigation.tabs",
+    #"navigation.tabs.sticky",
+    "navigation.top",
+    "navigation.tracking",
+    "search.highlight",
+    #"toc.follow",
+    #"toc.integrate",
+]
+
+[[project.theme.palette]]
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
+
+[project.theme.font]
+text = "Source Sans 3"
+code = "JetBrains Mono"
+
+[project.theme.icon]
+repo = "fontawesome/brands/github"
+
+# ----------------------------------------------------------------------------
+# Section for configuring mkdocstrings plugin
+# ----------------------------------------------------------------------------
+[project.plugins.mkdocstrings]
+default_handler = "python"
+
+[project.plugins.mkdocstrings.handlers.python]
+paths = ["src"]
+
+[project.plugins.mkdocstrings.handlers.python.options]
+inherited_members = true
+show_root_heading = true
+show_source = false

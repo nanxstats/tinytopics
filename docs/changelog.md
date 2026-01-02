@@ -137,7 +137,7 @@
 
 ### Documentation
 
-- Add badges for CI tests and mkdocs workflows to `README.md` (#24).
+- Add badges for CI tests and documentation workflows to `README.md` (#24).
 - Add PyTorch management guide link for uv to `README.md` (735fcca).
 
 ### Maintenance
