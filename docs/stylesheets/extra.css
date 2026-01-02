@@ -32,6 +32,11 @@
     font-style: italic;
 }
 
+:root {
+    --md-text-font: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --md-code-font: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
 body {
     -webkit-font-smoothing: auto;
 }
@@ -58,6 +63,10 @@ body {
 
 .md-nav--secondary .md-nav__title {
     font-weight: 600;
+}
+
+.md-nav__item--nested .md-nav__icon:after {
+    height: 150%;
 }
 
 /* Content */
