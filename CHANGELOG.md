@@ -1,5 +1,12 @@
 # Changelog
 
+## tinytopics (development version)
+
+### Documentation
+
+- Remove reference to Rye in `README.md` installation instructions
+  as it is no longer being developed (#79).
+
 ## tinytopics 0.9.2
 
 ### Documentation
