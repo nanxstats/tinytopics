@@ -35,11 +35,11 @@ The above will likely install the CPU version of PyTorch by default.
 To install PyTorch with GPU support, follow the
 [official guide](https://pytorch.org/get-started/locally/).
 
-For example, install PyTorch for Windows with CUDA 12.6:
+For example, install PyTorch for Windows with CUDA 13.0:
 
 ```bash
 pip uninstall torch
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu130
 ```
 
 ### Install alternative PyTorch versions
@@ -60,8 +60,7 @@ to use tinytopics as a dependency under a project context using
 virtual environments.
 
 You should probably set up a manual source/index for PyTorch.
-As examples, check out the official guidelines when
-[using Rye](https://rye.astral.sh/guide/faq/#how-do-i-install-pytorch) or
+As an example, check out the official guidelines when
 [using uv](https://docs.astral.sh/uv/guides/integration/pytorch/).
 
 ## Examples
