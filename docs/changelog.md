@@ -4,6 +4,9 @@
 
 ### Documentation
 
+- Refactor `README.md` installation section to recommend uv as the
+  primary method for managing tinytopics as a project dependency,
+  with a canonical example for configuring PyTorch with GPU support (#80).
 - Remove reference to Rye in `README.md` installation instructions
   as it is no longer being developed (#79).
 
