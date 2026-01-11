@@ -29,39 +29,39 @@ cd tinytopics
 python3 -m pip install -e .
 ```
 
-### Install PyTorch with GPU support
+### Using uv (recommended)
 
-The above will likely install the CPU version of PyTorch by default.
-To install PyTorch with GPU support, follow the
-[official guide](https://pytorch.org/get-started/locally/).
+For a more robust package management experience, use
+[uv](https://docs.astral.sh/uv/) to manage tinytopics as a project dependency.
 
-For example, install PyTorch for Windows with CUDA 13.0:
-
-```bash
-pip uninstall torch
-pip install torch torchvision --index-url https://download.pytorch.org/whl/cu130
-```
-
-### Install alternative PyTorch versions
-
-For users stuck with older PyTorch or NumPy versions, for instance, in HPC
-cluster settings, a workaround is to skip installing the dependencies with
-`--no-deps` and install specific versions of all dependencies manually:
+Add tinytopics and PyTorch to your project:
 
 ```bash
-pip install tinytopics --no-deps
-pip install torch==2.2.0
+uv add tinytopics torch torchvision
 ```
 
-### Use tinytopics in a project
+To install PyTorch with GPU support (for example, Windows with CUDA 13.0),
+configure `pyproject.toml`:
 
-To have a more hassle-free package management experience, it is recommended
-to use tinytopics as a dependency under a project context using
-virtual environments.
+```toml
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu130", marker = "sys_platform == 'win32'" }]
+torchvision = [{ index = "pytorch-cu130", marker = "sys_platform == 'win32'" }]
 
-You should probably set up a manual source/index for PyTorch.
-As an example, check out the official guidelines when
-[using uv](https://docs.astral.sh/uv/guides/integration/pytorch/).
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+```
+
+Then sync your environment:
+
+```bash
+uv sync
+```
+
+For other platforms and accelerators (CPU-only, ROCm, Intel GPUs), see
+[Using uv with PyTorch](https://docs.astral.sh/uv/guides/integration/pytorch/).
 
 ## Examples
 
