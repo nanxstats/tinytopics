@@ -92,7 +92,7 @@ def plot_structure(
     plt.title(title)
     plt.xlabel("Documents (sorted)")
     plt.ylabel("Topic Proportions")
-    plt.xlim([0, n_documents])
+    plt.xlim(0, n_documents)
     plt.ylim(0, 1)
     plt.tight_layout()
 
