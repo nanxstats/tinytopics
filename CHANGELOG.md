@@ -4,6 +4,10 @@
 
 ### Maintenance
 
+- Update GitHub Actions workflows to `actions/checkout@v7`,
+  `actions/setup-python@v7`, `actions/configure-pages@v6`,
+  `actions/upload-pages-artifact@v5` and `actions/deploy-pages@v5` and refresh
+  the disabled Codecov step to `codecov/codecov-action@v7` (#83).
 - Replace `hatchling` with `uv_build` as the build backend and declare the MIT
   license using the PEP 639 `license` field to eliminate the `uv build`
   warning (#82).
