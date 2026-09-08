@@ -2,6 +2,13 @@
 
 ## tinytopics (development version)
 
+### Maintenance
+
+- Update GitHub Actions workflows to `actions/checkout@v7`,
+  `actions/setup-python@v7`, `actions/configure-pages@v6`,
+  `actions/upload-pages-artifact@v5` and `actions/deploy-pages@v5` and refresh
+  the disabled Codecov step to `codecov/codecov-action@v7`.
+
 ### Documentation
 
 - Refactor `README.md` installation section to recommend uv as the
