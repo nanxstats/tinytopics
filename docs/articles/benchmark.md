@@ -69,6 +69,7 @@ Create a data frame to store the benchmark results.
 ``` python
 benchmark_results = pd.DataFrame()
 
+
 def benchmark(X, k, device):
     start_time = time.time()
     model, losses = tt.fit_model(X, k, device=device)
@@ -85,22 +86,32 @@ for n in n_values:
         for k in k_values:
             print(f"Benchmarking for n={n}, m={m}, k={k}...")
 
-            X, true_L, true_F = tt.generate_synthetic_data(n, m, k, avg_doc_length=avg_doc_length)
+            X, true_L, true_F = tt.generate_synthetic_data(
+                n, m, k, avg_doc_length=avg_doc_length
+            )
 
             # Benchmark on CPU
             cpu_time = benchmark(X, k, torch.device("cpu"))
-            cpu_result = pd.DataFrame([{"n": n, "m": m, "k": k, "device": "CPU", "time": cpu_time}])
+            cpu_result = pd.DataFrame(
+                [{"n": n, "m": m, "k": k, "device": "CPU", "time": cpu_time}]
+            )
 
             if not cpu_result.isna().all().any():
-                benchmark_results = pd.concat([benchmark_results, cpu_result], ignore_index=True)
+                benchmark_results = pd.concat(
+                    [benchmark_results, cpu_result], ignore_index=True
+                )
 
             # Benchmark on GPU if available
             if torch.cuda.is_available():
                 gpu_time = benchmark(X, k, torch.device("cuda"))
-                gpu_result = pd.DataFrame([{"n": n, "m": m, "k": k, "device": "GPU", "time": gpu_time}])
+                gpu_result = pd.DataFrame(
+                    [{"n": n, "m": m, "k": k, "device": "GPU", "time": gpu_time}]
+                )
 
                 if not gpu_result.isna().all().any():
-                    benchmark_results = pd.concat([benchmark_results, gpu_result], ignore_index=True)
+                    benchmark_results = pd.concat(
+                        [benchmark_results, gpu_result], ignore_index=True
+                    )
 ```
 
 Save results to a CSV file:

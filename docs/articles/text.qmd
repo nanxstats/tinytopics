@@ -43,6 +43,7 @@ def read_safetensors_numpy(file_path):
     first_key = next(iter(tensors))
     return tensors[first_key]
 
+
 def read_safetensors_torch(file_path):
     tensors = load_safetensors_torch(file_path)
     first_key = next(iter(tensors))

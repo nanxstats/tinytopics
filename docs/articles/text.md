@@ -40,6 +40,7 @@ def read_safetensors_numpy(file_path):
     first_key = next(iter(tensors))
     return tensors[first_key]
 
+
 def read_safetensors_torch(file_path):
     tensors = load_safetensors_torch(file_path)
     first_key = next(iter(tensors))
@@ -120,7 +121,7 @@ inspect their concordance:
 tt.plot_top_terms(
     F_ft,
     n_top_terms=15,
-    term_names = terms,
+    term_names=terms,
     title="fastTopics top terms per topic",
     output_file="F-top-terms-fastTopics.png",
 )
@@ -132,7 +133,7 @@ tt.plot_top_terms(
 tt.plot_top_terms(
     F_aligned_tt,
     n_top_terms=15,
-    term_names = terms,
+    term_names=terms,
     title="tinytopics top terms per topic (aligned)",
     output_file="F-top-terms-tinytopics.png",
 )

@@ -71,6 +71,7 @@ Create a data frame to store the benchmark results.
 ```{python}
 benchmark_results = pd.DataFrame()
 
+
 def benchmark(X, k, device):
     start_time = time.time()
     model, losses = tt.fit_model(X, k, device=device)
