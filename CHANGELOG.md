@@ -2,6 +2,12 @@
 
 ## tinytopics (development version)
 
+### Maintenance
+
+- Replace `hatchling` with `uv_build` as the build backend and declare the MIT
+  license using the PEP 639 `license` field to eliminate the `uv build`
+  warning.
+
 ### Documentation
 
 - Refactor `README.md` installation section to recommend uv as the
